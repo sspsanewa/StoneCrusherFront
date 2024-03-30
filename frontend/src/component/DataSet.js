@@ -1,0 +1,97 @@
+const Data = {
+    data: [
+        {
+            "id": 1,
+            "firstName": "Narendra",
+            "lastName": "Patidar",
+            "village": "Bhamori",
+            "date": "19-03-2024",
+            "address": "Bhamori Dewas MP",
+            "mobile": "7898085077",
+            "size": "20mm",
+            "cubicMeter": 234,
+            "gstNumber": "stone200",
+            "cgstAmount": 123.0,
+            "sgstAmount": 344.0,
+            "royaltiAmount": 250.0,
+            "billNumber": "stone200",
+            "fermName": "balaji",
+            "paymentMode": "online",
+            "amountCollectedBy": "rahul",
+            "rate": 0.0,
+            "amount": 250.0,
+            "discount": 250.0
+        },
+        // Updated entry
+        {
+            "id": 303,
+            "firstName": "John",
+            "lastName": "Doe",
+            "village": "New Village",
+            "date": "2024-03-14",
+            "address": "123 Main St",
+            "mobile": "1234567890",
+            "size": "30mm",
+            "cubicMeter": 100,
+            "gstNumber": "456",
+            "cgstAmount": 50.0,
+            "sgstAmount": 50.0,
+            "royaltiAmount": 300.0,
+            "billNumber": "456",
+            "fermName": "New Ferm",
+            "paymentMode": "Cash",
+            "amountCollectedBy": "John",
+            "rate": 10.0,
+            "amount": 500.0,
+            "discount": 50.0
+        },
+        // New entry
+        {
+            "id": 413,
+            "firstName": "Alice",
+            "lastName": "Smith",
+            "village": "Smithville",
+            "date": "2024-03-15",
+            "address": "789 Elm St",
+            "mobile": "9876543210",
+            "size": "40mm",
+            "cubicMeter": 150,
+            "gstNumber": "789",
+            "cgstAmount": 75.0,
+            "sgstAmount": 75.0,
+            "royaltiAmount": 350.0,
+            "billNumber": "789",
+            "fermName": "Smith Mining",
+            "paymentMode": "Cheque",
+            "amountCollectedBy": "Alice",
+            "rate": 15.0,
+            "amount": 600.0,
+            "discount": 60.0
+        },
+        // Modified entry
+        {
+            "id": 352,
+            "firstName": "Narendra",
+            "lastName": "Patidar",
+            "village": "Changed Village",
+            "date": "2024-03-13",
+            "address": "315 ward 12",
+            "mobile": "07898085077",
+            "size": "50",
+            "cubicMeter": 45,
+            "gstNumber": "23",
+            "cgstAmount": 23.0,
+            "sgstAmount": 23.0,
+            "royaltiAmount": 250.0,
+            "billNumber": "12",
+            "fermName": "Shree Shyam Mining",
+            "paymentMode": "Cash",
+            "amountCollectedBy": "RahulA",
+            "rate": 565.0,
+            "amount": 28250.0,
+            "discount": 890.0
+        }
+    ]
+}
+
+export default Data;
