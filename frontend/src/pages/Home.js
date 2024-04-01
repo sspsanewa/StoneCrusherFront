@@ -9,6 +9,7 @@ import Sidebar from '../component/Sidebar';
 import Footer from '../component/Footer';
 import Dashboard from '../component/Dashboard'
 import Constant from '../config/Constant'
+import UserList from '../component/UserList';
 
 const drawerWidth = 260;
 
@@ -77,9 +78,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-export default function DashboardPage() {
+export default function Home() {
     const [open, setOpen] = useState(true);
-    const [component, setComponent] = useState(Dashboard)
+    const [component, setComponent] = useState(<Dashboard />)
 
 
 
@@ -97,7 +98,7 @@ export default function DashboardPage() {
             <Box component="main" sx={{ flexGrow: 1, p: .1, bgcolor: Constant.color[0], overflowY: 'auto', height: { xs: '200vh', md: '100vh' } }}>
                 <DrawerHeader />
                 <Box margin={4} marginBottom={20}>
-                    <component />
+                    {component}
                 </Box>
                 <Footer />
             </Box>

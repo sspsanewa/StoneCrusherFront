@@ -17,24 +17,24 @@ import DeletedUserPage from '../pages/DeletedUserPage';
 import ViewDeletedPage from '../pages/ViewDeletedPage';
 
 import AddDetailPage from '../pages/AddDetailPage';
+import Dashboard from '@mui/icons-material/Dashboard';
+import UserList from '../component/UserList';
+import AddDetail from '../component/AddDetail';
+import Home from '../pages/Home';
 
 function App() {
   return (
     <BrowserRouter >
       <Routes>
         <Route path='/' element={<Login />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/forgotPassword' element={<ForgotPassword />} />
-        <Route path='/dashboardPage' element={<DashboardPage />} />
-        <Route path='/profilePage' element={<ProfilePage />}></Route>
-        <Route path='/userListPage' element={<UserListPage />}></Route>
-        <Route path='/manageContentPage' element={<ManageContentPage />}></Route>
-        <Route path='/addDetailPage' element={<AddDetailPage />}></Route>
-        <Route path='/manageEarningPage' element={<ManageEarningPage />}></Route>
-        <Route path='/manageContactUsPage' element={<ManageContactUSPage />}></Route>
-        <Route path='/replyPage/:id' element={<ReplyPage />}></Route>
-        <Route path='/viewPage/:id' element={<ViewPage />}></Route>
-        <Route path='/viewDeletedPage/:id' element={<ViewDeletedPage />}></Route>
-        <Route path='/deletedUserPage' element={<DeletedUserPage />}></Route>
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/userList' element={<UserList />}></Route>
+        <Route path='/addDetail' element={<AddDetail />}></Route>
+
+
+
 
 
 

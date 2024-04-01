@@ -28,6 +28,8 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import UserList from './UserList';
+import Dashboard from './Dashboard';
+import AddDetail from './AddDetail';
 
 export default function Sidebar(props) {
     const [open1, setOpen1] = React.useState(false);
@@ -166,7 +168,9 @@ export default function Sidebar(props) {
                     handleMouseOver={handleMouseOver1}
                     handleMouseOut={handleMouseOut1}
                     hover={hover1}
-                    path='/dashboardPage'
+                    path='/home'
+                    setComponent={props.setComponent}
+                    component={<Dashboard />}
                     icon={<DashboardIcon sx={{ color: hover1 ? 'black' : 'white', fontSize: '17px' }} />}
                 />
 
@@ -188,7 +192,7 @@ export default function Sidebar(props) {
                 <Collapse in={open1} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItemButton
-                            onClick={() => { navigate('/dashboardPage'); props.setComponent(<UserList />) }}
+                            onClick={() => { props.setComponent(<UserList />); navigate('/home'); }}
                             onMouseOver={handleMouseOver2} onMouseOut={handleMouseOut2}
                             sx={{ pl: 4, backgroundColor: hover2 ? 'white' : 'black' }}>
                             <ListItemIcon>
@@ -202,65 +206,25 @@ export default function Sidebar(props) {
                                 }
                             />
                         </ListItemButton>
-                        <ListItemButton
-                            onClick={() => navigate('/deletedUserPage')}
-                            onMouseOver={handleMouseOver2} onMouseOut={handleMouseOut2}
-                            sx={{ pl: 4, backgroundColor: hover2 ? 'white' : 'black' }}>
-                            <ListItemIcon>
-                                <ArrowLeftIcon sx={{ color: hover2 ? 'black' : 'white', fontSize: '17px' }} />
-                            </ListItemIcon>
-                            <ListItemText sx={{ color: hover2 ? 'black' : 'white' }}
-                                primary={
-                                    <Typography variant="body1" sx={{ color: hover2 ? 'black' : 'white', fontSize: '15px' }}  >
-                                        Deleted User
-                                    </Typography>
-                                } />
-                        </ListItemButton>
+
                     </List>
                 </Collapse>
 
 
 
                 <ListOfItem
-                    path='/addDetailPage'
+                    path='/home'
                     name='Add Detail'
                     handleMouseOver={handleMouseOver4}
                     handleMouseOut={handleMouseOut4}
                     hover={hover4}
+                    setComponent={props.setComponent}
+                    component={<AddDetail />}
                     icon={<MoneyIcon sx={{ color: hover4 ? 'black' : 'white', fontSize: '17px' }} />}
                 />
 
 
 
-                <ListOfItem
-                    name='Manage Contents'
-                    handleMouseOver={handleMouseOver5}
-                    handleMouseOut={handleMouseOut5}
-                    hover={hover5}
-                    path='/manageContentPage'
-                    icon={<SourceIcon sx={{ color: hover5 ? 'black' : 'white', fontSize: '17px' }} />}
-                />
-
-
-                <ListOfItem
-                    path='/manageEarningPage'
-                    name='Manage Earning'
-                    handleMouseOver={handleMouseOver6}
-                    handleMouseOut={handleMouseOut6}
-                    hover={hover6}
-                    icon={<PaidIcon sx={{ color: hover6 ? 'black' : 'white', fontSize: '17px' }} />}
-                />
-
-
-
-                <ListOfItem
-                    path='/manageContactUsPage'
-                    name='Manage Contact Us'
-                    handleMouseOver={handleMouseOver10}
-                    handleMouseOut={handleMouseOut10}
-                    hover={hover10}
-                    icon={<PhoneInTalkIcon sx={{ color: hover10 ? 'black' : 'white', fontSize: '17px' }} />}
-                />
 
 
 

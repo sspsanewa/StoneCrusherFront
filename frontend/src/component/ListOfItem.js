@@ -6,7 +6,7 @@ const ListOfItem = (props) => {
     const navigate = useNavigate()
     return (
         <ListItemButton
-            onClick={() => navigate(props.path)}
+            onClick={() => { props.setComponent(props.component); navigate(props.path) }}
             onMouseOver={props.handleMouseOver}
             onMouseOut={props.handleMouseOut}
             sx={{ backgroundColor: props.hover ? 'white' : 'black' }}

@@ -27,7 +27,7 @@ const Navbar = (props) => {
 
     const handleCloseUserMenu3 = () => {
         setAnchorElUser(null);
-        navigate('/dashboardPage')
+        navigate('/home')
     };
 
     const handleCloseUserMenu4 = () => {
