@@ -86,7 +86,7 @@ export default function Home() {
 
 
     return (
-        <Box marginLeft={1} marginRight={1} sx={{ display: 'flex', overflow: 'hidden' }}>
+        <Box sx={{ display: 'flex', overflow: 'hidden' }}>
             <CssBaseline />
             <AppBar open={open}>
                 <Navbar open={open} setOpen={setOpen} />
