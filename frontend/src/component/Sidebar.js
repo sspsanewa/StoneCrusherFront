@@ -20,6 +20,7 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import UserList from './UserList';
 import Dashboard from './Dashboard';
 import AddDetail from './AddDetail';
+import Bill from './New';
 
 export default function Sidebar(props) {
     const [open1, setOpen1] = React.useState(false);
@@ -213,7 +214,16 @@ export default function Sidebar(props) {
                     icon={<MoneyIcon sx={{ color: hover4 ? 'black' : 'white', fontSize: '17px' }} />}
                 />
 
-
+                <ListOfItem
+                    name='Download Bill'
+                    handleMouseOver={handleMouseOver5}
+                    handleMouseOut={handleMouseOut5}
+                    hover={hover5}
+                    path='/home'
+                    setComponent={props.setComponent}
+                    component={<Bill />}
+                    icon={<DashboardIcon sx={{ color: hover1 ? 'black' : 'white', fontSize: '17px' }} />}
+                />
 
 
 

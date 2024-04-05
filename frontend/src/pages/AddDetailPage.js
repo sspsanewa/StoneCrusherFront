@@ -10,6 +10,7 @@ import Footer from '../component/Footer';
 import Dashboard from '../component/Dashboard'
 import Constant from '../config/Constant'
 import AddDetail from '../component/AddDetail'
+
 const drawerWidth = 260;
 
 const openedMixin = (theme) => ({

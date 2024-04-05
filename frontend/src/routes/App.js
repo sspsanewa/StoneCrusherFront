@@ -7,6 +7,7 @@ import Dashboard from '@mui/icons-material/Dashboard';
 import UserList from '../component/UserList';
 import AddDetail from '../component/AddDetail';
 import Home from '../pages/Home';
+import Bill from '../component/New';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/userList' element={<UserList />}></Route>
         <Route path='/addDetail' element={<AddDetail />}></Route>
+        <Route path='/bill' element={<Bill />}></Route>
 
 
 

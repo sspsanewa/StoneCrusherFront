@@ -1,34 +1,17 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { visuallyHidden } from '@mui/utils';
-import { Autocomplete, Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, TextField, styled } from '@mui/material';
+import { Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, TextField, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
-import dayjs from 'dayjs';
 import axios from 'axios';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import "react-datepicker/dist/react-datepicker.css";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import moment from 'moment';
+import Date from './date';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -39,44 +22,41 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function AddDetail() {
+    const [date, setDate] = useState('')
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
-        date: '',
+        date: '11111',
         village: '',
         address: '',
         mobile: '',
         size: '',
         cubicMeter: '',
         gstNumber: '',
-        cgst: '',
-        sgst: '',
-        royalty: '',
-        sno: '',
-        firm: '',
+        cgstAmount: '',
+        sgstAmount: '',
+        billNumber: '',
+        royaltiAmount: '',
+        fermName: '',
         paymentMode: '',
-        collectedBy: '',
+        amountCollectedBy: '',
         rate: '',
         amount: '',
         discount: ''
 
     });
 
-
-    if (formData.size !== '') {
-        formData.size = parseInt(formData.size);
-    }
     if (formData.cubicMeter !== '') {
         formData.cubicMeter = parseInt(formData.cubicMeter);
     }
-    if (formData.cgst !== '') {
-        formData.cgst = parseInt(formData.cgst);
+    if (formData.cgstAmount !== '') {
+        formData.cgstAmount = parseInt(formData.cgstAmount);
     }
-    if (formData.sgst !== '') {
-        formData.sgst = parseInt(formData.sgst);
+    if (formData.sgstAmount !== '') {
+        formData.sgstAmount = parseInt(formData.sgstAmount);
     }
-    if (formData.royalty !== '') {
-        formData.royalty = parseInt(formData.royalty);
+    if (formData.royaltiAmount !== '') {
+        formData.royaltiAmount = parseInt(formData.royaltiAmount);
     }
     if (formData.rate !== '') {
         formData.rate = parseInt(formData.rate);
@@ -89,23 +69,19 @@ export default function AddDetail() {
         formData.discount = parseInt(formData.discount);
     }
 
+    if (formData.date !== '') {
+        formData.date = date
+    }
 
     const handleChange = (e) => {
+
         const { name, value } = e.target;
 
-        // Handle date separately
-        if (name === 'date') {
-            const formattedDate = dayjs(value).format('YYYY-MM-DD'); // Change the format as needed
-            setFormData({
-                ...formData,
-                [name]: formattedDate
-            });
-        } else {
-            setFormData({
-                ...formData,
-                [name]: value
-            });
-        }
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+
     };
 
 
@@ -116,20 +92,23 @@ export default function AddDetail() {
         console.log(formData)
         axios.post('http://localhost:8080/api/v1/client', formData)
             .then(res => {
-                navigate('/addDetailPage')
+                navigate('/home')
             })
             .catch(err => {
                 console.log(err)
             })
     };
     const navigate = useNavigate()
-    //ddddddddddddddd
+
+
+
+
     return (
         <Box sx={{ width: '100%' }}>
             <Box display={'flex'} justifyContent={'space-between'}>
                 <Typography marginBottom={4} fontSize={20} >Add Detail</Typography>
                 <Box display={'flex'}>
-                    <Typography onClick={() => navigate('/dashboardPage')} marginBottom={4} fontSize={15} >Dashboard </Typography>
+                    <Typography onClick={() => navigate('/home')} marginBottom={4} fontSize={15} >Dashboard </Typography>
 
                 </Box>
 
@@ -180,16 +159,8 @@ export default function AddDetail() {
                                         />
                                     </Grid>
                                     <Grid marginTop={1} item xs={12} md={4}>
-                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <DemoContainer components={['DatePicker']}>
-                                                <DatePicker
-                                                    label="Basic date picker"
-                                                    value={formData.date}
-                                                    onChange={(date) => handleChange({ target: { name: 'date', value: date } }
-                                                    )}
-                                                />
-                                            </DemoContainer>
-                                        </LocalizationProvider>
+
+                                        <Date date={date} setDate={setDate} />
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <TextField
@@ -225,27 +196,28 @@ export default function AddDetail() {
                                 <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
                                     <Grid marginTop={2} item xs={12} md={4}>
                                         <FormControl fullWidth>
-                                            <InputLabel id="demo-simple-select-label">Size</InputLabel>
+                                            <InputLabel id="size">Size</InputLabel>
                                             <Select
                                                 required
-                                                labelId="demo-simple-select-label"
-                                                id="demo-simple-select"
+                                                labelId="size"
+                                                id="size"
                                                 name='size'
                                                 value={formData.size}
-                                                label="Size"
+                                                label="size"
                                                 onChange={handleChange}
                                             >
-                                                <MenuItem value={10}>20mm</MenuItem>
-                                                <MenuItem value={20}>10mm</MenuItem>
-                                                <MenuItem value={30}>4mm(msand)</MenuItem>
-                                                <MenuItem value={40}>Dust</MenuItem>
-                                                <MenuItem value={50}>Gsb</MenuItem>
-                                                <MenuItem value={60}>Wmm</MenuItem>
+                                                <MenuItem value='20mm'>20mm</MenuItem>
+                                                <MenuItem value='10mm'>10mm</MenuItem>
+                                                <MenuItem value='4mm(mcend)'>4mm(mcend)</MenuItem>
+                                                <MenuItem value='Dust'>Dust</MenuItem>
+                                                <MenuItem value='GSB'>Gsb</MenuItem>
+                                                <MenuItem value='Wmm'>Wmm</MenuItem>
 
                                             </Select>
                                         </FormControl>
                                         {formData.size === '' && <FormHelperText>This field is required.</FormHelperText>}
                                     </Grid>
+
                                     <Grid item xs={12} md={4}>
                                         <TextField
                                             required
@@ -282,8 +254,8 @@ export default function AddDetail() {
                                         <TextField
                                             label="CGST Amount"
                                             variant="outlined"
-                                            name='cgst'
-                                            value={formData.cgst}
+                                            name='cgstAmount'
+                                            value={formData.cgstAmount}
                                             onChange={handleChange}
                                             fullWidth
                                             margin="normal"
@@ -294,8 +266,8 @@ export default function AddDetail() {
                                         <TextField
                                             label="SGST Amount"
                                             variant="outlined"
-                                            name='sgst'
-                                            value={formData.sgst}
+                                            name='sgstAmount'
+                                            value={formData.sgstNumber}
                                             onChange={handleChange}
                                             fullWidth
                                             margin="normal"
@@ -306,8 +278,8 @@ export default function AddDetail() {
                                         <TextField
                                             label="Royalty Amount"
                                             variant="outlined"
-                                            name='royalty'
-                                            value={formData.royalty}
+                                            name='royaltiAmount'
+                                            value={formData.royaltiAmount}
                                             onChange={handleChange}
                                             fullWidth
                                             margin="normal"
@@ -324,10 +296,10 @@ export default function AddDetail() {
                                     <Grid item xs={12} md={4}>
                                         <TextField
                                             required
-                                            label="S.NO"
+                                            label="Bill Number"
                                             variant="outlined"
-                                            name='sno'
-                                            value={formData.sno}
+                                            name='billNumber'
+                                            value={formData.billNumber}
                                             onChange={handleChange}
                                             fullWidth
                                             margin="normal"
@@ -340,8 +312,8 @@ export default function AddDetail() {
                                                 required
                                                 labelId="demo-simple-select-autowidth-label"
                                                 id="demo-simple-select-autowidth"
-                                                name='firm'
-                                                value={formData.firm}
+                                                name='fermName'
+                                                value={formData.fermName}
                                                 onChange={handleChange}
                                                 autoWidth
                                                 label="firm"
@@ -381,8 +353,8 @@ export default function AddDetail() {
                                                 required
                                                 labelId="collection"
                                                 id="collection"
-                                                name='collectedBy'
-                                                value={formData.collectedBy}
+                                                name='amountCollectedBy'
+                                                value={formData.amountCollectedBy}
                                                 onChange={handleChange}
                                                 autoWidth
                                                 label="collection"
@@ -395,7 +367,7 @@ export default function AddDetail() {
 
                                             </Select>
                                         </FormControl>
-                                        {formData.collectedBy === '' && <FormHelperText>This field is required.</FormHelperText>}
+                                        {formData.amount === '' && <FormHelperText>This field is required.</FormHelperText>}
 
                                     </Grid>
                                     <Grid item xs={12} md={4}>

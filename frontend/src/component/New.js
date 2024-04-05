@@ -1,30 +1,30 @@
 import React, { useState } from 'react';
 import html2pdf from 'html2pdf.js';
 
-const New = () => {
-  const [billData, setBillData] = useState({
-    customerName: 'John Doe',
-    items: [
-      { name: 'Item 1', price: 10, quantity: 2 },
-      { name: 'Item 2', price: 20, quantity: 1 },
-    ],
-    // Add more bill data as needed
-  });
+const Bill = () => {
+    const [billData, setBillData] = useState({
+        customerName: 'John Doe',
+        items: [
+            { name: 'Item 1', price: 10, quantity: 2 },
+            { name: 'Item 2', price: 20, quantity: 1 },
+        ],
+        // Add more bill data as needed
+    });
 
-  const generateBill = () => {
-    // Fill the bill template with data
-    const itemsHTML = billData.items.map((item, index) => (
-      <tr key={index}>
-        <td>{item.name}</td>
-        <td>{item.quantity}</td>
-        <td>${item.price}</td>
-        <td>${item.quantity * item.price}</td>
-      </tr>
-    ));
+    const generateBill = () => {
+        // Fill the bill template with data
+        const itemsHTML = billData.items.map((item, index) => (
+            <tr key={index}>
+                <td>{item.name}</td>
+                <td>{item.quantity}</td>
+                <td>${item.price}</td>
+                <td>${item.quantity * item.price}</td>
+            </tr>
+        ));
 
-    const total = billData.items.reduce((acc, item) => acc + item.quantity * item.price, 0);
+        const total = billData.items.reduce((acc, item) => acc + item.quantity * item.price, 0);
 
-    const billTemplate = `
+        const billTemplate = `
       <div>
         <h1>Bill for ${billData.customerName}</h1>
        <!DOCTYPE html>
@@ -86,16 +86,16 @@ const New = () => {
       </div>
     `;
 
-    // Convert HTML to PDF
-    html2pdf().from(billTemplate).save();
-  };
+        // Convert HTML to PDF
+        html2pdf().from(billTemplate).save();
+    };
 
-  return (
-    <div>
-      {/* Render your bill data and other UI elements */}
-      <button onClick={generateBill}>Generate Bill</button>
-    </div>
-  );
+    return (
+        <div>
+            {/* Render your bill data and other UI elements */}
+            <button onClick={generateBill}>Generate Bill</button>
+        </div>
+    );
 };
 
-export default New;
+export default Bill;
