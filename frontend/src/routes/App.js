@@ -7,7 +7,7 @@ import Dashboard from '@mui/icons-material/Dashboard';
 import UserList from '../component/UserList';
 import AddDetail from '../component/AddDetail';
 import Home from '../pages/Home';
-import Bill from '../component/New';
+import Bill from '../component/Bill';
 
 function App() {
   return (

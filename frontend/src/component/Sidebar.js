@@ -20,7 +20,7 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import UserList from './UserList';
 import Dashboard from './Dashboard';
 import AddDetail from './AddDetail';
-import Bill from './New';
+import Bill from './Bill';
 
 export default function Sidebar(props) {
     const [open1, setOpen1] = React.useState(false);

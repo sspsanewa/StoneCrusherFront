@@ -86,7 +86,7 @@ export default function AddDetail() {
 
 
 
-    formData.amount = formData.size * formData.rate
+    formData.amount = formData.cubicMeter * formData.rate
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData)
