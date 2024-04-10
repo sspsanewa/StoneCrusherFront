@@ -113,7 +113,7 @@ const Login = () => {
                         onClick={handleLogin}
                         style={{ marginTop: '20px', backgroundColor: '#212121' }}
                     >
-                        <Popup show={show} button='Login' message='Login Successfully' path='/home' />
+                        <Popup show={show} button='Login' message='Login Successfully' path='/dashboard' />
                     </Button>
                     <Button
                         onClick={() => navigate('/forgotPassword')}

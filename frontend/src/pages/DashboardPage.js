@@ -79,7 +79,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function DashboardPage() {
     const [open, setOpen] = useState(true);
-    const [component, setComponent] = useState(Dashboard)
 
 
 
@@ -92,12 +91,12 @@ export default function DashboardPage() {
             </AppBar>
 
             <Drawer sx={{ position: { xs: 'absolute', md: 'initial' }, left: '0', top: '0' }} variant="permanent" open={open}>
-                <Sidebar component={component} setComponent={setComponent} />
+                <Sidebar />
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: .1, bgcolor: Constant.color[0], overflowY: 'auto', height: { xs: '200vh', md: '100vh' } }}>
                 <DrawerHeader />
                 <Box margin={4} marginBottom={20}>
-                    <component />
+                    <Dashboard />
                 </Box>
                 <Footer />
             </Box>

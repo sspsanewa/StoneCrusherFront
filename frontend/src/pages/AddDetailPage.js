@@ -78,7 +78,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-export default function DashboardPage() {
+export default function AddDetailPage() {
     const [open, setOpen] = React.useState(true);
 
 

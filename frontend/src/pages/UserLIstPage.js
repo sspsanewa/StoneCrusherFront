@@ -80,10 +80,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function UserListPage() {
     const [open, setOpen] = React.useState(true);
 
-
-
-
-
     return (
         <Box marginLeft={1} marginRight={0} sx={{ display: 'flex', overflow: 'hidden' }}>
             <CssBaseline />

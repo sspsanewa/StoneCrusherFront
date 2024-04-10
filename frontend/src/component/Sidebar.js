@@ -159,9 +159,8 @@ export default function Sidebar(props) {
                     handleMouseOver={handleMouseOver1}
                     handleMouseOut={handleMouseOut1}
                     hover={hover1}
-                    path='/home'
-                    setComponent={props.setComponent}
-                    component={<Dashboard />}
+                    path='/dashboard'
+
                     icon={<DashboardIcon sx={{ color: hover1 ? 'black' : 'white', fontSize: '17px' }} />}
                 />
 
@@ -183,7 +182,7 @@ export default function Sidebar(props) {
                 <Collapse in={open1} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItemButton
-                            onClick={() => { props.setComponent(<UserList />); navigate('/home'); }}
+                            onClick={() => { navigate('/userList'); }}
                             onMouseOver={handleMouseOver2} onMouseOut={handleMouseOut2}
                             sx={{ pl: 4, backgroundColor: hover2 ? 'white' : 'black' }}>
                             <ListItemIcon>
@@ -204,13 +203,11 @@ export default function Sidebar(props) {
 
 
                 <ListOfItem
-                    path='/home'
+                    path='/addDetail'
                     name='Add Detail'
                     handleMouseOver={handleMouseOver4}
                     handleMouseOut={handleMouseOut4}
                     hover={hover4}
-                    setComponent={props.setComponent}
-                    component={<AddDetail />}
                     icon={<MoneyIcon sx={{ color: hover4 ? 'black' : 'white', fontSize: '17px' }} />}
                 />
 
@@ -219,9 +216,7 @@ export default function Sidebar(props) {
                     handleMouseOver={handleMouseOver5}
                     handleMouseOut={handleMouseOut5}
                     hover={hover5}
-                    path='/home'
-                    setComponent={props.setComponent}
-                    component={<Bill />}
+                    path='/bill'
                     icon={<DashboardIcon sx={{ color: hover1 ? 'black' : 'white', fontSize: '17px' }} />}
                 />
 

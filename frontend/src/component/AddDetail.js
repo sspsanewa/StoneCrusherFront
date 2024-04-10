@@ -26,7 +26,7 @@ export default function AddDetail() {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
-        date: '11111',
+        date: '',
         village: '',
         address: '',
         mobile: '',
@@ -69,10 +69,10 @@ export default function AddDetail() {
         formData.discount = parseInt(formData.discount);
     }
 
-    if (formData.date !== '') {
-        formData.date = date
-    }
 
+    formData.date = date
+
+    console.log("ffff", date)
     const handleChange = (e) => {
 
         const { name, value } = e.target;
