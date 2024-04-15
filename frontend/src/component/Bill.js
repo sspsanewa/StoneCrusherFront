@@ -294,18 +294,19 @@ import { useRef } from 'react';
 import generatePDF from 'react-to-pdf';
 import UserList from './UserList';
 import Template from './Template';
+import { Box, Button, Typography } from '@mui/material';
 
 const Bill = () => {
     const targetRef = useRef();
     return (
-        <div>
-            <button onClick={() => generatePDF(targetRef, { filename: 'page.pdf' })}>
-                Download PDF
-            </button>
-            <div ref={targetRef}>
+        <Box>
+            <Typography onClick={() => generatePDF(targetRef, { filename: 'page.pdf' })}>
+                Generate Bill
+            </Typography>
+            <Box display={'none'} ref={targetRef}>
                 <Template />
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 }
 

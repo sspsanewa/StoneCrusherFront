@@ -211,14 +211,7 @@ export default function Sidebar(props) {
                     icon={<MoneyIcon sx={{ color: hover4 ? 'black' : 'white', fontSize: '17px' }} />}
                 />
 
-                <ListOfItem
-                    name='Download Bill'
-                    handleMouseOver={handleMouseOver5}
-                    handleMouseOut={handleMouseOut5}
-                    hover={hover5}
-                    path='/bill'
-                    icon={<DashboardIcon sx={{ color: hover1 ? 'black' : 'white', fontSize: '17px' }} />}
-                />
+
 
 
 

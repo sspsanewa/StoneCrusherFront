@@ -1,7 +1,7 @@
 import { Autocomplete, Avatar, Box, Grid, TextField, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination } from '@mui/material';
 import React, { useState } from 'react'
-import profile from '../Images/profile.png'
+import profile1 from '../Images/profile1.jpg'
 import { useNavigate, useParams } from 'react-router-dom';
 import Footer from './Footer';
 import axios from 'axios';
@@ -37,29 +37,29 @@ const View = () => {
     const navigate = useNavigate()
     console.log('111111111', id)
 
-    React.useEffect(() => {
-        axios.get('http://localhost:5000/viewSingleUser/' + id)
-            .then(res => {
-                setSingleUser(res.data);
-            })
-            .then(err => console.log(err))
-    }, [id])
+    // React.useEffect(() => {
+    //     axios.get('http://localhost:5000/viewSingleUser/' + id)
+    //         .then(res => {
+    //             setSingleUser(res.data);
+    //         })
+    //         .then(err => console.log(err))
+    // }, [id])
 
-    React.useEffect(() => {
-        axios.get('http://localhost:5000/viewUserRecharge/' + id)
-            .then(res => {
-                setViewUserRecharge(res.data);
-            })
-            .then(err => console.log(err))
-    }, [id])
+    // React.useEffect(() => {
+    //     axios.get('http://localhost:5000/viewUserRecharge/' + id)
+    //         .then(res => {
+    //             setViewUserRecharge(res.data);
+    //         })
+    //         .then(err => console.log(err))
+    // }, [id])
 
-    React.useEffect(() => {
-        axios.get('http://localhost:5000/viewUserCall/' + id)
-            .then(res => {
-                setViewUserCall(res.data);
-            })
-            .then(err => console.log(err))
-    }, [id])
+    // React.useEffect(() => {
+    //     axios.get('http://localhost:5000/viewUserCall/' + id)
+    //         .then(res => {
+    //             setViewUserCall(res.data);
+    //         })
+    //         .then(err => console.log(err))
+    // }, [id])
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
@@ -87,11 +87,11 @@ const View = () => {
                         <Grid item xs={12}>
                             <Box paddingX={2} paddingTop={2} >
                                 <Typography style={{ fontFamily: 'Roboto', fontWeight: 100, color: 'gray' }} fontSize={18}><b>View User Detail </b></Typography>
-                                <img width={160} src={profile} alt='profile' />
+                                <img style={{ borderRadius: '100%' }} width={160} src={profile1} alt='profile' />
                                 <Grid item xs={12}>
                                     <Grid display={'flex'} xs={12}>
                                         <Typography margin={2}>Name:</Typography>
-                                        <Typography margin={2}>{singleUser[0].name}</Typography>
+                                        <Typography margin={2}></Typography>
                                     </Grid>
                                     <Grid display={'flex'} xs={12}>
                                         <Typography margin={2}>Email:</Typography>
