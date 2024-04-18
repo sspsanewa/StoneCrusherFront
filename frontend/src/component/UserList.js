@@ -364,13 +364,13 @@ export default function UserList() {
         setGuestUserList(Data.data)
     }, [])
 
-    React.useEffect(() => {
-        axios.get('http://localhost:8080/api/v1/client')
-            .then(res => {
-                setGuestUserList(res.data)
-            })
-            .catch(err => console.log("errsss:", err));
-    }, []);
+    // React.useEffect(() => {
+    //     axios.get('http://localhost:8080/api/v1/client')
+    //         .then(res => {
+    //             setGuestUserList(res.data)
+    //         })
+    //         .catch(err => console.log("errsss:", err));
+    // }, []);
 
 
     return (

@@ -295,15 +295,17 @@ import generatePDF from 'react-to-pdf';
 import UserList from './UserList';
 import Template from './Template';
 import { Box, Button, Typography } from '@mui/material';
-
+import DownloadIcon from '@mui/icons-material/Download';
+import gif from '../Images/gif.gif'
 const Bill = () => {
     const targetRef = useRef();
     return (
-        <Box>
-            <Typography onClick={() => generatePDF(targetRef, { filename: 'page.pdf' })}>
-                Generate Bill
-            </Typography>
-            <Box display={'none'} ref={targetRef}>
+        <Box marginTop={20} >
+            <Box display={'flex'} justifyContent={'center'} onClick={() => { generatePDF(targetRef, { filename: 'page.pdf' }) }}>
+                <img src={gif} alt='gif' />
+            </Box>
+
+            <Box marginTop={15} ref={targetRef}>
                 <Template />
             </Box>
         </Box>

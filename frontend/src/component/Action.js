@@ -63,9 +63,9 @@ function Action(props) {
                     <Box display={'flex'}>
                         <Typography marginLeft={1}>{props.talktime}</Typography>
                     </Box>
-                    <Box display={'flex'}>
+                    <Box onClick={() => navigate('/bill')} display={'flex'}>
                         <EditIcon />
-                        <Typography marginLeft={1}><Bill /></Typography>
+                        <Typography marginLeft={1}>Bill</Typography>
                     </Box>
 
                 </Box>

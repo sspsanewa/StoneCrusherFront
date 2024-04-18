@@ -14,7 +14,7 @@ const Template = () => {
 
     return (
         <Paper sx={{
-            border: '2px solid black', padding: '30px', maxWidth: '100%', margin: 'auto', margin: '20px'
+            border: '2px solid black', padding: '30px', maxWidth: '70%', marginX: 'auto'
         }}>
             <Box display={'flex'} gap={40}>
                 <Typography variant="h5" gutterBottom>
@@ -22,15 +22,15 @@ const Template = () => {
                 </Typography>
                 <Typography>॥ श्री गणेशाय नमः ।।</Typography>
             </Box>
-            <Typography marginY={2} display={'flex'} justifyContent={'center'} variant='h2'>श्री श्याम माईनिंग एण्ड ट्रेडिंग</Typography>
-            <Typography marginBottom={2} display={'flex'} justifyContent={'center'} variant='h4'>गुराड़िया कलां, तह. बागली जिला-देवास (म.प्र.) </Typography>
+            <Typography marginY={10} display={'flex'} justifyContent={'center'} variant='h2'>श्री श्याम माईनिंग एण्ड ट्रेडिंग</Typography>
+            <Typography marginBottom={5} display={'flex'} justifyContent={'center'} variant='h4'>गुराड़िया कलां, तह. बागली जिला-देवास (म.प्र.) </Typography>
             <Box bgcolor={'blue'}>
                 <Typography color={'#ffffff'} display={'flex'} justifyContent={'center'} variant='h5'>हमारे यहां सभी प्रकार की काली गिट्टी उपलब्ध है।</Typography>
             </Box>
-            <Typography marginY={1} display={'flex'} justifyContent={'center'} variant='h5'>मो. 7389272864</Typography>
+            <Typography marginY={5} display={'flex'} justifyContent={'center'} variant='h5'>मो. 7389272864</Typography>
             <Box display={'flex'} justifyContent={'space-between'}>
-                <Typography variant='h5'>क्रमांक:- 20</Typography>
-                <Typography variant='h5'>दिनांक:- 27/2/24</Typography>
+                <Typography marginY={2} variant='h5'>क्रमांक:- 20</Typography>
+                <Typography marginY={2} variant='h5'>दिनांक:- 27/2/24</Typography>
             </Box>
             <Typography variant='h5'>
                 श्रीमान:- Bindal developer 23 ATH PB1234B/Z8
@@ -57,14 +57,18 @@ const Template = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Box display={'flex'} flexDirection={'column'}>
-                <Typography marginY={1}>AMOUNT:- 1500000</Typography>
-                <Typography marginY={1}>cGST 2.5%:- 37500</Typography>
-                <Typography marginY={1}>SGST 2.5%:- 37500</Typography>
-                <Typography marginY={1}>Total:- 1500000</Typography>
+            <Box display={'flex'} justifyContent={'space-between'}>
+                <Box display={'flex'} flexDirection={'column'}>
+                    <Typography marginY={2}>CGST 2.5%:- 37500</Typography>
+                    <Typography marginY={2}>SGST 2.5%:- 37500</Typography>
+                    <Typography marginY={2}>Total:- 1500000</Typography>
+                </Box>
+                <Box>
+                    <Typography marginY={2}>AMOUNT:- 1500000</Typography>
+                </Box>
             </Box>
             <Box>
-                <Typography>
+                <Typography marginY={2}>
                     नोट:- 1. माल की रायल्टी के रुपये अलग से देना होगें।
                 </Typography>
                 <Typography marginLeft={4.5}>
