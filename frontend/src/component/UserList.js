@@ -364,13 +364,13 @@ export default function UserList() {
         setGuestUserList(Data.data)
     }, [])
 
-    // React.useEffect(() => {
-    //     axios.get('http://localhost:8080/api/v1/client')
-    //         .then(res => {
-    //             setGuestUserList(res.data)
-    //         })
-    //         .catch(err => console.log("errsss:", err));
-    // }, []);
+    React.useEffect(() => {
+        axios.get('http://localhost:8080/api/v1/client')
+            .then(res => {
+                setGuestUserList(res.data)
+            })
+            .catch(err => console.log("errsss:", err));
+    }, []);
 
 
     return (
@@ -419,13 +419,12 @@ export default function UserList() {
                                         key={row.sno}
                                         selected={isItemSelected}
                                         sx={{ cursor: 'pointer' }}
-
                                     >
                                         <TableCell align="left">{index + 1}</TableCell>
                                         <TableCell align="left">{row.firstName + ' ' + row.lastName}</TableCell>
                                         <TableCell align="left">{row.village}</TableCell>
                                         <TableCell align="left">{row.mobile}</TableCell>
-                                        <TableCell align="left">{row.amount}</TableCell>
+                                        <TableCell align="left">{row.totalAmount}</TableCell>
                                         <TableCell align="left">{row.date}</TableCell>
 
                                         <TableCell align="left">

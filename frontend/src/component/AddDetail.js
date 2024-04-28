@@ -44,9 +44,7 @@ export default function AddDetail() {
     });
 
 
-    if (formData.cubicMeter !== '') {
-        formData.cubicMeter = parseInt(formData.cubicMeter);
-    }
+
     if (formData.cgstAmount !== '') {
         formData.cgstAmount = parseInt(formData.cgstAmount);
     }
@@ -56,12 +54,6 @@ export default function AddDetail() {
     if (formData.royaltiAmount !== '') {
         formData.royaltiAmount = parseInt(formData.royaltiAmount);
     }
-    if (formData.rate !== '') {
-        formData.rate = parseInt(formData.rate);
-    }
-    if (formData.amount !== '') {
-        formData.amount = parseInt(formData.amount);
-    }
 
     if (formData.discount !== '') {
         formData.discount = parseInt(formData.discount);
@@ -70,13 +62,21 @@ export default function AddDetail() {
         formData.totalAmount = parseInt(formData.totalAmount);
     }
     formData.date = date
-    formData.amount = formData.cubicMeter * formData.rate
 
+    formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
         const { name, value } = e.target;
         if (index !== undefined) {
             const newMaterials = [...formData.materials];
             newMaterials[index][name] = value;
+
+            // Calculate amount for the material when cubicMeter or rate changes
+            if (name === 'cubicMeter' || name === 'rate') {
+                const cubicMeter = parseFloat(newMaterials[index]['cubicMeter']);
+                const rate = parseFloat(newMaterials[index]['rate']);
+                newMaterials[index]['amount'] = isNaN(cubicMeter) || isNaN(rate) ? '' : cubicMeter * rate;
+            }
+
             setFormData({
                 ...formData,
                 materials: newMaterials
@@ -88,7 +88,6 @@ export default function AddDetail() {
             });
         }
     };
-
     const addMaterial = () => {
         setFormData({
             ...formData,
@@ -112,12 +111,16 @@ export default function AddDetail() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
+
+
         const totalMaterialAmount = formData.materials.reduce((total, material) => {
             // Calculate amount for current material
             const amountForMaterial = parseFloat(material.cubicMeter) * parseFloat(material.rate);
             // Add the amount to the total
             return total + amountForMaterial;
         }, 0);
+
+
 
         // Update the totalAmount in the formData
         const updatedFormData = {
@@ -129,7 +132,7 @@ export default function AddDetail() {
         setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/client', formData)
             .then(res => {
-                navigate('/home')
+                navigate('/userList')
             })
             .catch(err => {
                 console.log(err)
