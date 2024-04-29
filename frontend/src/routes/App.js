@@ -14,6 +14,7 @@ import AddDetailPage from '../pages/AddDetailPage';
 import { Box } from '@mui/material'
 import Navbar from '../component/Navbar';
 import ViewPage from '../pages/ViewPage';
+import AddEmployeePage from '../pages/AddEmployeePage';
 function App() {
   return (
     <BrowserRouter >
@@ -25,6 +26,7 @@ function App() {
         <Route path='/addDetail' element={<AddDetailPage />}></Route>
         <Route path='/bill' element={<Bill />}></Route>
         <Route path='/viewUser' element={<ViewPage />}></Route>
+        <Route path='/addEmployee' element={<AddEmployeePage />}></Route>
 
 
 
