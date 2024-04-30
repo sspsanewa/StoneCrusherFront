@@ -46,46 +46,33 @@ export default function AddEmployee() {
     }
     formData.date = date
 
-    formData.amount = formData.cubicMeter * formData.rate
-    const handleChange = () => {
-        // const { name, value } = e.target;
-        // if (index !== undefined) {
-        //     const newMaterials = [...formData.materials];
-        //     newMaterials[index][name] = value;
+    //formData.amount = formData.cubicMeter * formData.rate
+    const handleChange = (e) => {
 
-        //     // Calculate amount for the material when cubicMeter or rate changes
-        //     if (name === 'cubicMeter' || name === 'rate') {
-        //         const cubicMeter = parseFloat(newMaterials[index]['cubicMeter']);
-        //         const rate = parseFloat(newMaterials[index]['rate']);
-        //         newMaterials[index]['amount'] = isNaN(cubicMeter) || isNaN(rate) ? '' : cubicMeter * rate;
-        //     }
+        const { name, value } = e.target;
 
-        //     setFormData({
-        //         ...formData,
-        //         materials: newMaterials
-        //     });
-        // } else {
-        //     setFormData({
-        //         ...formData,
-        //         [name]: value
-        //     });
-        // }
-    };
-    const addMaterial = () => {
         setFormData({
             ...formData,
-            materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '' }]
+            [name]: value
         });
+
     };
 
-    const removeMaterial = (index) => {
-        const newMaterials = [...formData.materials];
-        newMaterials.splice(index, 1);
-        setFormData({
-            ...formData,
-            materials: newMaterials
-        });
-    };
+    // const addMaterial = () => {
+    //     setFormData({
+    //         ...formData,
+    //         materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '' }]
+    //     });
+    // };
+
+    // const removeMaterial = (index) => {
+    //     const newMaterials = [...formData.materials];
+    //     newMaterials.splice(index, 1);
+    //     setFormData({
+    //         ...formData,
+    //         materials: newMaterials
+    //     });
+    // };
 
     // Calculate amount for each material and sum up to get totalAmount
 
@@ -96,23 +83,23 @@ export default function AddEmployee() {
         console.log(formData);
 
 
-        const totalMaterialAmount = formData.materials.reduce((total, material) => {
-            // Calculate amount for current material
-            const amountForMaterial = parseFloat(material.cubicMeter) * parseFloat(material.rate);
-            // Add the amount to the total
-            return total + amountForMaterial;
-        }, 0);
+        // const totalMaterialAmount = formData.materials.reduce((total, material) => {
+        //     // Calculate amount for current material
+        //     const amountForMaterial = parseFloat(material.cubicMeter) * parseFloat(material.rate);
+        //     // Add the amount to the total
+        //     return total + amountForMaterial;
+        // }, 0);
 
 
 
         // Update the totalAmount in the formData
-        const updatedFormData = {
-            ...formData,
-            totalAmount: totalMaterialAmount
-        };
+        // const updatedFormData = {
+        //     ...formData,
+        //     totalAmount: totalMaterialAmount
+        // };
 
         // Set the updated form data
-        setFormData(updatedFormData);
+       // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/client', formData)
             .then(res => {
                 navigate('/userList')
@@ -172,17 +159,7 @@ export default function AddEmployee() {
                                         margin="normal"
                                     />
                                 </Grid>
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        label="Employee SarName"
-                                        variant="outlined"
-                                        name='employeeLastName'
-                                        value={formData.employeeLastName}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
-                                </Grid>
+
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
@@ -246,18 +223,20 @@ export default function AddEmployee() {
                                     {formData.amount === '' && <FormHelperText>This field is required.</FormHelperText>}
 
                                 </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <TextField
+                                        required
+                                        label="Salary Amount"
+                                        variant="outlined"
+                                        name='employeeSalary'
+                                        type='number'
+                                        value={formData.employeeSalary}
+                                        onChange={handleChange()}
+                                        fullWidth
+                                        margin="normal"
+                                    />
+                                </Grid>
 
-                                <TextField
-                                    required
-                                    label="Salary Amount"
-                                    variant="outlined"
-                                    name='employeeSalary'
-                                    type='number'
-                                    value={formData.employeeSalary}
-                                    onChange={handleChange()}
-                                    fullWidth
-                                    margin="normal"
-                                />
 
                             </Grid>
                         </Item>
