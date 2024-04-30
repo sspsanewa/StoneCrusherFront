@@ -1,3 +1,5 @@
+//Add detail
+
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -63,19 +65,19 @@ export default function AddDetail() {
     }
     formData.date = date
 
-    formData.amount = formData.cubicMeter * formData.rate
+    //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
         const { name, value } = e.target;
         if (index !== undefined) {
             const newMaterials = [...formData.materials];
             newMaterials[index][name] = value;
 
-            // Calculate amount for the material when cubicMeter or rate changes
-            if (name === 'cubicMeter' || name === 'rate') {
-                const cubicMeter = parseFloat(newMaterials[index]['cubicMeter']);
-                const rate = parseFloat(newMaterials[index]['rate']);
-                newMaterials[index]['amount'] = isNaN(cubicMeter) || isNaN(rate) ? '' : cubicMeter * rate;
-            }
+            // // Calculate amount for the material when cubicMeter or rate changes
+            // if (name === 'cubicMeter' || name === 'rate') {
+            //     const cubicMeter = parseFloat(newMaterials[index]['cubicMeter']);
+            //     const rate = parseFloat(newMaterials[index]['rate']);
+            //     newMaterials[index]['amount'] = isNaN(cubicMeter) || isNaN(rate) ? '' : cubicMeter * rate;
+            // }
 
             setFormData({
                 ...formData,
@@ -113,23 +115,23 @@ export default function AddDetail() {
         console.log(formData);
 
 
-        const totalMaterialAmount = formData.materials.reduce((total, material) => {
-            // Calculate amount for current material
-            const amountForMaterial = parseFloat(material.cubicMeter) * parseFloat(material.rate);
-            // Add the amount to the total
-            return total + amountForMaterial;
-        }, 0);
+        // const totalMaterialAmount = formData.materials.reduce((total, material) => {
+        //     // Calculate amount for current material
+        //     const amountForMaterial = parseFloat(material.cubicMeter) * parseFloat(material.rate);
+        //     // Add the amount to the total
+        //     return total + amountForMaterial;
+        // }, 0);
 
 
 
-        // Update the totalAmount in the formData
-        const updatedFormData = {
-            ...formData,
-            totalAmount: totalMaterialAmount
-        };
+        // // Update the totalAmount in the formData
+        // const updatedFormData = {
+        //     ...formData,
+        //     totalAmount: totalMaterialAmount
+        // };
 
         // Set the updated form data
-        setFormData(updatedFormData);
+        // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/client', formData)
             .then(res => {
                 navigate('/userList')
@@ -145,7 +147,7 @@ export default function AddDetail() {
         <Box sx={{ width: '100%' }}>
             <Box display={'flex'} justifyContent={'space-between'}>
                 <Typography marginBottom={4} fontSize={20}>Add Detail</Typography>
-                <Box display={'flex'}>
+                <Box display={'flex'} >
                     <Typography onClick={() => navigate('/home')} marginBottom={4} fontSize={15}>Dashboard </Typography>
                 </Box>
             </Box>
@@ -222,15 +224,21 @@ export default function AddDetail() {
                         </Item>
                     </Grid>
                     <Grid marginY={5} container spacing={2}>
-                        <Grid display={'flex'} alignItems={'center'} justifyContent={'right'} item xs={12}>
-                            <Button onClick={addMaterial} variant="contained" color="primary">Add More</Button>
-                        </Grid>
+
                         {formData.materials.map((material, index) => (
+
                             <Grid item xs={12} md={12} key={index}>
+
                                 <Item sx={{ borderRadius: '10px' }}>
 
-                                    <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Material Information</b></Typography>
-
+                                    <Grid display={'flex'} marginLeft={'40%'} gap={40} >
+                                        <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Material Information</b></Typography>
+                                        {index != 0 &&
+                                            <Box display={'flex'} justifyContent={'center'} >
+                                                <Button size='small' onClick={() => removeMaterial(index)} variant="outlined" color="secondary">Remove</Button>
+                                            </Box>
+                                        }
+                                    </Grid>
                                     <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
                                         <Grid marginTop={2} item xs={12} md={4}>
                                             <FormControl fullWidth>
@@ -244,6 +252,7 @@ export default function AddDetail() {
                                                     onChange={(e) => handleChange(e, index)}
                                                     label="size"
                                                 >
+                                                    <MenuItem value='40mm'>40mm</MenuItem>
                                                     <MenuItem value='20mm'>20mm</MenuItem>
                                                     <MenuItem value='10mm'>10mm</MenuItem>
                                                     <MenuItem value='4mm(mcend)'>4mm(mcend)</MenuItem>
@@ -294,12 +303,13 @@ export default function AddDetail() {
                                         </Grid>
 
                                     </Grid>
-                                    <Grid display={'flex'} justifyContent={'center'} item xs={12} md={12}>
-                                        <Button onClick={() => removeMaterial(index)} variant="contained" color="secondary">Remove</Button>
-                                    </Grid>
+
                                 </Item>
                             </Grid>
                         ))}
+                        <Grid display={'flex'} alignItems={'center'} justifyContent={'center'} item xs={12}>
+                            <Button size='small' onClick={addMaterial} variant="contained" color="primary">Add More</Button>
+                        </Grid>
                     </Grid>
                     <Grid marginY={5} item xs={12} md={12}>
                         <Item sx={{ borderRadius: '10px' }}>
@@ -468,14 +478,60 @@ export default function AddDetail() {
                         </Item>
 
                     </Grid>
-                    <Grid marginY={5} display={'flex'} alignItems={'center'} justifyContent={'center'} item xs={12}>
-                        <Button type="submit" variant="contained" color="primary">
+                    <Grid marginY={5} item xs={12} md={12}>
+                        <Item sx={{ borderRadius: '10px' }}>
+                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Other Information</b></Typography>
+
+                            <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
+
+                                <Grid marginTop={2} item xs={12} md={4}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="collection">Driver</InputLabel>
+                                        <Select
+                                            required
+                                            labelId="driver"
+                                            id="driver"
+                                            name='driver'
+                                            value={formData.driver}
+                                            onChange={(e) => handleChange(e)}
+                                            autoWidth
+                                            label="driver"
+                                        >
+                                            <MenuItem value={'kamal'}>kamal</MenuItem>
+                                            <MenuItem value={'raj'}>raj</MenuItem>
+                                            <MenuItem value={'jaysing'}>jaysing</MenuItem>
+                                            <MenuItem value={'mohan'}>mohan</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                    {formData.driver === '' && <FormHelperText>This field is required.</FormHelperText>}
+
+                                </Grid>
+
+                                <Grid item xs={12} md={4}>
+                                    <TextField
+                                        required
+                                        label="Vihicle No."
+                                        variant="outlined"
+                                        name='vihicle'
+                                        value={formData.vihicle}
+                                        onChange={handleChange}
+                                        fullWidth
+                                        margin="normal"
+                                    />
+
+                                </Grid>
+                            </Grid>
+                        </Item>
+
+                    </Grid>
+                    <Box marginY={5} display={'flex'} alignItems={'center'} justifyContent={'center'} >
+                        <Button size='small' type="submit" variant="contained" color="primary">
                             Submit
                         </Button>
-                    </Grid>
+                    </Box>
                 </form>
                 <Footer />
-            </Box>
-        </Box>
+            </Box >
+        </Box >
     );
 }

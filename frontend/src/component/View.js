@@ -37,13 +37,13 @@ const View = () => {
     const navigate = useNavigate()
     console.log('111111111', id)
 
-    // React.useEffect(() => {
-    //     axios.get('http://localhost:5000/viewSingleUser/' + id)
-    //         .then(res => {
-    //             setSingleUser(res.data);
-    //         })
-    //         .then(err => console.log(err))
-    // }, [id])
+    React.useEffect(() => {
+        axios.get('http://localhost:8080/api/v1/client/' + id)
+            .then(res => {
+                setSingleUser(res.data);
+            })
+            .then(err => console.log(err))
+    }, [id])
 
     // React.useEffect(() => {
     //     axios.get('http://localhost:5000/viewUserRecharge/' + id)

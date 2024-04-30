@@ -44,17 +44,17 @@ export default function AddEmployee() {
     if (formData.employeeSalary !== '') {
         formData.employeeSalary = parseInt(formData.employeeSalary);
     }
-    formData.date = date
+    formData.dateOfJoining = date
 
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e) => {
 
-        // const { name, value } = e.target;
+        const { name, value } = e.target;
 
-        // setFormData({
-        //     ...formData,
-        //     [name]: value
-        // });
+        setFormData({
+            ...formData,
+            [name]: value
+        });
 
     };
 
@@ -99,7 +99,7 @@ export default function AddEmployee() {
         // };
 
         // Set the updated form data
-       // setFormData(updatedFormData);
+        // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/client', formData)
             .then(res => {
                 navigate('/userList')
@@ -132,7 +132,7 @@ export default function AddEmployee() {
                                         variant="outlined"
                                         name='employeeFirstName'
                                         value={formData.employeeFirstName}
-                                        onChange={handleChange}
+                                        onChange={(e) => handleChange(e)}
                                         fullWidth
                                         margin="normal"
                                     />
@@ -143,7 +143,7 @@ export default function AddEmployee() {
                                         variant="outlined"
                                         name='employeeLastName'
                                         value={formData.employeeLastName}
-                                        onChange={handleChange}
+                                        onChange={(e) => handleChange(e)}
                                         fullWidth
                                         margin="normal"
                                     />
@@ -154,7 +154,7 @@ export default function AddEmployee() {
                                         variant="outlined"
                                         name='employeeVillage'
                                         value={formData.employeeVillage}
-                                        onChange={handleChange}
+                                        onChange={(e) => handleChange(e)}
                                         fullWidth
                                         margin="normal"
                                     />
@@ -167,7 +167,7 @@ export default function AddEmployee() {
                                         variant="outlined"
                                         name='employeeAddress'
                                         value={formData.employeeAddress}
-                                        onChange={handleChange}
+                                        onChange={(e) => handleChange(e)}
                                         fullWidth
                                         margin="normal"
                                     />
@@ -179,11 +179,11 @@ export default function AddEmployee() {
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Employee Village  "
+                                        label="Employee Aadharcard  "
                                         variant="outlined"
-                                        name='employeeVillage'
-                                        value={formData.employeeVillage}
-                                        onChange={handleChange}
+                                        name='employeeAadharcard'
+                                        value={formData.employeeAadharcard}
+                                        onChange={(e) => handleChange(e)}
                                         fullWidth
                                         margin="normal"
                                     />
@@ -194,8 +194,9 @@ export default function AddEmployee() {
                                         label="Employee Mobile Number"
                                         variant="outlined"
                                         name='employeeMobile'
+                                        type='number'
                                         value={formData.employeeMobile}
-                                        onChange={handleChange}
+                                        onChange={(e) => handleChange(e)}
                                         fullWidth
                                         margin="normal"
                                     />
@@ -209,7 +210,8 @@ export default function AddEmployee() {
                                             id="collection"
                                             name='employeeType'
                                             value={formData.employeeType}
-                                            onChange={(e) => handleChange(e)} autoWidth
+                                            onChange={(e) => handleChange(e)}
+                                            autoWidth
                                             label="collection"
                                         >
 
@@ -231,7 +233,7 @@ export default function AddEmployee() {
                                         name='employeeSalary'
                                         type='number'
                                         value={formData.employeeSalary}
-                                        onChange={handleChange()}
+                                        onChange={(e) => handleChange(e)}
                                         fullWidth
                                         margin="normal"
                                     />

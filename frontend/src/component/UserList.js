@@ -1,3 +1,6 @@
+//user list 
+
+
 // import * as React from 'react';
 // import Paper from '@mui/material/Paper';
 // import Table from '@mui/material/Table';
@@ -428,7 +431,7 @@ export default function UserList() {
                                         <TableCell align="left">{row.date}</TableCell>
 
                                         <TableCell align="left">
-                                            <Action edit='Edit' editIcon={<EditIcon sx={{ color: Constant.color[0] }} />} editPath='/editProjectPage' view='View' viewPath='/viewUser' id={row.user_id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} delete='Delete' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} status='Active/Deactive' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} />
+                                            <Action edit='Edit' editIcon={<EditIcon sx={{ color: Constant.color[0] }} />} editPath='/editProjectPage' view='View' viewPath='/viewUser/' id={row.user_id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} delete='Delete' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} status='Active/Deactive' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} />
                                         </TableCell>
 
 
