@@ -49,12 +49,12 @@ export default function AddEmployee() {
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e) => {
 
-        const { name, value } = e.target;
+        // const { name, value } = e.target;
 
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+        // setFormData({
+        //     ...formData,
+        //     [name]: value
+        // });
 
     };
 
