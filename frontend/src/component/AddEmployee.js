@@ -174,7 +174,7 @@ export default function AddEmployee() {
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Employee Aadharcard  "
+                                        label="Employee Aadharcard Number"
                                         variant="outlined"
                                         name='employeeAadharcard'
                                         value={formData.employeeAadharcard}
