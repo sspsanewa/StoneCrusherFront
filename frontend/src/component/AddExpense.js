@@ -38,12 +38,12 @@ export default function AddExpense() {
 
 
 
-    if (formData.employeeMobile !== '') {
-        formData.employeeMobile = parseInt(formData.employeeMobile);
-    }
-    if (formData.employeeSalary !== '') {
-        formData.employeeSalary = parseInt(formData.employeeSalary);
-    }
+    // if (formData.employeeMobile !== '') {
+    //     formData.employeeMobile = parseInt(formData.employeeMobile);
+    // }
+    // if (formData.employeeSalary !== '') {
+    //     formData.employeeSalary = parseInt(formData.employeeSalary);
+    // }
     formData.dateOfJoining = date
 
     //formData.amount = formData.cubicMeter * formData.rate
@@ -100,7 +100,7 @@ export default function AddExpense() {
 
         // Set the updated form data
         // setFormData(updatedFormData);
-        axios.post('http://localhost:8080/api/v1/client', formData)
+        axios.post('http://localhost:8080/api/v1/expense', formData)
             .then(res => {
                 navigate('/userList')
             })
@@ -123,7 +123,7 @@ export default function AddExpense() {
                 <form onSubmit={handleSubmit}>
                     <Grid marginY={5} item xs={12} md={12}>
                         <Item sx={{ borderRadius: '10px' }}>
-                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Client Information</b></Typography>
+                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Expense Information</b></Typography>
                             <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
                                 <Grid item xs={12} md={4}>
                                     <TextField
@@ -160,7 +160,31 @@ export default function AddExpense() {
                                     />
                                 </Grid>
 
-                                <Grid item xs={12} md={4}>
+                                <Grid marginTop={2} item xs={12} md={4}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="collection">Expense Type</InputLabel>
+                                        <Select
+                                            required
+                                            labelId="collection"
+                                            id="collection"
+                                            name='expenseType'
+                                            value={formData.expenseType}
+                                            onChange={(e) => handleChange(e)}
+                                            autoWidth
+                                            label="collection"
+                                        >
+
+                                            <MenuItem value={'Petrol'}>Petrol</MenuItem>
+                                            <MenuItem value={'Diesel'}>Diesel</MenuItem>
+                                            <MenuItem value={'Other'}>Other</MenuItem>
+                                            
+                                        </Select>
+                                    </FormControl>
+                                    {formData.amount === '' && <FormHelperText>This field is required.</FormHelperText>}
+
+                                </Grid>
+
+                                {/* <Grid item xs={12} md={4}>
                                     <TextField
                                         required
                                         label="Expense Type"
@@ -171,11 +195,11 @@ export default function AddExpense() {
                                         fullWidth
                                         margin="normal"
                                     />
-                                </Grid>
-                                 <Grid marginTop={1} item xs={12} md={4}>
+                                </Grid> */}
+                                  <Grid marginTop={1} item xs={12} md={4}>
 
                                     <Date date={date} setDate={setDate} />
-                                </Grid>
+                                </Grid> 
                                 {/* <Grid item xs={12} md={4}>
                                     <TextField
                                         required
