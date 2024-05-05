@@ -1,138 +1,3 @@
-//user list 
-
-
-// import * as React from 'react';
-// import Paper from '@mui/material/Paper';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TablePagination from '@mui/material/TablePagination';
-// import TableRow from '@mui/material/TableRow';
-// import { Autocomplete, Box, TextField, Typography } from '@mui/material';
-// import ActionList from '../ActionList';
-// import axios from 'axios';
-// import Action from '../Action';
-// import PopupDelete from '../PopupDelete';
-// import PopupStatus from '../PopupStatus';
-// import Data from '../DataSet'
-// const profile = 'https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0='
-// const columns = [
-//     { id: 'sno', label: 'SNo', minWidth: 100 },
-//     { id: 'action', label: 'Action', minWidth: 100 },
-//     { id: 'image', label: 'Image', minWidth: 100 },
-//     { id: 'name', label: 'User Name', minWidth: 100 },
-//     { id: 'email', label: 'Email', minWidth: 100 },
-//     { id: 'mobile', label: 'Mobile Number ', minWidth: 100 },
-//     { id: 'status', label: 'Status', minWidth: 100 },
-//     { id: 'date', label: 'Registration Date', minWidth: 100 },
-// ];
-
-
-
-// export default function UserListTable() {
-//     const [page, setPage] = React.useState(0);
-//     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-//     const [userList, setUserList] = React.useState([])
-
-//     const handleChangePage = (event, newPage) => {
-//         setPage(newPage);
-//     };
-
-//     const handleChangeRowsPerPage = (event) => {
-//         setRowsPerPage(+event.target.value);
-//         setPage(0);
-//     };
-//     // React.useEffect(() => {
-//     //     axios.get('http://localhost:5000/manageUser/')
-//     //         .then(res => {
-//     //             setUserList(res.data);
-//     //         })
-//     //         .then(err => console.log("errsss:", err))
-//     // }, [])
-
-//     React.useEffect(() => {
-
-//         setUserList(Data.data)
-//     }, [])
-
-//     return (
-//         <Paper sx={{ width: '100%', overflow: 'hidden', marginX: '20px', marginLeft: "40px" }}>
-//             <Box marginX={2} marginY={2} display={'flex'} justifyContent={'space-between'}>
-//                 <Typography fontSize={'15px'}>Rows Per Page: {rowsPerPage}</Typography>
-//                 <Autocomplete
-//                     sx={{ width: '30%' }}
-//                     size='small'
-//                     id="free-solo-demo"
-//                     freeSolo
-//                     options={userList.map((option) => option.sno)}
-//                     renderInput={(params) => <TextField {...params} label="Search..." />}
-//                 />
-//             </Box>
-//             <TableContainer sx={{ maxHeight: 440 }}>
-//                 <Table stickyHeader aria-label="sticky table">
-//                     <TableHead >
-//                         <TableRow>
-//                             {columns.map((column) => (
-//                                 <TableCell
-//                                     key={column.id}
-//                                     align="center"
-//                                     style={{ minWidth: column.minWidth, backgroundColor: '#f5f5f5', position: 'sticky', top: 0 }}
-//                                 >
-//                                     {column.label}
-//                                 </TableCell>
-//                             ))}
-//                         </TableRow>
-//                     </TableHead>
-//                     <TableBody>
-//                         {userList
-//                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-//                             .map((row, index) => (
-//                                 <TableRow key={index}>
-//                                     <TableCell align="center">{index + 1}</TableCell>
-//                                     <TableCell align="center">
-
-//                                         {<Action
-//                                             view='View'
-//                                             viewPath='/viewPage/'
-//                                             id={row.user_id}
-//                                             delete={<PopupDelete button='Delete' id={row.user_id} url='manageDeleteUser' />}
-//                                             status={<PopupStatus button='Acivate/Deactivate' id={row.user_id} url='manageUpdateStatusUser' status={row.active_flag} />}
-//                                         />}
-//                                     </TableCell>
-//                                     <TableCell align="center">{row.image}</TableCell>
-//                                     <TableCell align="center">{row.name}</TableCell>
-//                                     <TableCell align="center">{row.email}</TableCell>
-//                                     <TableCell align="center">{row.mobile}</TableCell>
-
-//                                     <TableCell align="center">
-//                                         {row.active_flag === 1 ?
-//                                             <Box sx={{ color: '#fff', bgcolor: "#689f38", width: "80px", height: '25px', borderRadius: '15px', paddingTop: '3px' }} >Active</Box>
-//                                             :
-//                                             <Box sx={{ color: '#fff', bgcolor: "#d50000", width: "80px", height: '25px', borderRadius: '15px', paddingTop: '3px' }} >Deactive</Box>
-//                                         }
-//                                     </TableCell>
-//                                     <TableCell align="center">{row.createtime}</TableCell>
-//                                 </TableRow>
-//                             ))}
-//                     </TableBody>
-//                 </Table>
-//             </TableContainer>
-//             <TablePagination
-//                 rowsPerPageOptions={[10, 25, 100]}
-//                 component="div"
-//                 count={userList.length}
-//                 rowsPerPage={rowsPerPage}
-//                 page={page}
-//                 onPageChange={handleChangePage}
-//                 onRowsPerPageChange={handleChangeRowsPerPage}
-//             />
-//         </Paper>
-//     );
-// }
-
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
@@ -158,6 +23,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import Data from '../component/DataSet'
 import Constant from '../config/Constant'
+import PopupDelete from './PopupDelete';
 
 
 const rows = Data.data
@@ -431,7 +297,7 @@ export default function UserList() {
                                         <TableCell align="left">{row.date}</TableCell>
 
                                         <TableCell align="left">
-                                            <Action edit='Edit' editIcon={<EditIcon sx={{ color: Constant.color[0] }} />} editPath='/editProjectPage' view='View' viewPath='/viewUser/' id={row.user_id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} delete='Delete' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} status='Active/Deactive' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} />
+                                            <Action edit='Edit' editIcon={<EditIcon sx={{ color: Constant.color[0] }} />} editPath='/editProjectPage' view='View' viewPath='/viewUser/' id={row.user_id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} delete={<PopupDelete button='Delete' />} deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} status='Active/Deactive' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} />
                                         </TableCell>
 
 
