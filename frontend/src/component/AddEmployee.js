@@ -36,11 +36,6 @@ export default function AddEmployee() {
         // materials: [{ size: '', cubicMeter: '', rate: '', amount: '' }]
     });
 
-
-
-    if (formData.employeeMobile !== '') {
-        formData.employeeMobile = parseInt(formData.employeeMobile);
-    }
     if (formData.employeeSalary !== '') {
         formData.employeeSalary = parseInt(formData.employeeSalary);
     }
@@ -100,7 +95,7 @@ export default function AddEmployee() {
 
         // Set the updated form data
         // setFormData(updatedFormData);
-        axios.post('http://localhost:8080/api/v1/client', formData)
+        axios.post('http://localhost:8080/api/v1/employee', formData)
             .then(res => {
                 navigate('/userList')
             })
@@ -179,7 +174,7 @@ export default function AddEmployee() {
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Employee Aadharcard  "
+                                        label="Employee Aadharcard Number"
                                         variant="outlined"
                                         name='employeeAadharcard'
                                         value={formData.employeeAadharcard}
@@ -194,7 +189,6 @@ export default function AddEmployee() {
                                         label="Employee Mobile Number"
                                         variant="outlined"
                                         name='employeeMobile'
-                                        type='number'
                                         value={formData.employeeMobile}
                                         onChange={(e) => handleChange(e)}
                                         fullWidth

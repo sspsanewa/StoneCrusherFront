@@ -47,7 +47,7 @@ export default function AddVehicle() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData)
-        axios.post('http://localhost:8080/api/v1/client', formData)
+        axios.post('http://localhost:8080/api/v1/vehicle', formData)
             .then(res => {
                 navigate('/home')
             })
@@ -127,13 +127,13 @@ export default function AddVehicle() {
                                             margin="normal"
                                         />
                                     </Grid>
-                                  
+
                                 </Grid>
                             </Item>
                         </Grid>
-                     
-                      
-                        
+
+
+
                         <Grid display={'flex'} alignItems={'center'} justifyContent={'center'} item xs={12}>
                             <Button type="submit" variant="contained" color="primary">
                                 Submit
