@@ -5,11 +5,10 @@ import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from '../component/Navbar';
-import Sidebar from '../component/Sidebar'
+import Sidebar from '../component/Sidebar';
 import Footer from '../component/Footer';
-import Constant from '../config/Constant'
-import UserList from '../component/UserList';
-
+import View from '../component/View';
+import ViewEmployee from '../component/ViewEmployee';
 const drawerWidth = 260;
 
 const openedMixin = (theme) => ({
@@ -29,7 +28,7 @@ const closedMixin = (theme) => ({
     overflowX: 'hidden',
     width: 0,
     [theme.breakpoints.up('md')]: {
-        width: `calc(${theme.spacing(8)} + 10px)`,
+        width: `calc(${theme.spacing(8)} + 1px)`,
     },
 });
 
@@ -81,20 +80,17 @@ export default function ViewEmployeePage() {
     const [open, setOpen] = React.useState(true);
 
     return (
-        <Box marginLeft={1} marginRight={0} sx={{ display: 'flex', overflow: 'hidden' }}>
+        <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar open={open}>
+            <AppBar position="fixed" open={open}>
                 <Navbar open={open} setOpen={setOpen} />
             </AppBar>
-
             <Drawer sx={{ position: { xs: 'absolute', md: 'initial' }, left: '0', top: '0' }} variant="permanent" open={open}>
                 <Sidebar />
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: .1, bgcolor: Constant.color[0], overflowY: 'auto', height: { xs: '200vh', md: '100vh' } }}>
+            <Box component="main" sx={{ flexGrow: 1, p: .1 }}>
                 <DrawerHeader />
-                <Box margin={4} marginBottom={20}>
-                    <UserList />
-                </Box>
+                < ViewEmployee />
                 <Footer />
             </Box>
         </Box>
