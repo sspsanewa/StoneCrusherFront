@@ -23,10 +23,10 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export default function View() {
+export default function EditClient() {
     const [date, setDate] = useState('')
     const [formData, setFormData] = useState({
-        firstName: 'Sandeep',
+        firstName: '',
         lastName: '',
         date: '',
         village: '',
@@ -146,24 +146,25 @@ export default function View() {
     return (
         <Box sx={{ width: '100%' }}>
             <Box display={'flex'} justifyContent={'space-between'}>
-                <Typography marginBottom={4} fontSize={20}>View Detail</Typography>
+                <Typography marginBottom={4} fontSize={20}>Add Detail</Typography>
                 <Box display={'flex'} >
                     <Typography onClick={() => navigate('/home')} marginBottom={4} fontSize={15}>Dashboard </Typography>
                 </Box>
             </Box>
-            <Box bgcolor={'#ffffff'} borderRadius={'10px'} sx={{ flexGrow: 1 }}>
+            <Box sx={{ flexGrow: 1 }}>
                 <form onSubmit={handleSubmit}>
                     <Grid marginY={5} item xs={12} md={12}>
                         <Item sx={{ borderRadius: '10px' }}>
-                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>View Client Information</b></Typography>
+                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Client Information</b></Typography>
                             <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
                                 <Grid item xs={12} md={4}>
-                                    <Typography display={'flex'} justifyContent={'left'}><b>First name</b></Typography>
                                     <TextField
                                         required
+                                        label="First Name"
                                         variant="outlined"
                                         name='firstName'
                                         value={formData.firstName}
+                                        onChange={handleChange}
                                         fullWidth
                                         margin="normal"
                                     />
@@ -231,7 +232,7 @@ export default function View() {
                                 <Item sx={{ borderRadius: '10px' }}>
 
                                     <Grid display={'flex'} marginLeft={'40%'} gap={40} >
-                                        {/* <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Material Information</b></Typography> */}
+                                        <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Material Information</b></Typography>
                                         {index != 0 &&
                                             <Box display={'flex'} justifyContent={'center'} >
                                                 <Button size='small' onClick={() => removeMaterial(index)} variant="outlined" color="secondary">Remove</Button>
@@ -312,7 +313,7 @@ export default function View() {
                     </Grid>
                     <Grid marginY={5} item xs={12} md={12}>
                         <Item sx={{ borderRadius: '10px' }}>
-                            {/* <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>GST & Loyalti Information</b></Typography> */}
+                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>GST & Loyalti Information</b></Typography>
 
                             <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
                                 <Grid item xs={12} md={4}>
@@ -367,7 +368,7 @@ export default function View() {
                     </Grid>
                     <Grid marginY={5} item xs={12} md={12}>
                         <Item sx={{ borderRadius: '10px' }}>
-                            {/* <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Paymnet Information</b></Typography> */}
+                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Paymnet Information</b></Typography>
 
                             <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
                                 <Grid item xs={12} md={4}>
@@ -479,7 +480,7 @@ export default function View() {
                     </Grid>
                     <Grid marginY={5} item xs={12} md={12}>
                         <Item sx={{ borderRadius: '10px' }}>
-                            {/* <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Other Information</b></Typography> */}
+                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Other Information</b></Typography>
 
                             <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
 

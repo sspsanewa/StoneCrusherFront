@@ -10,7 +10,7 @@ import Footer from '../component/Footer';
 import Dashboard from '../component/Dashboard'
 import Constant from '../config/Constant'
 import AddDetail from '../component/AddDetail'
-import View from '../component/View';
+import EditClient from '../component/EditClient';
 
 const drawerWidth = 260;
 
@@ -79,12 +79,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-export default function ViewPage() {
+export default function EditClientPage() {
     const [open, setOpen] = React.useState(true);
-
-
-
-
 
     return (
         <Box marginLeft={1} sx={{ display: 'flex', overflow: 'hidden' }}>
@@ -99,7 +95,7 @@ export default function ViewPage() {
             <Box component="main" sx={{ flexGrow: 1, p: .1, bgcolor: Constant.color[0], overflowY: 'auto', height: { xs: '200vh', md: '100vh' } }}>
                 <DrawerHeader />
                 <Box margin={4} marginBottom={20}>
-                    <View />
+                    <EditClient />
                 </Box>
                 <Footer />
             </Box>

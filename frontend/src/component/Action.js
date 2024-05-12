@@ -53,7 +53,7 @@ function Action(props) {
                         <DeleteIcon />
                         <Typography marginLeft={1}>{props.delete}</Typography>
                     </Box>
-                    <Box display={'flex'}>
+                    <Box onClick={() => navigate(props.editPath)} display={'flex'}>
                         <EditIcon />
                         <Typography marginLeft={1}>{props.edit}</Typography>
                     </Box>

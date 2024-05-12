@@ -18,6 +18,7 @@ import AddEmployeePage from '../pages/AddEmployeePage';
 import AddVehiclePage from '../pages/AddVehiclePage';
 import ViewEmployeePage from '../pages/ViewEmployeePage';
 import EmployeeListPage from '../pages/EmployeeListPage';
+import EditClientPage from '../pages/EditClientPage';
 function App() {
   return (
     <BrowserRouter >
@@ -26,14 +27,15 @@ function App() {
         <Route path='/forgotPassword' element={<ForgotPassword />} />
         <Route path='/dashboard' element={<DashboardPage />} />
         <Route path='/userList' element={<UserListPage />}></Route>
-        <Route path='/addDetail' element={<AddDetailPage />}></Route>
+        <Route path='/addClient' element={<AddDetailPage />}></Route>
+        <Route path='/editClient' element={<EditClientPage />}></Route>
+
         <Route path='/bill' element={<Bill />}></Route>
         <Route path='/viewUser' element={<ViewPage />}></Route>
         <Route path='/addEmployee' element={<AddEmployeePage />}></Route>
         <Route path='/employeeList' element={<EmployeeListPage />}></Route>
         <Route path='/viewEmployee' element={< ViewEmployeePage />}></Route>
         <Route path='/addVehicle' element={< AddVehiclePage />}></Route>
-
       </Routes>
     </BrowserRouter>
   );

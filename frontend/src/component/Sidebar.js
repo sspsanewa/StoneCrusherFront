@@ -191,7 +191,22 @@ export default function Sidebar(props) {
                             <ListItemText sx={{ color: hover2 ? 'black' : 'white' }}
                                 primary={
                                     <Typography variant="body1" sx={{ color: hover2 ? 'black' : 'white', fontSize: '15px' }}  >
-                                        User List
+                                        Client List
+                                    </Typography>
+                                }
+                            />
+                        </ListItemButton>
+                        <ListItemButton
+                            onClick={() => { navigate('/addClient'); }}
+                            onMouseOver={handleMouseOver2} onMouseOut={handleMouseOut2}
+                            sx={{ pl: 4, backgroundColor: hover2 ? 'white' : 'black' }}>
+                            <ListItemIcon>
+                                <ArrowLeftIcon sx={{ color: hover2 ? 'black' : 'white', fontSize: '17px' }} />
+                            </ListItemIcon>
+                            <ListItemText sx={{ color: hover2 ? 'black' : 'white' }}
+                                primary={
+                                    <Typography variant="body1" sx={{ color: hover2 ? 'black' : 'white', fontSize: '15px' }}  >
+                                        Add Client
                                     </Typography>
                                 }
                             />
@@ -202,14 +217,6 @@ export default function Sidebar(props) {
 
 
 
-                <ListOfItem
-                    path='/addDetail'
-                    name='Add Detail'
-                    handleMouseOver={handleMouseOver4}
-                    handleMouseOut={handleMouseOut4}
-                    hover={hover4}
-                    icon={<MoneyIcon sx={{ color: hover4 ? 'black' : 'white', fontSize: '17px' }} />}
-                />
 
                 <ListOfItem
                     path='/addEmployee'
