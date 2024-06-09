@@ -32,6 +32,7 @@ import Car from '../pages/Car';
 import ClientList from '../pages/ClientList';
 import AddClient from '../pages/AddClient';
 import EditClient from '../pages/EditClient';
+import Bill from '../components/Bill';
 
 const drawerWidth = 270;
 
@@ -167,6 +168,7 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/subscription`} element={<Subscription language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/addclient`} element={<AddClient language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/editclient/:id`} element={<EditClient language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/bill`} element={<Bill language={language} />} />
 
                   </Routes>
 

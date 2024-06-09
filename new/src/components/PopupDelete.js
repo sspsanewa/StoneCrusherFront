@@ -28,9 +28,11 @@ const PopupDelete = (props) => {
 
     const handleDelete = async (id, url, delete_flag) => {
         const data = { action: 'delete_user', user_id: id, delete_flag: delete_flag }
+
         Console("delete-flag", props.delete_flag)
+
         try {
-            const res = await axios.post(`${Url}/${url}/`, data)
+            const res = await axios.delete(`${Url}/${url}`, data)
             if (res.data.success) props.setShow(true)
             props.setAnchorEl(null);
             props.render ? props.setRender(false) : props.setRender(true)

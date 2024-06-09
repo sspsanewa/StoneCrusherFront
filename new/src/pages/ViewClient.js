@@ -11,6 +11,7 @@ import Date from '../components/Date';
 import Constant from '../Config/Color'
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import Console from '../debug_log';
+import Url from '../Config/Url';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -41,7 +42,7 @@ export default function ViewClient() {
         amountCollectedBy: '',
         discount: '',
         totalAmount: '',
-        materials: [{ size: '', cubicMeter: '', rate: '', amount: '' }]
+        materials: [{ size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
     });
 
 
@@ -94,7 +95,7 @@ export default function ViewClient() {
     const addMaterial = () => {
         setFormData({
             ...formData,
-            materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '' }]
+            materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
         });
     };
 
@@ -114,7 +115,7 @@ export default function ViewClient() {
         const params = { action: 'get_users', delete_flag: 0 };
         Console("users")
 
-        axios.get(`http://localhost:8080/api/v1/client/${id}`, { params })
+        axios.get(`${Url}/api/v1/client/${id}`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
@@ -153,7 +154,7 @@ export default function ViewClient() {
                                     variant="outlined"
                                     name='firstName'
                                     value={formData.firstName}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -164,7 +165,7 @@ export default function ViewClient() {
                                     variant="outlined"
                                     name='lastName'
                                     value={formData.lastName}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -176,7 +177,7 @@ export default function ViewClient() {
                                     variant="outlined"
                                     name='village'
                                     value={formData.village}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -192,7 +193,7 @@ export default function ViewClient() {
                                     variant="outlined"
                                     name='address'
                                     value={formData.address}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -204,7 +205,7 @@ export default function ViewClient() {
                                     variant="outlined"
                                     name='mobile'
                                     value={formData.mobile}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -311,7 +312,7 @@ export default function ViewClient() {
                                     variant="outlined"
                                     name='gstNumber'
                                     value={formData.gstNumber}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -323,7 +324,7 @@ export default function ViewClient() {
                                     variant="outlined"
                                     name='cgstAmount'
                                     value={formData.cgstAmount}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -335,7 +336,7 @@ export default function ViewClient() {
                                     variant="outlined"
                                     name='sgstAmount'
                                     value={formData.sgstAmount}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -347,7 +348,7 @@ export default function ViewClient() {
                                     variant="outlined"
                                     name='royaltiAmount'
                                     value={formData.royaltiAmount}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -367,7 +368,7 @@ export default function ViewClient() {
                                     variant="outlined"
                                     name='billNumber'
                                     value={formData.billNumber}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -443,7 +444,7 @@ export default function ViewClient() {
                                     name='totalAmount'
                                     type='number'
                                     value={formData.totalAmount}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -457,7 +458,7 @@ export default function ViewClient() {
                                     name='discount'
                                     type='number'
                                     value={formData.discount}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
@@ -503,7 +504,7 @@ export default function ViewClient() {
                                     variant="outlined"
                                     name='vihicle'
                                     value={formData.vihicle}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />

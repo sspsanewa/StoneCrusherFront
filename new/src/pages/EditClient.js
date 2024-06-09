@@ -132,7 +132,7 @@ export default function EditClient() {
         event.preventDefault();
         console.log(formData);
 
-        axios.post(`http://localhost:8080/api/v1/client/${id}`, formData)
+        axios.post(`http://localhost:8080/api/v1/client`, formData)
             .then(res => {
                 navigate('/userList')
             })

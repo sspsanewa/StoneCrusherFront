@@ -284,7 +284,7 @@ export default function ClientList() {
         const params = { action: 'get_all_users', delete_flag: 0 };
         Console("users")
 
-        axios.get('http://localhost:8080/api/v1/client', { params })
+        axios.get(`${Url}/api/v1/client`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
@@ -324,12 +324,12 @@ export default function ClientList() {
                     <Typography marginTop={1.2} fontSize={20} >Manage Clients List</Typography>
                 </Box>
                 {show &&
-                    <Alert sx={{ bgcolor: '#ffffff', marginBottom: '5px' }} variant="outlined" severity="success">
-                        User deleted successfully
+                    <Alert sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', bgcolor: '#ffffff', zIndex: 10, marginBottom: '5px', position: 'fixed', top: '48%', left: '45%' }} variant="outlined" severity="success">
+                        Client deleted successfully
                     </Alert>
                 }
                 {show1 &&
-                    <Alert sx={{ marginBottom: '5px' }} variant="outlined" severity="success">
+                    <Alert sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', bgcolor: '#ffffff', zIndex: 10, marginBottom: '5px', position: 'fixed', top: '48%', left: '45%' }} variant="outlined" severity="success">
                         Status updated successfully
                     </Alert>
                 }
@@ -381,7 +381,7 @@ export default function ClientList() {
                                     >
                                         <TableCell align="left">{index + 1 + page * rowsPerPage}</TableCell>
                                         <TableCell>
-                                            <ActionUserList render={render} setRender={setRender} view='View' viewPath={`/${APP_PREFIX_PATH}/viewclient/`} id={row.id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} statusValue={row.active_flag} status={row.active_flag === 1 ? 'Deactive' : 'Active'} url1='user_controller/active_deactive_status' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} delete='Delete' url='user_controller/delete_user' delete_flag='0' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} setShow={setShow} setShow1={setShow1} editIcon={<Edit sx={{ color: Constant.color[0] }} />} edit='Edit' />
+                                            <ActionUserList render={render} setRender={setRender} view='View' viewPath={`/${APP_PREFIX_PATH}/viewclient/`} id={row.id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} statusValue={row.active_flag} status={row.active_flag === 1 ? 'Deactive' : 'Active'} url1='user_controller/active_deactive_status' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} delete='Delete' url='api/v1/client' delete_flag='0' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} setShow={setShow} setShow1={setShow1} editIcon={<Edit sx={{ color: Constant.color[0] }} />} edit='Edit' />
                                         </TableCell>
 
                                         <TableCell
