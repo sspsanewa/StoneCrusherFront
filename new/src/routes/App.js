@@ -33,6 +33,7 @@ import ClientList from '../pages/ClientList';
 import AddClient from '../pages/AddClient';
 import EditClient from '../pages/EditClient';
 import Bill from '../components/Bill';
+import AddEmployee from '../pages/AddEmployee';
 
 const drawerWidth = 270;
 
@@ -169,6 +170,7 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/addclient`} element={<AddClient language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/editclient/:id`} element={<EditClient language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/bill`} element={<Bill language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/addemployee`} element={<AddEmployee language={language} />} />
 
                   </Routes>
 
