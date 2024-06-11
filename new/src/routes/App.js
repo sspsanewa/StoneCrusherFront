@@ -35,6 +35,8 @@ import EditClient from '../pages/EditClient';
 import Bill from '../components/Bill';
 import AddEmployee from '../pages/AddEmployee';
 import AddVehical from '../pages/AddVehical';
+import EditEmployee from '../pages/EditEmployee';
+import EmployeeList from '../pages/EmployeeList';
 
 const drawerWidth = 270;
 
@@ -157,6 +159,8 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/contactUs`} element={<ContactUs language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/content`} element={<Content />} language={language} />
                     <Route path={`/${APP_PREFIX_PATH}/clientlist`} element={<ClientList language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/employeelist`} element={<EmployeeList language={language} />} />
+
                     <Route path={`/${APP_PREFIX_PATH}/triplist`} element={<Trip language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/carlist`} element={<Car />} language={language} />
                     <Route path={`/${APP_PREFIX_PATH}/deleteduserlist`} element={<DeletedUserList language={language} />} />
@@ -173,6 +177,7 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/bill`} element={<Bill language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/addemployee`} element={<AddEmployee language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/addvehical`} element={<AddVehical language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/editemployee/:id`} element={<EditEmployee language={language} />} />
 
 
                   </Routes>

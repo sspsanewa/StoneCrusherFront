@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, TextField, styled } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 // import "react-datepicker/dist/react-datepicker.css";
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -25,7 +25,9 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export default function AddEmployee() {
+export default function EditEmployee() {
+    const { id } = useParams();
+
     const [date, setDate] = useState('')
     const [formData, setFormData] = useState({
         employeeId: '',
@@ -89,7 +91,19 @@ export default function AddEmployee() {
 
     // Calculate amount for each material and sum up to get totalAmount
 
+    React.useEffect(() => {
+        const params = { action: 'get_users', delete_flag: 0 };
 
+        axios.get(`http://localhost:8080/api/v1/employee/${id}`, { params })
+            .then(obj => {
+                const res = obj.data;
+                console.log("Users fetched successfully:", res);
+                setFormData(res)
+
+            })
+            .catch(err => console.error("Error fetching users:", err));
+        // .then(err => console.log("eoeee", err))
+    }, [])
 
     const handleSubmit = (event) => {
         event.preventDefault();
