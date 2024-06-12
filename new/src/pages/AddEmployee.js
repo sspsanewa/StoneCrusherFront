@@ -26,11 +26,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function AddEmployee() {
-    const [date, setDate] = useState('')
+    const [dateOfJoining, setDateOfJoining] = useState('')
     const [formData, setFormData] = useState({
         employeeFirstName: '',
         employeeLastName: '',
-        date: '',
+        dateOfJoining: '',
         employeeVillage: '',
         employeeAddress: '',
         employeeMobile: '',
@@ -43,7 +43,7 @@ export default function AddEmployee() {
     // if (formData.employeeSalary !== '') {
     //     formData.employeeSalary = parseDouble(formData.employeeSalary);
     // }
-    formData.date = date
+    formData.dateOfJoining = dateOfJoining
 
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
@@ -182,7 +182,7 @@ export default function AddEmployee() {
                                 </Grid>
                                 <Grid marginTop={1} item xs={12} md={4}>
 
-                                    <Date date={date} setDate={setDate} />
+                                    <Date date={dateOfJoining} setDate={setDateOfJoining} />
                                 </Grid>
                                 <Grid item xs={12} md={4}>
                                     <TextField

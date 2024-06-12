@@ -115,7 +115,7 @@ export default function AddVehical() {
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="vehicle Driver Name "
+                                        label="Vehicle Driver Name "
                                         variant="outlined"
                                         name='vehicleDriverName'
                                         value={formData.vehicleDriverName}
@@ -135,8 +135,27 @@ export default function AddVehical() {
                                         margin="normal"
                                     />
                                 </Grid>
-                             
-                
+
+                                <Grid marginTop={2} item xs={12} md={4}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-autowidth-label">Vehicle type</InputLabel>
+                                        <Select
+                                            required
+                                            labelId="demo-simple-select-autowidth-label"
+                                            id="demo-simple-select-autowidth"
+                                            name='vehicleType'
+                                            value={formData.vehicleType}
+                                            onChange={(e) => handleChange(e)} // Ensure to pass the event directly
+                                            autoWidth
+                                            label="Employee Type"
+                                        >
+                                            <MenuItem value='Tractor'>Tractor</MenuItem>
+                                            <MenuItem value='Trolly'>Trolly</MenuItem>
+                                            <MenuItem value='Other'>Other</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                    {formData.employeeType === '' && <FormHelperText>This field is required.</FormHelperText>}
+                                </Grid>
                                 {/* <Grid marginTop={2} item xs={12} md={4}>
                                     <FormControl fullWidth>
                                         <InputLabel id={`size-${index}`}>Vehicle Type</InputLabel>

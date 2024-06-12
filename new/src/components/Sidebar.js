@@ -212,7 +212,7 @@ export default function Sidebar(props) {
                                     paddingLeft: 30, background: selectedItem === 'addemployee' ? '#ffffff' : hoveredItem === 'addemployee' ? '#f0f0f0' : Constant.color[2]
                                 }}
                             >
-                                <ListItemIcon>s
+                                <ListItemIcon>
                                     <ArrowLeftIcon sx={{ color: selectedItem === 'addemployee' ? 'black' : hoveredItem === 'addemployee' ? 'black' : 'white', fontSize: '20px' }} />
                                 </ListItemIcon>
                                 <ListItemText

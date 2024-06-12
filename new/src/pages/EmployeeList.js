@@ -89,17 +89,18 @@ function stableSort(setSearch, array, comparator) {
 const headCells = [
     { id: 'sno', numeric: false, label: 'S.NO.', minWidth: 100 },
     { id: 'action', numeric: false, label: 'Action', minWidth: 100 },
-    { id: 'name', numeric: false, label: 'Name', minWidth: 100 },
-    { id: 'village', numeric: false, label: 'Village', minWidth: 100 },
+    { id: 'employeeFirstName', numeric: false, label: 'Name', minWidth: 100 },
+    { id: 'employeeVillage', numeric: false, label: 'Village', minWidth: 100 },
     // { id: 'email', numeric: false, label: 'Email', minWidth: 100 },
+    { id: 'employeeAadharcard', numeric: false, label: 'Aadharcard', minWidth: 100 },
 
-    { id: 'mobile', numeric: false, label: 'Mobile', minWidth: 100 },
+    { id: 'employeeAddress', numeric: false, label: 'Address', minWidth: 100 },
 
-    // { id: 'status', numeric: false, label: 'Status', minWidth: 100 },
+    { id: 'employeeMobile', numeric: false, label: 'Mobile', minWidth: 100 },
+    { id: 'employeeSalary', numeric: false, label: 'Salary', minWidth: 100 },
 
-    {
-        id: 'date', numeric: false, label: 'Create Date & Time', minWidth: 100
-    },
+    { id: 'employeeType', numeric: false, label: 'Type', minWidth: 100 },
+
 
 ];
 
@@ -390,24 +391,30 @@ export default function EmployeeList() {
                                             scope="row"
                                             align="left"
                                         >
-                                            {(row.firstName + ' ' + row.lastName) ? (row.firstName + ' ' + row.lastName) : "NA"}
+                                            {(row.employeeFirstName + ' ' + row.employeeLastName) ? (row.employeeFirstName + ' ' + row.employeeLastName) : "NA"}
                                         </TableCell>
                                         {/* <TableCell align="left">
 
                                             <Avatar src={`${IMAGE_PATH}` + row.image} alt={row.name && row.name.charAt(0).toUpperCase()} />
 
                                         </TableCell> */}
-                                        <TableCell align="left">{row.village ? row.village : 'NA'}</TableCell>
+                                        <TableCell align="left">{row.employeeVillage ? row.employeeVillage : 'NA'}</TableCell>
 
 
 
-                                        <TableCell align="left">{row.mobile ? row.mobile : 'NA'}</TableCell>
+                                        <TableCell align="left">{row.employeeAadharcard ? row.employeeAadharcard : 'NA'}</TableCell>
                                         {/* <TableCell align="left">
                                             {row.active_flag === 1 ? <Typography variant='outlined' size='small' style={{ height: '25px', color: '#00c853' }} >Active</Typography> : <Typography variant='outlined' size='small' style={{
                                                 height: '25px', color: '#f44336'
                                             }} >Deactive</Typography>}
                                         </TableCell> */}
-                                        <TableCell align="left">{row.date}</TableCell>
+                                        <TableCell align="left">{row.employeeAddress}</TableCell>
+
+                                        <TableCell align="left">{row.employeeMobile}</TableCell>
+                                        <TableCell align="left">{row.employeeSalary}</TableCell>
+                                        <TableCell align="left">{row.employeeType}</TableCell>
+
+                                        {/* <TableCell align="left">{row.date}</TableCell> */}
 
                                     </TableRow>
                                 );
