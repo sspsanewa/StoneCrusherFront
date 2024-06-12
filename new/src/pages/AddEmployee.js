@@ -28,13 +28,12 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function AddEmployee() {
     const [date, setDate] = useState('')
     const [formData, setFormData] = useState({
-        employeeId: '',
         employeeFirstName: '',
         employeeLastName: '',
         date: '',
-        village: '',
-        address: '',
-        mobile: '',
+        employeeVillage: '',
+        employeeAddress: '',
+        employeeMobile: '',
         employeeAadharcard: '',
         employeeSalary: '',
         employeeType: ''
@@ -149,18 +148,6 @@ export default function AddEmployee() {
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Employee Id"
-                                        variant="outlined"
-                                        name='employeeId'
-                                        value={formData.employeeId}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        required
                                         label="First Name"
                                         variant="outlined"
                                         name='employeeFirstName'
@@ -186,8 +173,8 @@ export default function AddEmployee() {
                                         required
                                         label="Village"
                                         variant="outlined"
-                                        name='village'
-                                        value={formData.village}
+                                        name='employeeVillage'
+                                        value={formData.employeeVillage}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
@@ -202,8 +189,8 @@ export default function AddEmployee() {
                                         required
                                         label="Address"
                                         variant="outlined"
-                                        name='address'
-                                        value={formData.address}
+                                        name='employeeAddress'
+                                        value={formData.employeeAddress}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
@@ -212,10 +199,10 @@ export default function AddEmployee() {
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Mobile"
+                                        label="Mobile Number"
                                         variant="outlined"
-                                        name='mobile'
-                                        value={formData.mobile}
+                                        name='employeeMobile'
+                                        value={formData.employeeMobile}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
