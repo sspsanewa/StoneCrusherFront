@@ -66,10 +66,9 @@ export default function Sidebar(props) {
 
     const navigate = useNavigate();
     return (
-        <Box borderRadius={2} bgcolor={Constant.color[0]} paddingBottom={11}
-        >
+        <Box borderRadius={2} bgcolor={Constant.color[0]} paddingBottom={11}>
             <Logo open={props.open} setOpen={props.setOpen} />
-            <Box >
+            <Box>
                 <List sx={{ width: '100%', maxWidth: 268 }} component="nav" aria-labelledby="nested-list-subheader">
                     <ListItemButton
                         selected={selectedItem === 'dashboard'} // Set selected to true if the selectedItem is 'dashboard'
@@ -247,7 +246,7 @@ export default function Sidebar(props) {
                         <List component="div" disablePadding>
 
                             <ListItemButton
-                                selected={selectedItem === 'userlist'}
+                                selected={selectedItem === 'vehiclelist'}
                                 onClick={() => handleItemClick('userlist')}
                                 onMouseEnter={() => setHoveredItem('userlist')}
                                 onMouseLeave={() => setHoveredItem(null)}
@@ -276,6 +275,22 @@ export default function Sidebar(props) {
                                 </ListItemIcon>
                                 <ListItemText
                                     primary={<Typography variant="body1" sx={{ color: selectedItem === 'deleteduserlist' ? 'black' : hoveredItem === 'deleteduserlist' ? 'black' : 'white', fontSize: '15px' }}>Deleted Vihicles List</Typography>}
+                                />
+                            </ListItemButton>
+                            <ListItemButton
+                                selected={selectedItem === 'addVehicle'}
+                                onClick={() => handleItemClick('addVehicle')}
+                                onMouseEnter={() => setHoveredItem('addVehicle')}
+                                onMouseLeave={() => setHoveredItem(null)}
+                                style={{
+                                    paddingLeft: 30, background: selectedItem === 'addVehicle' ? '#ffffff' : hoveredItem === 'addVehicle' ? '#f0f0f0' : Constant.color[2]
+                                }}
+                            >
+                                <ListItemIcon>
+                                    <ArrowLeftIcon sx={{ color: selectedItem === 'addVehicle' ? 'black' : hoveredItem === 'addVehicle' ? 'black' : 'white', fontSize: '20px' }} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'addVehicle' ? 'black' : hoveredItem === 'addVehicle' ? 'black' : 'white', fontSize: '15px' }}>Add Vehicle</Typography>}
                                 />
                             </ListItemButton>
                         </List>

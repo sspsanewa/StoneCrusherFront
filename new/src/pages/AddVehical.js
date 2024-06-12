@@ -67,7 +67,7 @@ export default function AddVehical() {
 
         // Set the updated form data
         // setFormData(updatedFormData);
-        axios.post('http://localhost:8080/api/v1/vehical', formData)
+        axios.post('http://localhost:8080/api/v1/vehicle', formData)
             .then(res => {
                 navigate('/userList')
             })
@@ -135,81 +135,8 @@ export default function AddVehical() {
                                         margin="normal"
                                     />
                                 </Grid>
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        required
-                                        label="Village"
-                                        variant="outlined"
-                                        name='village'
-                                        value={formData.village}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
-                                </Grid>
-                                <Grid marginTop={1} item xs={12} md={4}>
-
-                                    <Date date={date} setDate={setDate} />
-                                </Grid>
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        required
-                                        label="Address"
-                                        variant="outlined"
-                                        name='address'
-                                        value={formData.address}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        required
-                                        label="Mobile"
-                                        variant="outlined"
-                                        name='mobile'
-                                        value={formData.mobile}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        required
-                                        label="AadharCard Number"
-                                        variant="outlined"
-                                        name='employeeAadharcard'
-                                        value={formData.employeeAadharcard}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        required
-                                        label="Address"
-                                        variant="outlined"
-                                        name='address'
-                                        value={formData.address}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        label="Salary"
-                                        variant="outlined"
-                                        name='employeeSalary'
-                                        value={formData.employeeSalary}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
-                                </Grid>
+                             
+                
                                 {/* <Grid marginTop={2} item xs={12} md={4}>
                                     <FormControl fullWidth>
                                         <InputLabel id={`size-${index}`}>Vehicle Type</InputLabel>
