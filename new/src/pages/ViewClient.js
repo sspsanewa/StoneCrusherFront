@@ -157,6 +157,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
                             </Grid>
                             <Grid item xs={12} md={4}>
@@ -168,6 +172,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
                             </Grid>
                             <Grid item xs={12} md={4}>
@@ -180,6 +188,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
                             </Grid>
                             <Grid marginTop={1} item xs={12} md={4}>
@@ -196,6 +208,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
                             </Grid>
                             <Grid item xs={12} md={4}>
@@ -208,6 +224,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
                             </Grid>
                         </Grid>
@@ -277,6 +297,10 @@ export default function ViewClient() {
                                             onChange={(e) => handleChange(e, index)} // Ensure you pass index for correct material
                                             fullWidth
                                             margin="normal"
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={4}>
@@ -290,6 +314,10 @@ export default function ViewClient() {
                                             onChange={(e) => handleChange(e, index)} // Ensure you pass index for correct material
                                             fullWidth
                                             margin="normal"
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={4}>
@@ -303,6 +331,10 @@ export default function ViewClient() {
                                             onChange={(e) => handleChange(e, index)} // Ensure you pass index for correct material
                                             fullWidth
                                             margin="normal"
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+
                                         />
                                     </Grid>
 
@@ -329,6 +361,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
 
                             </Grid>
@@ -341,6 +377,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
 
                             </Grid>
@@ -353,6 +393,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
 
                             </Grid>
@@ -365,6 +409,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
                             </Grid>
                         </Grid>
@@ -385,6 +433,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
                             </Grid>
                             <Grid marginTop={2} item xs={12} md={4}>
@@ -461,6 +513,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
 
                             </Grid>
@@ -475,6 +531,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
 
                             </Grid>
@@ -521,6 +581,10 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
 
                             </Grid>
