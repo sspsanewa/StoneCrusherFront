@@ -113,7 +113,7 @@ export default function ViewEmployee() {
 
     React.useEffect(() => {
         const params = { action: 'get_users', delete_flag: 0 };
-        Console("users")
+        Console("employee")
 
         axios.get(`${Url}/api/v1/employee/${id}`, { params })
             .then(obj => {

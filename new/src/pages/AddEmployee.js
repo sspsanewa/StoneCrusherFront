@@ -28,6 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function AddEmployee() {
     const [dateOfJoining, setDateOfJoining] = useState('')
     const [formData, setFormData] = useState({
+        employeeId:'',
         employeeFirstName: '',
         employeeLastName: '',
         dateOfJoining: '',
@@ -145,6 +146,18 @@ export default function AddEmployee() {
                         <Item sx={{ borderRadius: '10px', margin: '30px' }}>
                             <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Employee Information</b></Typography>
                             <Grid padding={1} item md={12} display={'flex'} container spacing={2}>
+                                <Grid item xs={12} md={4}>
+                                    <TextField
+                                        required
+                                        label="Employee Id"
+                                        variant="outlined"
+                                        name='employeeId'
+                                        value={formData.employeeId}
+                                        onChange={handleChange}
+                                        fullWidth
+                                        margin="normal"
+                                    />
+                                </Grid>
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
