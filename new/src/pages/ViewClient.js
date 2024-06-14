@@ -151,7 +151,7 @@ export default function ViewClient() {
                                 <TextField
                                     required
                                     label="First Name"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='firstName'
                                     value={formData.firstName}
                                     // onChange={handleChange}
@@ -162,7 +162,7 @@ export default function ViewClient() {
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     label="Last Name"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='lastName'
                                     value={formData.lastName}
                                     // onChange={handleChange}
@@ -174,7 +174,7 @@ export default function ViewClient() {
                                 <TextField
                                     required
                                     label="Village"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='village'
                                     value={formData.village}
                                     // onChange={handleChange}
@@ -190,7 +190,7 @@ export default function ViewClient() {
                                 <TextField
                                     required
                                     label="Address"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='address'
                                     value={formData.address}
                                     // onChange={handleChange}
@@ -202,7 +202,7 @@ export default function ViewClient() {
                                 <TextField
                                     required
                                     label="Mobile"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='mobile'
                                     value={formData.mobile}
                                     // onChange={handleChange}
@@ -225,12 +225,12 @@ export default function ViewClient() {
                                     <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Material Information</b></Typography>
                                     {index != 0 &&
                                         <Box display={'flex'} justifyContent={'center'} >
-                                            <Button size='small' onClick={() => removeMaterial(index)} variant="outlined" color="secondary">Remove</Button>
+                                            <Button size='small' onClick={() => removeMaterial(index)} variant="filled" color="secondary">Remove</Button>
                                         </Box>
                                     }
                                 </Grid>
                                 <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
-                                    <Grid marginTop={2} item xs={12} md={4}>
+                                    {/* <Grid marginTop={2} item xs={12} md={4}>
                                         <FormControl fullWidth>
                                             <InputLabel id={`size-${index}`}>Size</InputLabel>
                                             <Select
@@ -252,12 +252,26 @@ export default function ViewClient() {
                                             </Select>
                                         </FormControl>
                                         {material.size === '' && <FormHelperText>This field is required.</FormHelperText>}
+                                    </Grid> */}
+                                    <Grid marginTop={2} item xs={12} md={4}>
+                                        <TextField
+                                            required
+                                            label="size"
+                                            variant="filled"
+                                            name='size'
+                                            value={material.size}
+                                            // onChange={handleChange}
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+                                            
+                                        />
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <TextField
                                             required
                                             label="Cubic Meter"
-                                            variant="outlined"
+                                            variant="filled"
                                             name='cubicMeter'
                                             value={material.cubicMeter} // Change formData.cubicMeter to material.cubicMeter
                                             onChange={(e) => handleChange(e, index)} // Ensure you pass index for correct material
@@ -269,7 +283,7 @@ export default function ViewClient() {
                                         <TextField
                                             required
                                             label="Rate"
-                                            variant="outlined"
+                                            variant="filled"
                                             name='rate'
                                             type='number'
                                             value={material.rate} // Change formData.rate to material.rate
@@ -282,7 +296,7 @@ export default function ViewClient() {
                                         <TextField
                                             required
                                             label="Amount"
-                                            variant="outlined"
+                                            variant="filled"
                                             name='amount'
                                             type='number'
                                             value={material.amount} // Change formData.amount to material.amount
@@ -309,7 +323,7 @@ export default function ViewClient() {
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     label="GST Number"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='gstNumber'
                                     value={formData.gstNumber}
                                     // onChange={handleChange}
@@ -321,7 +335,7 @@ export default function ViewClient() {
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     label="CGST Amount"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='cgstAmount'
                                     value={formData.cgstAmount}
                                     // onChange={handleChange}
@@ -333,7 +347,7 @@ export default function ViewClient() {
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     label="SGST Amount"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='sgstAmount'
                                     value={formData.sgstAmount}
                                     // onChange={handleChange}
@@ -345,7 +359,7 @@ export default function ViewClient() {
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     label="Royalty Amount"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='royaltiAmount'
                                     value={formData.royaltiAmount}
                                     // onChange={handleChange}
@@ -365,7 +379,7 @@ export default function ViewClient() {
                                 <TextField
                                     required
                                     label="Bill Number"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='billNumber'
                                     value={formData.billNumber}
                                     // onChange={handleChange}
@@ -440,7 +454,7 @@ export default function ViewClient() {
                                 <TextField
                                     required
                                     label="Total Amount"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='totalAmount'
                                     type='number'
                                     value={formData.totalAmount}
@@ -454,7 +468,7 @@ export default function ViewClient() {
                                 <TextField
                                     required
                                     label="Discount"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='discount'
                                     type='number'
                                     value={formData.discount}
@@ -501,7 +515,7 @@ export default function ViewClient() {
                                 <TextField
                                     required
                                     label="Vihicle No."
-                                    variant="outlined"
+                                    variant="filled"
                                     name='vihicle'
                                     value={formData.vihicle}
                                     // onChange={handleChange}
