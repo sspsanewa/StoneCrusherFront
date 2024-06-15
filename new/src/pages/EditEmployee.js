@@ -151,7 +151,7 @@ export default function EditEmployee() {
                                         label="Employee Id"
                                         variant="outlined"
                                         name='employeeId'
-                                        value={formData.employeId}
+                                        value={formData.employeeId}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
