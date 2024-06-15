@@ -439,7 +439,7 @@ export default function ViewClient() {
 
                                 />
                             </Grid>
-                            <Grid marginTop={2} item xs={12} md={4}>
+                            {/* <Grid marginTop={2} item xs={12} md={4}>
                                 <FormControl fullWidth>
                                     <InputLabel id="demo-simple-select-autowidth-label">Firm</InputLabel>
                                     <Select
@@ -457,8 +457,23 @@ export default function ViewClient() {
                                     </Select>
                                 </FormControl>
                                 {formData.fermName === '' && <FormHelperText>This field is required.</FormHelperText>}
-                            </Grid>
+                            </Grid> */}
                             <Grid marginTop={2} item xs={12} md={4}>
+                                <TextField
+                                    required
+                                    label="Firm"
+                                    variant="filled"
+                                    name='fermName'
+                                    value={formData.fermName}
+                                    // onChange={handleChange}
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
+                                />
+                            </Grid>
+
+                            {/* <Grid marginTop={2} item xs={12} md={4}>
                                 <FormControl fullWidth>
                                     <InputLabel id="pay">Payment Mode</InputLabel>
                                     <Select
@@ -477,8 +492,22 @@ export default function ViewClient() {
                                 </FormControl>
                                 {formData.paymentMode === '' && <FormHelperText>This field is required.</FormHelperText>}
 
-                            </Grid>
+                            </Grid> */}
                             <Grid marginTop={2} item xs={12} md={4}>
+                                <TextField
+                                    required
+                                    label="Payment"
+                                    variant="filled"
+                                    name='Payment Mode'
+                                    value={formData.paymentMode}
+                                    // onChange={handleChange}
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
+                                />
+                            </Grid>
+                            {/* <Grid marginTop={2} item xs={12} md={4}>
                                 <FormControl fullWidth>
                                     <InputLabel id="collection">Collected By</InputLabel>
                                     <Select
@@ -500,8 +529,21 @@ export default function ViewClient() {
                                 </FormControl>
                                 {formData.amount === '' && <FormHelperText>This field is required.</FormHelperText>}
 
-                            </Grid>
+                            </Grid> */}
+                            <Grid marginTop={2} item xs={12} md={4}>
+                                <TextField
+                                    required
+                                    label="Amount Collected By"
+                                    variant="filled"
+                                    name='Payment Mode'
+                                    value={formData.amountCollectedBy}
+                                    // onChange={handleChange}
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
 
+                                />
+                            </Grid>
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     required
@@ -548,7 +590,7 @@ export default function ViewClient() {
 
                         <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
 
-                            <Grid marginTop={2} item xs={12} md={4}>
+                            {/* <Grid marginTop={2} item xs={12} md={4}>
                                 <FormControl fullWidth>
                                     <InputLabel id="collection">Driver</InputLabel>
                                     <Select
@@ -569,8 +611,21 @@ export default function ViewClient() {
                                 </FormControl>
                                 {formData.driver === '' && <FormHelperText>This field is required.</FormHelperText>}
 
-                            </Grid>
+                            </Grid> */}
+                            <Grid marginTop={2} item xs={12} md={4}>
+                                <TextField
+                                    required
+                                    label="Driver Name"
+                                    variant="filled"
+                                    name='driver'
+                                    value={formData.driver}
+                                    // onChange={handleChange}
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
 
+                                />
+                            </Grid>
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     required
