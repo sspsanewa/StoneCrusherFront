@@ -62,7 +62,7 @@ function ActionUserList(props) {
                         {props.statusIcon}
                         <PopupStatus render={props.render} setRender={props.setRender} setAnchorEl={setAnchorEl} button={props.status} message={`${props.status} Successfully`} id={props.id} url={props.url1} setShow1={props.setShow1} statusValue={props.statusValue} />
                     </Box> */}
-                    <Box onClick={() => navigate(`/${APP_PREFIX_PATH}/editclient/${props.id}`)} paddingX={2} display={'flex'} alignItems={'center'} gap={1} sx={{ '&:hover': { backgroundColor: 'lightgray' } }}>
+                    <Box onClick={() => navigate(`/${APP_PREFIX_PATH}/${props.editUrl}/${props.id}`)} paddingX={2} display={'flex'} alignItems={'center'} gap={1} sx={{ '&:hover': { backgroundColor: 'lightgray' } }}>
                         {props.editIcon}
                         <Button color="primary" >
                             Edit

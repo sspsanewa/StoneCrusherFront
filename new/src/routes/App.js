@@ -177,7 +177,7 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/addemployee`} element={<AddEmployee language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/editemployee/:id`} element={<EditEmployee language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/employeelist`} element={<EmployeeList language={language} />} />
-                    <Route path={`/${APP_PREFIX_PATH}/viewEmployee`} element={<ViewEmployee language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/viewEmployee/:id`} element={<ViewEmployee language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/addVehicle`} element={<AddVehical language={language} />} />
 
 

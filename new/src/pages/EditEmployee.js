@@ -34,9 +34,9 @@ export default function EditEmployee() {
         employeeFirstName: '',
         employeeLastName: '',
         dateOfJoining: '',
-        village: '',
-        address: '',
-        mobile: '',
+        employeeVillage: '',
+        employeeAddress: '',
+        employeeMobile: '',
         employeeAadharcard: '',
         employeeSalary: '',
         employeeType: ''
@@ -51,27 +51,12 @@ export default function EditEmployee() {
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
         const { name, value } = e.target;
-        if (index !== undefined) {
-            const newMaterials = [...formData.materials];
-            newMaterials[index][name] = value;
 
-            // // Calculate amount for the material when cubicMeter or rate changes
-            // if (name === 'cubicMeter' || name === 'rate') {
-            //     const cubicMeter = parseFloat(newMaterials[index]['cubicMeter']);
-            //     const rate = parseFloat(newMaterials[index]['rate']);
-            //     newMaterials[index]['amount'] = isNaN(cubicMeter) || isNaN(rate) ? '' : cubicMeter * rate;
-            // }
+        setFormData({
+            ...formData,
+            [name]: value
+        });
 
-            setFormData({
-                ...formData,
-                materials: newMaterials
-            });
-        } else {
-            setFormData({
-                ...formData,
-                [name]: value
-            });
-        }
     };
     // const addMaterial = () => {
     //     setFormData({
@@ -166,7 +151,7 @@ export default function EditEmployee() {
                                         label="Employee Id"
                                         variant="outlined"
                                         name='employeeId'
-                                        value={formData.employeeId}
+                                        value={formData.employeId}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
@@ -201,7 +186,7 @@ export default function EditEmployee() {
                                         label="Village"
                                         variant="outlined"
                                         name='village'
-                                        value={formData.village}
+                                        value={formData.employeeVillage}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
@@ -209,7 +194,7 @@ export default function EditEmployee() {
                                 </Grid>
                                 <Grid marginTop={1} item xs={12} md={4}>
 
-                                    <Date date={dateOfJoining} setDateOfJoining={setDateOfJoining} />
+                                    <Date date={dateOfJoining} setDate={setDateOfJoining} />
                                 </Grid>
                                 <Grid item xs={12} md={4}>
                                     <TextField
@@ -217,7 +202,7 @@ export default function EditEmployee() {
                                         label="Address"
                                         variant="outlined"
                                         name='address'
-                                        value={formData.address}
+                                        value={formData.employeeAddress}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
@@ -229,7 +214,7 @@ export default function EditEmployee() {
                                         label="Mobile"
                                         variant="outlined"
                                         name='mobile'
-                                        value={formData.mobile}
+                                        value={formData.employeeMobile}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"

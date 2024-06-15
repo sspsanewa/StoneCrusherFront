@@ -22,9 +22,9 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export default function ViewClient() {
+export default function ViewEmployee() {
     const { id } = useParams();
-    const [date, setDate] = useState('')
+    const [dateOfJoining, setDateOfJoining] = useState('')
     const [formData, setFormData] = useState({
         employeeId: '',
         employeeFirstName: '',
@@ -41,43 +41,28 @@ export default function ViewClient() {
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
         const { name, value } = e.target;
-        if (index !== undefined) {
-            const newMaterials = [...formData.materials];
-            newMaterials[index][name] = value;
 
-            // // Calculate amount for the material when cubicMeter or rate changes
-            // if (name === 'cubicMeter' || name === 'rate') {
-            //     const cubicMeter = parseFloat(newMaterials[index]['cubicMeter']);
-            //     const rate = parseFloat(newMaterials[index]['rate']);
-            //     newMaterials[index]['amount'] = isNaN(cubicMeter) || isNaN(rate) ? '' : cubicMeter * rate;
-            // }
-
-            setFormData({
-                ...formData,
-                materials: newMaterials
-            });
-        } else {
-            setFormData({
-                ...formData,
-                [name]: value
-            });
-        }
-    };
-    const addMaterial = () => {
         setFormData({
             ...formData,
-            materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
+            [name]: value
         });
-    };
 
-    const removeMaterial = (index) => {
-        const newMaterials = [...formData.materials];
-        newMaterials.splice(index, 1);
-        setFormData({
-            ...formData,
-            materials: newMaterials
-        });
     };
+    // const addMaterial = () => {
+    //     setFormData({
+    //         ...formData,
+    //         materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
+    //     });
+    // };
+
+    // const removeMaterial = (index) => {
+    //     const newMaterials = [...formData.materials];
+    //     newMaterials.splice(index, 1);
+    //     setFormData({
+    //         ...formData,
+    //         materials: newMaterials
+    //     });
+    // };
 
     // Calculate amount for each material and sum up to get totalAmount
 
@@ -86,7 +71,7 @@ export default function ViewClient() {
         const params = { action: 'get_users', delete_flag: 0 };
         Console("users")
 
-        axios.get(`${Url}/api/v1/client/${id}`, { params })
+        axios.get(`${Url}/api/v1/employee/${id}`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
@@ -124,7 +109,7 @@ export default function ViewClient() {
                                     label="First Name"
                                     variant="filled"
                                     name='firstName'
-                                    value={formData.firstName}
+                                    value={formData.employeeFirstName}
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
@@ -135,7 +120,7 @@ export default function ViewClient() {
                                     label="Last Name"
                                     variant="filled"
                                     name='lastName'
-                                    value={formData.lastName}
+                                    value={formData.employeeLastName}
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
@@ -147,7 +132,7 @@ export default function ViewClient() {
                                     label="Village"
                                     variant="filled"
                                     name='village'
-                                    value={formData.village}
+                                    value={formData.employeeVillage}
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
@@ -155,15 +140,23 @@ export default function ViewClient() {
                             </Grid>
                             <Grid marginTop={1} item xs={12} md={4}>
 
-                                <Date date={date} setDate={setDate} />
-                            </Grid>
+                                <TextField
+                                    required
+                                    label="Date of joining"
+                                    variant="filled"
+                                    name='address'
+                                    value={formData.dateOfJoining}
+                                    // onChange={handleChange}
+                                    fullWidth
+                                    margin="normal"
+                                />                            </Grid>
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     required
                                     label="Address"
                                     variant="filled"
                                     name='address'
-                                    value={formData.address}
+                                    value={formData.employeeAddress}
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
@@ -175,330 +168,55 @@ export default function ViewClient() {
                                     label="Mobile"
                                     variant="filled"
                                     name='mobile'
-                                    value={formData.mobile}
+                                    value={formData.employeeMobile}
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                 />
                             </Grid>
-                        </Grid>
-                    </Item>
-                </Grid>
-                <Grid marginY={5} container spacing={2}>
-
-                    {formData.materials.map((material, index) => (
-
-                        <Grid item xs={12} md={12} key={index}>
-
-                            <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-
-                                <Grid display={'flex'} marginLeft={'40%'} gap={40} >
-                                    <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Material Information</b></Typography>
-                                    {index != 0 &&
-                                        <Box display={'flex'} justifyContent={'center'} >
-                                            <Button size='small' onClick={() => removeMaterial(index)} variant="filled" color="secondary">Remove</Button>
-                                        </Box>
-                                    }
-                                </Grid>
-                                <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
-                                    {/* <Grid marginTop={2} item xs={12} md={4}>
-                                        <FormControl fullWidth>
-                                            <InputLabel id={`size-${index}`}>Size</InputLabel>
-                                            <Select
-                                                required
-                                                labelId={`size-${index}`}
-                                                id={`size-${index}`}
-                                                name='size'
-                                                value={material.size}
-                                                onChange={(e) => handleChange(e, index)}
-                                                label="size"
-                                            >
-                                                <MenuItem value='40mm'>40mm</MenuItem>
-                                                <MenuItem value='20mm'>20mm</MenuItem>
-                                                <MenuItem value='10mm'>10mm</MenuItem>
-                                                <MenuItem value='4mm(mcend)'>4mm(mcend)</MenuItem>
-                                                <MenuItem value='Dust'>Dust</MenuItem>
-                                                <MenuItem value='GSB'>Gsb</MenuItem>
-                                                <MenuItem value='Wmm'>Wmm</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                        {material.size === '' && <FormHelperText>This field is required.</FormHelperText>}
-                                    </Grid> */}
-                                    <Grid marginTop={2} item xs={12} md={4}>
-                                        <TextField
-                                            required
-                                            label="size"
-                                            variant="filled"
-                                            name='size'
-                                            value={material.size}
-                                            // onChange={handleChange}
-                                            InputProps={{
-                                                readOnly: true,
-                                            }}
-
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} md={4}>
-                                        <TextField
-                                            required
-                                            label="Cubic Meter"
-                                            variant="filled"
-                                            name='cubicMeter'
-                                            value={material.cubicMeter} // Change formData.cubicMeter to material.cubicMeter
-                                            onChange={(e) => handleChange(e, index)} // Ensure you pass index for correct material
-                                            fullWidth
-                                            margin="normal"
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} md={4}>
-                                        <TextField
-                                            required
-                                            label="Rate"
-                                            variant="filled"
-                                            name='rate'
-                                            type='number'
-                                            value={material.rate} // Change formData.rate to material.rate
-                                            onChange={(e) => handleChange(e, index)} // Ensure you pass index for correct material
-                                            fullWidth
-                                            margin="normal"
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} md={4}>
-                                        <TextField
-                                            required
-                                            label="Amount"
-                                            variant="filled"
-                                            name='amount'
-                                            type='number'
-                                            value={material.amount} // Change formData.amount to material.amount
-                                            onChange={(e) => handleChange(e, index)} // Ensure you pass index for correct material
-                                            fullWidth
-                                            margin="normal"
-                                        />
-                                    </Grid>
-
-                                </Grid>
-
-                            </Item>
-                        </Grid>
-                    ))}
-                    <Grid display={'flex'} alignItems={'center'} justifyContent={'center'} item xs={12}>
-                        <Button size='small' onClick={addMaterial} variant="contained" color="primary">Add More</Button>
-                    </Grid>
-                </Grid>
-                <Grid marginY={5} item xs={12} md={12}>
-                    <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-                        <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>GST & Loyalti Information</b></Typography>
-
-                        <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
-                            <Grid item xs={12} md={4}>
-                                <TextField
-                                    label="GST Number"
-                                    variant="filled"
-                                    name='gstNumber'
-                                    value={formData.gstNumber}
-                                    // onChange={handleChange}
-                                    fullWidth
-                                    margin="normal"
-                                />
-
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                                <TextField
-                                    label="CGST Amount"
-                                    variant="filled"
-                                    name='cgstAmount'
-                                    value={formData.cgstAmount}
-                                    // onChange={handleChange}
-                                    fullWidth
-                                    margin="normal"
-                                />
-
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                                <TextField
-                                    label="SGST Amount"
-                                    variant="filled"
-                                    name='sgstAmount'
-                                    value={formData.sgstAmount}
-                                    // onChange={handleChange}
-                                    fullWidth
-                                    margin="normal"
-                                />
-
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                                <TextField
-                                    label="Royalty Amount"
-                                    variant="filled"
-                                    name='royaltiAmount'
-                                    value={formData.royaltiAmount}
-                                    // onChange={handleChange}
-                                    fullWidth
-                                    margin="normal"
-                                />
-                            </Grid>
-                        </Grid>
-                    </Item>
-                </Grid>
-                <Grid marginY={5} item xs={12} md={12}>
-                    <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-                        <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Paymnet Information</b></Typography>
-
-                        <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     required
-                                    label="Bill Number"
-                                    variant="filled"
-                                    name='billNumber'
-                                    value={formData.billNumber}
-                                    // onChange={handleChange}
+                                    label="AadharCard Number"
+                                    variant="outlined"
+                                    name='employeeAadharcard'
+                                    value={formData.employeeAadharcard}
+                                    onChange={handleChange}
                                     fullWidth
                                     margin="normal"
-                                />
-                            </Grid>
-                            <Grid marginTop={2} item xs={12} md={4}>
-                                <FormControl fullWidth>
-                                    <InputLabel id="demo-simple-select-autowidth-label">Firm</InputLabel>
-                                    <Select
-                                        required
-                                        labelId="demo-simple-select-autowidth-label"
-                                        id="demo-simple-select-autowidth"
-                                        name='fermName'
-                                        value={formData.fermName}
-                                        onChange={(e) => handleChange(e)} // Ensure to pass the event directly
-                                        autoWidth
-                                        label="Firm"
-                                    >
-                                        <MenuItem value={'Balaji Stone Crusher'}>Balaji Stone Crusher</MenuItem>
-                                        <MenuItem value={'Shree Shyam Mining'}>Shree Shyam Mining</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                {formData.fermName === '' && <FormHelperText>This field is required.</FormHelperText>}
-                            </Grid>
-                            <Grid marginTop={2} item xs={12} md={4}>
-                                <FormControl fullWidth>
-                                    <InputLabel id="pay">Payment Mode</InputLabel>
-                                    <Select
-                                        required
-                                        labelId="pay"
-                                        id="paymentMode"
-                                        name='paymentMode'
-                                        value={formData.paymentMode}
-                                        onChange={(e) => handleChange(e)} autoWidth
-                                        label="Payment"
-                                    >
-
-                                        <MenuItem value={'Online'}>Online</MenuItem>
-                                        <MenuItem value={'Cash'}>Cash</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                {formData.paymentMode === '' && <FormHelperText>This field is required.</FormHelperText>}
-
-                            </Grid>
-                            <Grid marginTop={2} item xs={12} md={4}>
-                                <FormControl fullWidth>
-                                    <InputLabel id="collection">Collected By</InputLabel>
-                                    <Select
-                                        required
-                                        labelId="collection"
-                                        id="collection"
-                                        name='amountCollectedBy'
-                                        value={formData.amountCollectedBy}
-                                        onChange={(e) => handleChange(e)} autoWidth
-                                        label="collection"
-                                    >
-
-                                        <MenuItem value={'Dinesh'}>Dinesh</MenuItem>
-                                        <MenuItem value={'Ghanshyam'}>Ghanshyam</MenuItem>
-                                        <MenuItem value={'Rahul'}>Rahul</MenuItem>
-                                        <MenuItem value={'Sunil'}>Sunil</MenuItem>
-
-                                    </Select>
-                                </FormControl>
-                                {formData.amount === '' && <FormHelperText>This field is required.</FormHelperText>}
-
-                            </Grid>
-
-                            <Grid item xs={12} md={4}>
-                                <TextField
-                                    required
-                                    label="Total Amount"
-                                    variant="filled"
-                                    name='totalAmount'
                                     type='number'
-                                    value={formData.totalAmount}
-                                    // onChange={handleChange}
-                                    fullWidth
-                                    margin="normal"
                                 />
-
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                                <TextField
-                                    required
-                                    label="Discount"
-                                    variant="filled"
-                                    name='discount'
-                                    type='number'
-                                    value={formData.discount}
-                                    // onChange={handleChange}
-                                    fullWidth
-                                    margin="normal"
-                                />
-
-                            </Grid>
-                        </Grid>
-                    </Item>
-
-                </Grid>
-                <Grid marginY={5} item xs={12} md={12}>
-                    <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-                        <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Other Information</b></Typography>
-
-                        <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
-
-                            <Grid marginTop={2} item xs={12} md={4}>
-                                <FormControl fullWidth>
-                                    <InputLabel id="collection">Driver</InputLabel>
-                                    <Select
-                                        required
-                                        labelId="driver"
-                                        id="driver"
-                                        name='driver'
-                                        value={formData.driver}
-                                        onChange={(e) => handleChange(e)}
-                                        autoWidth
-                                        label="driver"
-                                    >
-                                        <MenuItem value={'kamal'}>kamal</MenuItem>
-                                        <MenuItem value={'raj'}>raj</MenuItem>
-                                        <MenuItem value={'jaysing'}>jaysing</MenuItem>
-                                        <MenuItem value={'mohan'}>mohan</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                {formData.driver === '' && <FormHelperText>This field is required.</FormHelperText>}
-
                             </Grid>
 
                             <Grid item xs={12} md={4}>
                                 <TextField
-                                    required
-                                    label="Vihicle No."
-                                    variant="filled"
-                                    name='vihicle'
-                                    value={formData.vihicle}
-                                    // onChange={handleChange}
+                                    label="Salary"
+                                    variant="outlined"
+                                    name='employeeSalary'
+                                    value={formData.employeeSalary}
+                                    onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    type='text'
                                 />
-
                             </Grid>
+                            <Grid item xs={12} md={4}>
+                                <TextField
+                                    label="Employee Type"
+                                    variant="outlined"
+                                    name='employeetype'
+                                    value={formData.employeeType}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    margin="normal"
+                                    type='text'
+                                />
+                            </Grid>
+
                         </Grid>
                     </Item>
-
                 </Grid>
+
                 <Box marginY={5} display={'flex'} alignItems={'center'} justifyContent={'center'} >
                     <Button size='small' type="submit" variant="contained" color="primary">
                         Submit
