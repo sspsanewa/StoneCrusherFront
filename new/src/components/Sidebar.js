@@ -247,18 +247,18 @@ export default function Sidebar(props) {
 
                             <ListItemButton
                                 selected={selectedItem === 'vehiclelist'}
-                                onClick={() => handleItemClick('userlist')}
-                                onMouseEnter={() => setHoveredItem('userlist')}
+                                onClick={() => handleItemClick('vehiclelist')}
+                                onMouseEnter={() => setHoveredItem('vehiclelist')}
                                 onMouseLeave={() => setHoveredItem(null)}
                                 style={{
-                                    paddingLeft: 30, background: selectedItem === 'userlist' ? '#ffffff' : hoveredItem === 'userlist' ? '#f0f0f0' : Constant.color[2]
+                                    paddingLeft: 30, background: selectedItem === 'vehiclelist' ? '#ffffff' : hoveredItem === 'vehiclelist' ? '#f0f0f0' : Constant.color[2]
                                 }}
                             >
                                 <ListItemIcon>
-                                    <ArrowLeftIcon sx={{ color: selectedItem === 'userlist' ? 'black' : hoveredItem === 'userlist' ? 'black' : 'white', fontSize: '20px' }} />
+                                    <ArrowLeftIcon sx={{ color: selectedItem === 'vehiclelist' ? 'black' : hoveredItem === 'vehiclelist' ? 'black' : 'white', fontSize: '20px' }} />
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'userlist' ? 'black' : hoveredItem === 'userlist' ? 'black' : 'white', fontSize: '15px' }}>Vihicles List</Typography>}
+                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'vehiclelist' ? 'black' : hoveredItem === 'vehiclelist' ? 'black' : 'white', fontSize: '15px' }}>Vihicles List</Typography>}
                                 />
                             </ListItemButton>
                             <ListItemButton
