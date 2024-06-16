@@ -338,6 +338,38 @@ export default function ViewClient() {
                                         />
                                     </Grid>
 
+                                    <Grid marginTop={2} item xs={12} md={4}>
+                                        <TextField
+                                            required
+                                            label="Driver Name"
+                                            variant="filled"
+                                            name='driver'
+                                            value={material.driver}
+                                            // onChange={handleChange}
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} md={4}>
+                                        <TextField
+                                            required
+                                            label="Vihicle No."
+                                            variant="filled"
+                                            name='vihicle'
+                                            value={material.vihicle}
+                                            // onChange={handleChange}
+                                            fullWidth
+                                            margin="normal"
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+
+                                        />
+
+                                    </Grid>
+
                                 </Grid>
 
                             </Item>

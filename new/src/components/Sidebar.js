@@ -145,6 +145,22 @@ export default function Sidebar(props) {
                                     primary={<Typography variant="body1" sx={{ color: selectedItem === 'deletedclientlist' ? 'black' : hoveredItem === 'deletedclientlist' ? 'black' : 'white', fontSize: '15px' }}>Deleted Clients List</Typography>}
                                 />
                             </ListItemButton>
+                            <ListItemButton
+                                selected={selectedItem === 'addclient'}
+                                onClick={() => handleItemClick('addclient')}
+                                onMouseEnter={() => setHoveredItem('addclient')}
+                                onMouseLeave={() => setHoveredItem(null)}
+                                style={{
+                                    paddingLeft: 30, background: selectedItem === 'addclient' ? '#ffffff' : hoveredItem === 'addclient' ? '#f0f0f0' : Constant.color[2]
+                                }}
+                            >
+                                <ListItemIcon>
+                                    <ArrowLeftIcon sx={{ color: selectedItem === 'addclient' ? 'black' : hoveredItem === 'addclient' ? 'black' : 'white', fontSize: '20px' }} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'addclient' ? 'black' : hoveredItem === 'addclient' ? 'black' : 'white', fontSize: '15px' }}>Add Client</Typography>}
+                                />
+                            </ListItemButton>
                         </List>
                     </Collapse>
 

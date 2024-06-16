@@ -44,7 +44,7 @@ export default function AddClient() {
         amountCollectedBy: '',
         discount: '',
         totalAmount: '',
-        materials: [{ size: '', cubicMeter: '', rate: '', amount: '' }]
+        materials: [{ size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
     });
 
 
@@ -95,7 +95,7 @@ export default function AddClient() {
     const addMaterial = () => {
         setFormData({
             ...formData,
-            materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '' }]
+            materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
         });
     };
 
@@ -311,6 +311,42 @@ export default function AddClient() {
                                                 margin="normal"
                                             />
                                         </Grid>
+                                        <Grid marginTop={2} item xs={12} md={4}>
+                                            <FormControl fullWidth>
+                                                <InputLabel id="collection">Driver</InputLabel>
+                                                <Select
+                                                    required
+                                                    labelId="driver"
+                                                    id="driver"
+                                                    name='driver'
+                                                    value={material.driver}
+                                                    onChange={(e) => handleChange(e, index)}
+                                                    autoWidth
+                                                    label="driver"
+                                                >
+                                                    <MenuItem value={'kamal'}>kamal</MenuItem>
+                                                    <MenuItem value={'raj'}>raj</MenuItem>
+                                                    <MenuItem value={'jaysing'}>jaysing</MenuItem>
+                                                    <MenuItem value={'mohan'}>mohan</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                            {material.driver === '' && <FormHelperText>This field is required.</FormHelperText>}
+
+                                        </Grid>
+
+                                        <Grid item xs={12} md={4}>
+                                            <TextField
+                                                required
+                                                label="Vihicle No."
+                                                variant="outlined"
+                                                name='vihicle'
+                                                value={material.vihicle}
+                                                onChange={(e) => handleChange(e, index)}
+                                                fullWidth
+                                                margin="normal"
+                                            />
+
+                                        </Grid>
 
                                     </Grid>
 
@@ -478,52 +514,6 @@ export default function AddClient() {
                                         name='discount'
                                         type='number'
                                         value={formData.discount}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
-
-                                </Grid>
-                            </Grid>
-                        </Item>
-
-                    </Grid>
-                    <Grid marginY={5} item xs={12} md={12}>
-                        <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Other Information</b></Typography>
-
-                            <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
-
-                                <Grid marginTop={2} item xs={12} md={4}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="collection">Driver</InputLabel>
-                                        <Select
-                                            required
-                                            labelId="driver"
-                                            id="driver"
-                                            name='driver'
-                                            value={formData.driver}
-                                            onChange={(e) => handleChange(e)}
-                                            autoWidth
-                                            label="driver"
-                                        >
-                                            <MenuItem value={'kamal'}>kamal</MenuItem>
-                                            <MenuItem value={'raj'}>raj</MenuItem>
-                                            <MenuItem value={'jaysing'}>jaysing</MenuItem>
-                                            <MenuItem value={'mohan'}>mohan</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                    {formData.driver === '' && <FormHelperText>This field is required.</FormHelperText>}
-
-                                </Grid>
-
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        required
-                                        label="Vihicle No."
-                                        variant="outlined"
-                                        name='vihicle'
-                                        value={formData.vihicle}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
