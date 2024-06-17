@@ -261,18 +261,41 @@ export default function AddClient() {
                                         }
                                     </Grid>
                                     <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
-                                        <Grid item xs={12} md={4}>
-                                            <TextField
-                                                required
-                                                label="Quantity"
-                                                variant="outlined"
-                                                name='quantity'
-                                                value={material.quantity}
-                                                onChange={(e) => handleChange(e, index)}
-                                                fullWidth
-                                                margin="normal"
-                                            />
-
+                                        <Grid marginTop={2} item xs={12} md={4}>
+                                            <FormControl fullWidth>
+                                                <InputLabel id={`quantity-${index}`}>Quantity</InputLabel>
+                                                <Select
+                                                    required
+                                                    labelId={`quantity-${index}`}
+                                                    id={`quantity-${index}`}
+                                                    name='quantity'
+                                                    value={material.quantity}
+                                                    onChange={(e) => handleChange(e, index)}
+                                                    label="quantity"
+                                                >
+                                                    <MenuItem value='1'>1</MenuItem>
+                                                    <MenuItem value='2'>2</MenuItem>
+                                                    <MenuItem value='3'>3</MenuItem>
+                                                    <MenuItem value='4'>4</MenuItem>
+                                                    <MenuItem value='5'>5</MenuItem>
+                                                    <MenuItem value='6'>6</MenuItem>
+                                                    <MenuItem value='7'>7</MenuItem>
+                                                    <MenuItem value='8'>8</MenuItem>
+                                                    <MenuItem value='9'>9</MenuItem>
+                                                    <MenuItem value='10'>10</MenuItem>
+                                                    <MenuItem value='11'>11</MenuItem>
+                                                    <MenuItem value='12'>12</MenuItem>
+                                                    <MenuItem value='13'>13</MenuItem>
+                                                    <MenuItem value='14'>14</MenuItem>
+                                                    <MenuItem value='15'>15</MenuItem>
+                                                    <MenuItem value='16'>16</MenuItem>
+                                                    <MenuItem value='17'>17</MenuItem>
+                                                    <MenuItem value='18'>18</MenuItem>
+                                                    <MenuItem value='19'>19</MenuItem>
+                                                    <MenuItem value='20'>20</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                            {material.size === '' && <FormHelperText>This field is required.</FormHelperText>}
                                         </Grid>
                                         <Grid marginTop={2} item xs={12} md={4}>
                                             <FormControl fullWidth>
