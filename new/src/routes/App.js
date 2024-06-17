@@ -41,6 +41,8 @@ import ViewEmployee from '../pages/ViewEmployee';
 import VehicleList from '../pages/VehicleList';
 import ViewVehicle from '../pages/ViewVehicle';
 import EditVehicle from '../pages/EditVehicle';
+import ExpenseList from '../pages/ExpenseList';
+import AddExpense from '../pages/AddExpense';
 
 const drawerWidth = 270;
 
@@ -185,6 +187,8 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/vehiclelist`} element={<VehicleList language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/viewVehicle/:id`} element={<ViewVehicle language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/editVehicle/:id`} element={<EditVehicle language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/expenselist`} element={<ExpenseList language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/addExpense`} element={<AddExpense language={language} />} />
 
 
                   </Routes>

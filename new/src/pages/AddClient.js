@@ -312,7 +312,7 @@ export default function AddClient() {
                                                     <MenuItem value='40mm'>40mm</MenuItem>
                                                     <MenuItem value='20mm'>20mm</MenuItem>
                                                     <MenuItem value='10mm'>10mm</MenuItem>
-                                                    <MenuItem value='4mm(mcend)'>4mm(mcend)</MenuItem>
+                                                    <MenuItem value='4mm(mcent)'>4mm(mcent)</MenuItem>
                                                     <MenuItem value='Dust'>Dust</MenuItem>
                                                     <MenuItem value='GSB'>Gsb</MenuItem>
                                                     <MenuItem value='Wmm'>Wmm</MenuItem>

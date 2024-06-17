@@ -244,7 +244,7 @@ export default function Sidebar(props) {
                         onClick={() => setOpen5(!open5)}
                         onMouseOver={() => handleMouseOver(6)}
                         onMouseOut={() => handleMouseOut(6)}
-                    >
+                        >
                         <ListItemIcon>
                             <GroupsIcon sx={{ color: hoverStates[6] ? 'black' : 'white', fontSize: '17px' }} />
                         </ListItemIcon>
@@ -309,6 +309,80 @@ export default function Sidebar(props) {
                                     primary={<Typography variant="body1" sx={{ color: selectedItem === 'addVehicle' ? 'black' : hoveredItem === 'addVehicle' ? 'black' : 'white', fontSize: '15px' }}>Add Vehicle</Typography>}
                                 />
                             </ListItemButton>
+                        </List>
+                    </Collapse>
+
+                    <ListItemButton
+                        style={{ background: hoverStates[6] ? 'white' : Constant.color[2] }}
+                        // sx={{ backgroundColor: hoverStates[4] ? 'white' : Constant.color[0] }}
+                        onClick={() => setOpen5(!open5)}
+                        onMouseOver={() => handleMouseOver(6)}
+                        onMouseOut={() => handleMouseOut(6)}
+                    >
+                        <ListItemIcon>
+                            <GroupsIcon sx={{ color: hoverStates[6] ? 'black' : 'white', fontSize: '17px' }} />
+                        </ListItemIcon>
+                        <ListItemText
+                            sx={{ color: hoverStates[6] ? 'black' : 'white' }}
+                            primary={
+                                <Typography variant="body1" sx={{ color: hoverStates[6] ? 'black' : 'white', fontSize: '15px' }}>
+                                    Manage Expense
+                                </Typography>
+                            }
+                        />
+                        {open5 ? <ExpandLessIcon sx={{ color: hoverStates[6] ? 'black' : 'white', fontSize: '17px' }} /> : <ExpandMoreIcon sx={{ color: hoverStates[6] ? 'black' : 'white', fontSize: '17px' }} />}
+                    </ListItemButton>
+                    <Collapse in={open5} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+
+                            <ListItemButton
+                                selected={selectedItem === 'expenselist'}
+                                onClick={() => handleItemClick('expenselist')}
+                                onMouseEnter={() => setHoveredItem('expenselist')}
+                                onMouseLeave={() => setHoveredItem(null)}
+                                style={{
+                                    paddingLeft: 30, background: selectedItem === 'expenselist' ? '#ffffff' : hoveredItem === 'expenselist' ? '#f0f0f0' : Constant.color[2]
+                                }}
+                            >
+                                <ListItemIcon>
+                                    <ArrowLeftIcon sx={{ color: selectedItem === 'expenselist' ? 'black' : hoveredItem === 'expenselist' ? 'black' : 'white', fontSize: '20px' }} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'vehiclelist' ? 'black' : hoveredItem === 'expenselist' ? 'black' : 'white', fontSize: '15px' }}>Expense List</Typography>}
+                                />
+                            </ListItemButton>
+                            {<ListItemButton
+                                selected={selectedItem === 'addexpense'}
+                                onClick={() => handleItemClick('addexpense')}
+                                onMouseEnter={() => setHoveredItem('addexpense')}
+                                onMouseLeave={() => setHoveredItem(null)}
+                                style={{
+                                    paddingLeft: 30, background: selectedItem === 'addexpense' ? '#ffffff' : hoveredItem === 'addexpense' ? '#f0f0f0' : Constant.color[2]
+                                }}
+                            >
+                                <ListItemIcon>
+                                    <ArrowLeftIcon sx={{ color: selectedItem === 'addexpense' ? 'black' : hoveredItem === 'addexpense' ? 'black' : 'white', fontSize: '20px' }} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'addexpense' ? 'black' : hoveredItem === 'addexpense' ? 'black' : 'white', fontSize: '15px' }}>Add Expense</Typography>}
+                                />
+                            </ListItemButton>
+                          /*   <ListItemButton
+                                selected={selectedItem === 'addVehicle'}
+                                onClick={() => handleItemClick('addVehicle')}
+                                onMouseEnter={() => setHoveredItem('addVehicle')}
+                                onMouseLeave={() => setHoveredItem(null)}
+                                style={{
+                                    paddingLeft: 30, background: selectedItem === 'addVehicle' ? '#ffffff' : hoveredItem === 'addVehicle' ? '#f0f0f0' : Constant.color[2]
+                                }}
+                            >
+                                <ListItemIcon>
+                                    <ArrowLeftIcon sx={{ color: selectedItem === 'addVehicle' ? 'black' : hoveredItem === 'addVehicle' ? 'black' : 'white', fontSize: '20px' }} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'addVehicle' ? 'black' : hoveredItem === 'addVehicle' ? 'black' : 'white', fontSize: '15px' }}>Add Vehicle</Typography>}
+                                />
+                            </ListItemButton> */}
                         </List>
                     </Collapse>
 
