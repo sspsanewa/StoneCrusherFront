@@ -35,16 +35,18 @@ export default function AddClient() {
         address: '',
         mobile: '',
         gstNumber: '',
-        cgstAmount: '',
-        sgstAmount: '',
+        cgstAmount: 0,
+        sgstAmount: 0,
         billNumber: '',
-        royaltiAmount: '',
+        royaltiAmount: 0,
         fermName: '',
         paymentMode: '',
         amountCollectedBy: '',
         discount: '',
-        totalAmount: '',
-        materials: [{ size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
+        depositeAmount:'',
+        totalAmount: 0,
+        remainingAmount:'',
+        materials: [{ quantity:'', size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
     });
 
 
@@ -64,6 +66,15 @@ export default function AddClient() {
     }
     if (formData.totalAmount !== '') {
         formData.totalAmount = parseInt(formData.totalAmount);
+    }
+    if (formData.materials.quantity !== '') {
+        formData.materials.quantity = parseInt(formData.materials.quantity);
+    }
+    if (formData.remainingAmount !== '') {
+        formData.remainingAmount = parseInt(formData.remainingAmount);
+    }
+    if (formData.depositeAmount !== '') {
+        formData.depositeAmount = parseInt(formData.depositeAmount);
     }
     formData.date = date
 
@@ -250,6 +261,19 @@ export default function AddClient() {
                                         }
                                     </Grid>
                                     <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
+                                        <Grid item xs={12} md={4}>
+                                            <TextField
+                                                required
+                                                label="Quantity"
+                                                variant="outlined"
+                                                name='quantity'
+                                                value={material.quantity}
+                                                onChange={(e) => handleChange(e, index)}
+                                                fullWidth
+                                                margin="normal"
+                                            />
+
+                                        </Grid>
                                         <Grid marginTop={2} item xs={12} md={4}>
                                             <FormControl fullWidth>
                                                 <InputLabel id={`size-${index}`}>Size</InputLabel>
@@ -347,6 +371,7 @@ export default function AddClient() {
                                             />
 
                                         </Grid>
+                                        
 
                                     </Grid>
 
@@ -495,11 +520,25 @@ export default function AddClient() {
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Total Amount"
+                                        label="Deposite Amount"
                                         variant="outlined"
-                                        name='totalAmount'
+                                        name='depositeAmount'
                                         type='number'
-                                        value={formData.totalAmount}
+                                        value={formData.depositeAmount}
+                                        onChange={handleChange}
+                                        fullWidth
+                                        margin="normal"
+                                    />
+
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <TextField
+                                        required
+                                        label="Remaining Amount"
+                                        variant="outlined"
+                                        name='remainingAmount'
+                                        type='number'
+                                        value={formData.remainingAmount}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
@@ -514,6 +553,20 @@ export default function AddClient() {
                                         name='discount'
                                         type='number'
                                         value={formData.discount}
+                                        onChange={handleChange}
+                                        fullWidth
+                                        margin="normal"
+                                    />
+
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <TextField
+                                        required
+                                        label="Total Amount"
+                                        variant="outlined"
+                                        name='totalAmount'
+                                        type='number'
+                                        value={formData.totalAmount}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
