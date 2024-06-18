@@ -28,21 +28,20 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function AddExpense() {
     const { id } = useParams();
 
-    const [dateOfJoining, setDateOfJoining] = useState('')
+    const [expenseDate, setExpenseDate] = useState('')
     const [formData, setFormData] = useState({
-        
         expenseType: '',
         expenseDescription: '',
         expensePerson: '',
         expenseAmount: '',
-        
+        expenseDate:''
     });
 
 
     // if (formData.employeeSalary !== '') {
     //     formData.employeeSalary = parseDouble(formData.employeeSalary);
     // }
-    formData.dateOfJoining = dateOfJoining
+    formData.expenseDate = expenseDate
 
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
@@ -108,7 +107,7 @@ export default function AddExpense() {
 
         // Set the updated form data
         // setFormData(updatedFormData);
-        axios.post('http://localhost:8080/api/v1/vehicle', formData)
+        axios.post('http://localhost:8080/api/v1/expense', formData)
             .then(res => {
                 navigate('/userList')
             })
@@ -132,7 +131,7 @@ export default function AddExpense() {
                 <Typography sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Employee</Typography>
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Typography marginTop={1.2} fontSize={20} >Add Employee</Typography>
+                <Typography marginTop={1.2} fontSize={20} >Add Expense</Typography>
             </Box>
 
             <Box sx={{ flexGrow: 1, bgcolor: Constant.color[1], padding: '5px', borderRadius: '10px' }}>
@@ -141,13 +140,37 @@ export default function AddExpense() {
                         <Item sx={{ borderRadius: '10px', margin: '30px' }}>
                             <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Employee Information</b></Typography>
                             <Grid padding={1} item md={12} display={'flex'} container spacing={2}>
+                                <Grid marginTop={2} item xs={12} md={4}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-autowidth-label">Expense type</InputLabel>
+                                        <Select
+                                            required
+                                            labelId="demo-simple-select-autowidth-label"
+                                            id="demo-simple-select-autowidth"
+                                            name='expenseType'
+                                            value={formData.expenseType}
+                                            onChange={(e) => handleChange(e)} // Ensure to pass the event directly
+                                            autoWidth
+                                            label="Expense Type"
+                                        >
+                                            <MenuItem value='Petrol'>Petrol</MenuItem>
+                                            <MenuItem value='Disel'>Disel</MenuItem>
+                                            <MenuItem value='Chai'>Chai</MenuItem>
+                                            <MenuItem value='Tambaku'>Tambaku</MenuItem>
+                                            <MenuItem value='Nasta'>Nasta</MenuItem>
+                                            <MenuItem value='Other'>Other</MenuItem>
+                                
+                                        </Select>
+                                    </FormControl>
+                                    {formData.expenseType === '' && <FormHelperText>This field is required.</FormHelperText>}
+                                </Grid>
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Vehical Name"
+                                        label="Expense Description "
                                         variant="outlined"
-                                        name='vehicleName'
-                                        value={formData.vehicleName}
+                                        name='expenseDescription'
+                                        value={formData.expenseDescription}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
@@ -155,47 +178,31 @@ export default function AddExpense() {
                                 </Grid>
                                 <Grid item xs={12} md={4}>
                                     <TextField
-                                        required
-                                        label="Vehicle Driver Name "
+                                        label="Expense Person"
                                         variant="outlined"
-                                        name='vehicleDriverName'
-                                        value={formData.vehicleDriverName}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        label="Vehicle Number"
-                                        variant="outlined"
-                                        name='vehicleNumber'
-                                        value={formData.vehicleNumber}
+                                        name='expensePerson'
+                                        value={formData.expensePerson}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
                                     />
                                 </Grid>
 
-                                <Grid marginTop={2} item xs={12} md={4}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-autowidth-label">Vehicle type</InputLabel>
-                                        <Select
-                                            required
-                                            labelId="demo-simple-select-autowidth-label"
-                                            id="demo-simple-select-autowidth"
-                                            name='vehicleType'
-                                            value={formData.vehicleType}
-                                            onChange={(e) => handleChange(e)} // Ensure to pass the event directly
-                                            autoWidth
-                                            label="Employee Type"
-                                        >
-                                            <MenuItem value='Tractor'>Tractor</MenuItem>
-                                            <MenuItem value='Trolly'>Trolly</MenuItem>
-                                            <MenuItem value='Other'>Other</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                    {formData.employeeType === '' && <FormHelperText>This field is required.</FormHelperText>}
+                                <Grid item xs={12} md={4}>
+                                    <TextField
+                                        label="Expense Amount"
+                                        variant="outlined"
+                                        name='expenseAmount'
+                                        value={formData.expenseAmount}
+                                        onChange={handleChange}
+                                        fullWidth
+                                        margin="normal"
+                                        type='number'
+                                    />
+                                </Grid>
+                                <Grid marginTop={1} item xs={12} md={4}>
+
+                                    <Date date={expenseDate} setDate={setExpenseDate} />
                                 </Grid>
                                 {/* <Grid marginTop={2} item xs={12} md={4}>
                                     <FormControl fullWidth>
