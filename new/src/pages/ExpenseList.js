@@ -89,12 +89,13 @@ function stableSort(setSearch, array, comparator) {
 const headCells = [
     { id: 'sno', numeric: false, label: 'S.NO.', minWidth: 100 },
     { id: 'action', numeric: false, label: 'Action', minWidth: 100 },
-    { id: 'vehicleDriverName', numeric: false, label: 'Driver Name', minWidth: 100 },
-    { id: 'vehicleName', numeric: false, label: 'Vehicle Name', minWidth: 100 },
+    { id: 'expenseAmount', numeric: false, label: 'Expense Amount', minWidth: 100 },
+    { id: 'expensePerson', numeric: false, label: 'Expense Persion', minWidth: 100 },
     // { id: 'email', numeric: false, label: 'Email', minWidth: 100 },
-    { id: 'vehicleNumber', numeric: false, label: 'Vehicle Number', minWidth: 100 },
+    { id: 'expenseType', numeric: false, label: 'Expense Type', minWidth: 100 },
 
-    { id: 'vehicleType', numeric: false, label: 'Vehicle Type', minWidth: 100 }
+    { id: 'expenseDescription', numeric: false, label: 'Expense Desc', minWidth: 100 },
+    { id: 'updatedAt', numeric: false, label: 'Date&Time', minWidth: 100 }
 
 
 ];
@@ -280,7 +281,7 @@ export default function ExpenseList() {
         const params = { action: 'get_all_users', delete_flag: 0 };
         Console("users")
 
-        axios.get(`${Url}/api/v1/vehicle`, { params })
+        axios.get(`${Url}/api/v1/expense`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
@@ -307,7 +308,7 @@ export default function ExpenseList() {
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
             <Helmet>
-                <title>{Language.APP_NAME} | Manage Employees | Employees List</title>
+                <title>{Language.APP_NAME} | Manage Expense | Expense List</title>
             </Helmet>
             <Box display={'flex'} justifyContent={'space-between'}>
                 <Box marginBottom={2} gap={1} display={'flex'}>
@@ -317,11 +318,11 @@ export default function ExpenseList() {
 
                     <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                    <Typography marginTop={1.2} fontSize={20} >Manage Employees List</Typography>
+                    <Typography marginTop={1.2} fontSize={20} >Manage Expense List</Typography>
                 </Box>
                 {show &&
                     <Alert sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', bgcolor: '#ffffff', zIndex: 10, marginBottom: '5px', position: 'fixed', top: '48%', left: '45%' }} variant="outlined" severity="success">
-                        Employee deleted successfully
+                        Expense deleted successfully
                     </Alert>
                 }
                 {show1 &&
@@ -385,7 +386,11 @@ export default function ExpenseList() {
                                             id={labelId}
                                             scope="row"
                                             align="left"
-                                        >
+                                        >    expenseType: '',
+        expenseDescription: '',
+        expensePerson: '',
+        expenseAmount: '',
+        expenseDate:''
                                             {(row.employeeFirstName + ' ' + row.employeeLastName) ? (row.employeeFirstName + ' ' + row.employeeLastName) : "NA"}
                                         </TableCell> */}
                                         {/* <TableCell align="left">
@@ -393,19 +398,20 @@ export default function ExpenseList() {
                                             <Avatar src={`${IMAGE_PATH}` + row.image} alt={row.name && row.name.charAt(0).toUpperCase()} />
 
                                         </TableCell> */}
-                                        <TableCell align="left">{row.vehicleDriverName ? row.vehicleDriverName : 'NA'}</TableCell>
+                                        <TableCell align="left">{row.expenseAmount ? row.expenseAmount : 'NA'}</TableCell>
+                                        
 
 
-
-                                        <TableCell align="left">{row.vehicleName ? row.vehicleName : 'NA'}</TableCell>
+                                        <TableCell align="left">{row.expensePerson ? row.expensePerson : 'NA'}</TableCell>
                                         {/* <TableCell align="left">
                                             {row.active_flag === 1 ? <Typography variant='outlined' size='small' style={{ height: '25px', color: '#00c853' }} >Active</Typography> : <Typography variant='outlined' size='small' style={{
                                                 height: '25px', color: '#f44336'
                                             }} >Deactive</Typography>}
                                         </TableCell> */}
-                                        <TableCell align="left">{row.vehicleNumber}</TableCell>
+                                        <TableCell align="left">{row.expenseType}</TableCell>
 
-                                        <TableCell align="left">{row.vehicleType}</TableCell>
+                                        <TableCell align="left">{row.expenseDescription}</TableCell>
+                                        <TableCell align="left">{row.updatedAt}</TableCell>
 
 
                                         {/* <TableCell align="left">{row.date}</TableCell> */}
