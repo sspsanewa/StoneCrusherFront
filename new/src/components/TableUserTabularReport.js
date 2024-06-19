@@ -35,62 +35,62 @@ import moment from 'moment'
 import Date from '../components/Date';
 import Console from '../debug_log';
 import { IMAGE_PATH } from '../Config/AppConfig';
-const rows = [
-    {
-        id: 1,
-        sno: 1,
-        name: 'Jhon Rose',
-        profile: <Avatar src={profile1} alt='p' />,
-        mobile: '727121122',
-        status: 0,
-        createDate: "02 April 2023 09:30 pm",
-    },
-    {
-        id: 2,
-        sno: 2,
-        name: 'Ram',
-        profile: <Avatar src={profile2} alt='p' />,
-        mobile: '261-646122',
-        status: 1,
-        createDate: "02 April 2023 09:30 am",
-    },
-    {
-        id: 3,
-        sno: 3,
-        name: 'Carry mate',
-        profile: <Avatar src={profile3} alt='p' />,
-        mobile: '96792639-89',
-        status: 1,
-        createDate: "02 April 2023 09:30 am",
-    },
-    {
-        id: 4,
-        sno: 4,
-        name: 'Cat jhonson',
-        profile: <Avatar src={profile4} alt='p' />,
-        mobile: '472-401333',
-        status: 0,
-        createDate: "02 April 2023 09:30 am",
-    },
-    {
-        id: 5,
-        sno: 5,
-        name: 'David Miller',
-        profile: <Avatar src={profile1} alt='p' />,
-        mobile: '74216367457',
-        status: 0,
-        createDate: "02 April 2023 09:30 pm",
-    },
-    {
-        id: 6,
-        sno: 6,
-        name: 'Tim David',
-        profile: <Avatar src={profile2} alt='p' />,
-        mobile: '604134155',
-        status: 1,
-        createDate: "02 April 2023 09:30 am",
-    },
-];
+// const rows = [
+//     {
+//         id: 1,
+//         sno: 1,
+//         name: 'Jhon Rose',
+//         profile: <Avatar src={profile1} alt='p' />,
+//         mobile: '727121122',
+//         status: 0,
+//         createDate: "02 April 2023 09:30 pm",
+//     },
+//     {
+//         id: 2,
+//         sno: 2,
+//         name: 'Ram',
+//         profile: <Avatar src={profile2} alt='p' />,
+//         mobile: '261-646122',
+//         status: 1,
+//         createDate: "02 April 2023 09:30 am",
+//     },
+//     {
+//         id: 3,
+//         sno: 3,
+//         name: 'Carry mate',
+//         profile: <Avatar src={profile3} alt='p' />,
+//         mobile: '96792639-89',
+//         status: 1,
+//         createDate: "02 April 2023 09:30 am",
+//     },
+//     {
+//         id: 4,
+//         sno: 4,
+//         name: 'Cat jhonson',
+//         profile: <Avatar src={profile4} alt='p' />,
+//         mobile: '472-401333',
+//         status: 0,
+//         createDate: "02 April 2023 09:30 am",
+//     },
+//     {
+//         id: 5,
+//         sno: 5,
+//         name: 'David Miller',
+//         profile: <Avatar src={profile1} alt='p' />,
+//         mobile: '74216367457',
+//         status: 0,
+//         createDate: "02 April 2023 09:30 pm",
+//     },
+//     {
+//         id: 6,
+//         sno: 6,
+//         name: 'Tim David',
+//         profile: <Avatar src={profile2} alt='p' />,
+//         mobile: '604134155',
+//         status: 1,
+//         createDate: "02 April 2023 09:30 am",
+//     },
+// ];
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -125,16 +125,17 @@ function stableSort(setSearch, array, comparator) {
 
 const headCells = [
     { id: 'sno', numeric: false, label: 'S.NO.', minWidth: 100 },
+    { id: 'action', numeric: false, label: 'Action', minWidth: 100 },
     { id: 'name', numeric: false, label: 'Name', minWidth: 100 },
-    { id: 'profile', numeric: false, label: 'Profile', minWidth: 100 },
-    { id: 'email', numeric: false, label: 'Email', minWidth: 100 },
+    { id: 'village', numeric: false, label: 'Village', minWidth: 100 },
+    // { id: 'email', numeric: false, label: 'Email', minWidth: 100 },
 
     { id: 'mobile', numeric: false, label: 'Mobile', minWidth: 100 },
 
-    { id: 'status', numeric: false, label: 'Status', minWidth: 100 },
+    // { id: 'status', numeric: false, label: 'Status', minWidth: 100 },
 
     {
-        id: 'createDate', numeric: false, label: 'Create Date & Time', minWidth: 100
+        id: 'date', numeric: false, label: 'Create Date & Time', minWidth: 100
     },
 
 ];
@@ -359,22 +360,26 @@ export default function UserTabularReportTable(props) {
                                             scope="row"
                                             align="left"
                                         >
-                                            {(row.f_name + ' ' + row.l_name) ? (row.f_name + ' ' + row.l_name) : "NA"}
+                                            {/* {(row.f_name + ' ' + row.l_name) ? (row.f_name + ' ' + row.l_name) : "NA"}
                                         </TableCell>
                                         <TableCell align="left">
 
-                                            <Avatar src={`${IMAGE_PATH}` + row.image} alt={row.name && row.name.charAt(0).toUpperCase()} />
+                                            <Avatar src={`${IMAGE_PATH}` + row.image} alt={row.name && row.name.charAt(0).toUpperCase()} /> */}
 
                                         </TableCell>
-                                        <TableCell align="left">{row.email ? row.email : 'NA'}</TableCell>
+                                        <TableCell align="left">{row.name ? row.email : 'NA'}</TableCell>
 
+                                        <TableCell align="left">{row.village ? row.mobile : 'NA'}</TableCell>
                                         <TableCell align="left">{row.mobile ? row.mobile : 'NA'}</TableCell>
-                                        <TableCell align="left">
+
+                                        <TableCell align="left">{row.date ? row.mobile : 'NA'}</TableCell>
+
+                                        {/* <TableCell align="left">
                                             {row.active_flag === 1 ? <Typography variant='outlined' size='small' style={{ height: '25px', color: '#00c853' }} >Active</Typography> : <Typography variant='outlined' size='small' style={{
                                                 height: '25px', color: '#f44336'
                                             }} >Deactive</Typography>}
                                         </TableCell>
-                                        <TableCell align="left">{row.createtime}</TableCell>
+                                        <TableCell align="left">{row.createtime}</TableCell> */}
 
                                     </TableRow>
                                 );

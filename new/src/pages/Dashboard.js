@@ -31,6 +31,11 @@ const Dashboard = () => {
 
     React.useEffect(() => {
         const params = { action: 'get_dashboard_data' };
+        // axios.get(`${Url}/api/v1/report/today`, { params })
+        //     .then(res => {
+        //         setData(res.data.data)
+        //     })
+        //     .catch(err => console.log("eroor", err))
 
         axios.get(`${Url}/common_controller/dashboard_data`, { params })
             .then(res => {

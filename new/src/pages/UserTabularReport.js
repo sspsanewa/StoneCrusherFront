@@ -54,10 +54,10 @@ const UserTabularReport = () => {
     const formattedEndDate = formatMySQLDateTime(new Date(toDate));
     React.useEffect(() => {
 
-        const params = { action: 'get_selected_users', delete_flag: 0, startDate: formattedStartDate, endDate: formattedEndDate };
+        const params = { startDate: formattedStartDate, endDate: formattedEndDate };
         Console("users", params)
 
-        axios.get(`${Url}/report_controller/selected_users`, { params })
+        axios.get(`${Url}/api/v1/report`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
