@@ -27,21 +27,29 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Dashboard = () => {
     const [data, setData] = useState([])
-
+    const [expenseAmount, setExpenseAmount] = useState([])
 
     React.useEffect(() => {
-        const params = { action: 'get_dashboard_data' };
-        // axios.get(`${Url}/api/v1/report/today`, { params })
+        // const params = { action: 'get_dashboard_data' };
+        axios.get(`${Url}/api/v1/report/today`)
+            .then(res => {
+                setData(res.data)
+                console.log(data);
+            })
+            .catch(err => console.log("eroor", err))
+
+        axios.get(`${Url}/api/v1/expense/today`)
+            .then(res => {
+                setExpenseAmount(res.data)
+                console.log(data);
+            })
+            .catch(err => console.log("eroor", err))
+
+        // axios.get(`${Url}/common_controller/dashboard_data`, { params })
         //     .then(res => {
         //         setData(res.data.data)
         //     })
         //     .catch(err => console.log("eroor", err))
-
-        axios.get(`${Url}/common_controller/dashboard_data`, { params })
-            .then(res => {
-                setData(res.data.data)
-            })
-            .catch(err => console.log("eroor", err))
     }, [])
 
     return (
@@ -57,15 +65,20 @@ const Dashboard = () => {
                 <Grid paddingY={1} container spacing={2}>
                     <Grid item xs={12} md={4}>
                         <Item >
-                            <Card nav={`/${APP_PREFIX_PATH}/userlist`} title="Total  Users" users={data.users} icon={<GroupsIcon sx={{ fontSize: '2rem' }} />} />
+                            <Card title="Today Collection" users={data.amount} icon={<GroupsIcon sx={{ fontSize: '2rem' }} />} />
                         </Item>
                     </Grid>
                     <Grid item xs={12} md={4}>
+                        <Item >
+                            <Card title="Today Expense" users={expenseAmount.amount} icon={<GroupsIcon sx={{ fontSize: '2rem' }} />} />
+                        </Item>
+                    </Grid>
+                    {/* <Grid item xs={12} md={4}>
                         <Item>
                             <Card nav={`/${APP_PREFIX_PATH}/Triplist`} title="Total Trips" users={data.musas} icon={<DirectionsCarFilledIcon sx={{ fontSize: '2rem' }} />} />
                         </Item>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
+                    </Grid> */}
+                    {/* <Grid item xs={12} md={4}>
                         <Item>
                             <Card nav={`/${APP_PREFIX_PATH}/cars`} title="Total Cars" users={data.categories} icon={<ModeOfTravelIcon sx={{ fontSize: '2rem' }} />} />
                         </Item>
@@ -74,7 +87,7 @@ const Dashboard = () => {
                         <Item>
                             <Card nav={`/${APP_PREFIX_PATH}/subscription`} title="Total Subscriptions" users={data.sub_categories} icon={<LoyaltyIcon sx={{ fontSize: '2rem' }} />} />
                         </Item>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Box>
         </Box >
