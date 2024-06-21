@@ -1,5 +1,10 @@
 // Bill.js
 import React from 'react';
+import axios from 'axios';
+import { useState } from 'react';
+import Console from '../debug_log';
+import Url from '../Config/Url';
+
 import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 const Template = () => {
@@ -10,8 +15,24 @@ const Template = () => {
     ];
 
     // Calculate total amount
+    const [render, setRender] = useState(false)
+    const [userDetails, setDetails] = useState([])
+    const [useritems, setUserItems] = useState([])
     const totalAmount = billItems.reduce((total, item) => total + (item.cubicMeter * item.rate), 0);
+    React.useEffect(() => {
+        const params = { action: 'get_all_users', delete_flag: 0 };
+        Console("users")
 
+        axios.get(`${Url}/api/v1/client/bill/503`, { params })
+            .then(obj => {
+                const res = obj.data;
+                console.log("Users fetched successfully:", res);
+                setUserItems(res.items);
+                render ? setDetails(res) : setDetails(res);
+            })
+            .catch(err => console.error("Error fetching users:", err));
+        // .then(err => console.log("eoeee", err))
+    }, [render])
     return (
         <Paper sx={{
             border: '2px solid black', padding: '30px', maxWidth: '70%', marginX: 'auto'
@@ -30,28 +51,31 @@ const Template = () => {
             <Typography marginY={5} display={'flex'} justifyContent={'center'} variant='h5'>मो. 7389272864</Typography>
             <Box display={'flex'} justifyContent={'space-between'}>
                 <Typography marginY={2} variant='h5'>क्रमांक:- 20</Typography>
-                <Typography marginY={2} variant='h5'>दिनांक:- 27/2/24</Typography>
+                <Typography marginY={2} variant='h5'>दिनांक:- {userDetails.date}</Typography>
             </Box>
             <Typography variant='h5'>
-                श्रीमान:- Bindal developer 23 ATH PB1234B/Z8
+                श्रीमान:- {userDetails.firstName} {userDetails.lastName}
             </Typography>
             <TableContainer>
                 <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell>विवरण</TableCell>
+                            <TableCell>मात्रा</TableCell>
                             <TableCell>घन मीटर</TableCell>
                             <TableCell>भाव</TableCell>
                             <TableCell>रुपये</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {billItems.map((item) => (
-                            <TableRow key={item.id}>
-                                <TableCell>{item.discription}</TableCell>
-                                <TableCell>${item.cubicMeter}</TableCell>
-                                <TableCell>{item.rate}</TableCell>
-                                <TableCell>${item.cubicMeter * item.rate}</TableCell>
+
+                        {billItems.map((useritems) => (
+                            <TableRow key={useritems.id}>
+                                <TableCell>{useritems.size}</TableCell>
+                                <TableCell>{useritems.quantity}</TableCell>
+                                <TableCell>${useritems.cubicMeter}</TableCell>
+                                <TableCell>{useritems.rate}</TableCell>
+                                <TableCell>{useritems.amount}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
