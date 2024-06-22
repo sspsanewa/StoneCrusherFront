@@ -23,7 +23,7 @@ const Template = () => {
         const params = { action: 'get_all_users', delete_flag: 0 };
         Console("users")
 
-        axios.get(`${Url}/api/v1/client/bill/503`, { params })
+        axios.get(`${Url}/api/v1/client/bill/702`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
@@ -38,23 +38,23 @@ const Template = () => {
             border: '2px solid black', padding: '30px', maxWidth: '70%', marginX: 'auto'
         }}>
             <Box display={'flex'} gap={40}>
-                <Typography variant="h5" gutterBottom>
+                <Typography  gutterBottom>
                     GSTIN-23CXDPP2257G1ZL
                 </Typography>
                 <Typography>॥ श्री गणेशाय नमः ।।</Typography>
             </Box>
-            <Typography marginY={10} display={'flex'} justifyContent={'center'} variant='h2'>श्री श्याम माईनिंग एण्ड ट्रेडिंग</Typography>
-            <Typography marginBottom={5} display={'flex'} justifyContent={'center'} variant='h4'>गुराड़िया कलां, तह. बागली जिला-देवास (म.प्र.) </Typography>
+            <Typography marginY={10} display={'flex'} justifyContent={'center'} variant='h2'>{userDetails.fermName}</Typography>
+            <Typography marginBottom={5} display={'flex'} justifyContent={'center'} variant='h4'>GuradiaKala,Tehsil-Bagli,Dewas,MadhyaPradesh</Typography>
             <Box bgcolor={'blue'}>
                 <Typography color={'#ffffff'} display={'flex'} justifyContent={'center'} variant='h5'>हमारे यहां सभी प्रकार की काली गिट्टी उपलब्ध है।</Typography>
             </Box>
-            <Typography marginY={5} display={'flex'} justifyContent={'center'} variant='h5'>मो. 7389272864</Typography>
+            <Typography marginY={5} display={'flex'} justifyContent={'center'} >मो. 7389272864</Typography>
             <Box display={'flex'} justifyContent={'space-between'}>
-                <Typography marginY={2} variant='h5'>क्रमांक:- 20</Typography>
-                <Typography marginY={2} variant='h5'>दिनांक:- {userDetails.date}</Typography>
+                <Typography marginY={2} >Bill NUMBER:- 20</Typography>
+                <Typography marginY={2} >Date:- {userDetails.date}</Typography>
             </Box>
-            <Typography variant='h5'>
-                श्रीमान:- {userDetails.firstName} {userDetails.lastName}
+            <Typography variant='h6'>
+                Name:- {userDetails.firstName} {userDetails.lastName}
             </Typography>
             <TableContainer>
                 <Table>
@@ -65,17 +65,19 @@ const Template = () => {
                             <TableCell>घन मीटर</TableCell>
                             <TableCell>भाव</TableCell>
                             <TableCell>रुपये</TableCell>
+                            <TableCell>CGST Amount</TableCell>
+                            <TableCell>SGST Amount</TableCell>
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
-
-                        {billItems.map((useritems) => (
-                            <TableRow key={useritems.id}>
-                                <TableCell>{useritems.size}</TableCell>
-                                <TableCell>{useritems.quantity}</TableCell>
-                                <TableCell>${useritems.cubicMeter}</TableCell>
-                                <TableCell>{useritems.rate}</TableCell>
-                                <TableCell>{useritems.amount}</TableCell>
+                        {useritems.map((items) => (
+                            <TableRow key={items.id}>
+                                <TableCell >{items.size}</TableCell>
+                                <TableCell>{items.quantity}</TableCell>
+                                <TableCell>{items.cubicMeter}</TableCell>
+                                <TableCell>{items.rate}</TableCell>
+                                <TableCell>{items.amount}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -83,9 +85,10 @@ const Template = () => {
             </TableContainer>
             <Box display={'flex'} justifyContent={'space-between'}>
                 <Box display={'flex'} flexDirection={'column'}>
-                    <Typography marginY={2}>CGST 2.5%:- 37500</Typography>
-                    <Typography marginY={2}>SGST 2.5%:- 37500</Typography>
-                    <Typography marginY={2}>Total:- 1500000</Typography>
+                    <Typography marginY={2}>CGST 2.5%:- {userDetails.cgstAmount}</Typography>
+                    <Typography marginY={2}>SGST 2.5%:- {userDetails.sgstAmount}</Typography>
+                    <Typography marginY={2}>Total:- {userDetails.totalAmount}</Typography>
+                    <Typography marginY={2}>Remaining Amount:- {userDetails.remainingAmount}</Typography>
                 </Box>
                 <Box>
                     <Typography marginY={2}>AMOUNT:- 1500000</Typography>

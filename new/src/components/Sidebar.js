@@ -40,6 +40,8 @@ export default function Sidebar(props) {
     const [open3, setOpen3] = useState(false);
     const [open4, setOpen4] = useState(false);
     const [open5, setOpen5] = useState(false);
+    const [open6, setOpen6] = useState(false);
+
     const [selectedItem, setSelectedItem] = useState('dashboard');
     const [hoveredItem, setHoveredItem] = useState(null);
     const handleItemClick = (item) => {
@@ -244,7 +246,7 @@ export default function Sidebar(props) {
                         onClick={() => setOpen5(!open5)}
                         onMouseOver={() => handleMouseOver(6)}
                         onMouseOut={() => handleMouseOut(6)}
-                        >
+                    >
                         <ListItemIcon>
                             <GroupsIcon sx={{ color: hoverStates[6] ? 'black' : 'white', fontSize: '17px' }} />
                         </ListItemIcon>
@@ -313,26 +315,26 @@ export default function Sidebar(props) {
                     </Collapse>
 
                     <ListItemButton
-                        style={{ background: hoverStates[6] ? 'white' : Constant.color[2] }}
+                        style={{ background: hoverStates[7] ? 'white' : Constant.color[2] }}
                         // sx={{ backgroundColor: hoverStates[4] ? 'white' : Constant.color[0] }}
-                        onClick={() => setOpen5(!open5)}
-                        onMouseOver={() => handleMouseOver(6)}
-                        onMouseOut={() => handleMouseOut(6)}
+                        onClick={() => setOpen6(!open6)}
+                        onMouseOver={() => handleMouseOver(7)}
+                        onMouseOut={() => handleMouseOut(7)}
                     >
                         <ListItemIcon>
-                            <GroupsIcon sx={{ color: hoverStates[6] ? 'black' : 'white', fontSize: '17px' }} />
+                            <GroupsIcon sx={{ color: hoverStates[7] ? 'black' : 'white', fontSize: '17px' }} />
                         </ListItemIcon>
                         <ListItemText
-                            sx={{ color: hoverStates[6] ? 'black' : 'white' }}
+                            sx={{ color: hoverStates[7] ? 'black' : 'white' }}
                             primary={
-                                <Typography variant="body1" sx={{ color: hoverStates[6] ? 'black' : 'white', fontSize: '15px' }}>
+                                <Typography variant="body1" sx={{ color: hoverStates[7] ? 'black' : 'white', fontSize: '15px' }}>
                                     Manage Expense
                                 </Typography>
                             }
                         />
-                        {open5 ? <ExpandLessIcon sx={{ color: hoverStates[6] ? 'black' : 'white', fontSize: '17px' }} /> : <ExpandMoreIcon sx={{ color: hoverStates[6] ? 'black' : 'white', fontSize: '17px' }} />}
+                        {open6 ? <ExpandLessIcon sx={{ color: hoverStates[7] ? 'black' : 'white', fontSize: '17px' }} /> : <ExpandMoreIcon sx={{ color: hoverStates[7] ? 'black' : 'white', fontSize: '17px' }} />}
                     </ListItemButton>
-                    <Collapse in={open5} timeout="auto" unmountOnExit>
+                    <Collapse in={open6} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
 
                             <ListItemButton
@@ -344,11 +346,11 @@ export default function Sidebar(props) {
                                     paddingLeft: 30, background: selectedItem === 'expenselist' ? '#ffffff' : hoveredItem === 'expenselist' ? '#f0f0f0' : Constant.color[2]
                                 }}
                             >
-                                <ListItemIcon>
+                             <ListItemIcon>
                                     <ArrowLeftIcon sx={{ color: selectedItem === 'expenselist' ? 'black' : hoveredItem === 'expenselist' ? 'black' : 'white', fontSize: '20px' }} />
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'vehiclelist' ? 'black' : hoveredItem === 'expenselist' ? 'black' : 'white', fontSize: '15px' }}>Expense List</Typography>}
+                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'expenselist' ? 'black' : hoveredItem === 'expenselist' ? 'black' : 'white', fontSize: '15px' }}>Expense List</Typography>}
                                 />
                             </ListItemButton>
                             {<ListItemButton
