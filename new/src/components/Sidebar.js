@@ -163,6 +163,22 @@ export default function Sidebar(props) {
                                     primary={<Typography variant="body1" sx={{ color: selectedItem === 'addclient' ? 'black' : hoveredItem === 'addclient' ? 'black' : 'white', fontSize: '15px' }}>Add Client</Typography>}
                                 />
                             </ListItemButton>
+                            <ListItemButton
+                                selected={selectedItem === 'clientTabularReport'}
+                                onClick={() => handleItemClick('clientTabularReport')}
+                                onMouseEnter={() => setHoveredItem('clientTabularReport')}
+                                onMouseLeave={() => setHoveredItem(null)}
+                                style={{
+                                    paddingLeft: 30, background: selectedItem === 'clientTabularReport' ? '#ffffff' : hoveredItem === 'clientTabularReport' ? '#f0f0f0' : Constant.color[2]
+                                }}
+                            >
+                                <ListItemIcon>
+                                    <ArrowLeftIcon sx={{ color: selectedItem === 'clientTabularReport' ? 'black' : hoveredItem === 'clientTabularReport' ? 'black' : 'white', fontSize: '20px' }} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'clientTabularReport' ? 'black' : hoveredItem === 'clientTabularReport' ? 'black' : 'white', fontSize: '15px' }}>Client Tabular Report</Typography>}
+                                />
+                            </ListItemButton>
                         </List>
                     </Collapse>
 
@@ -237,6 +253,7 @@ export default function Sidebar(props) {
                                     primary={<Typography variant="body1" sx={{ color: selectedItem === 'addemployee' ? 'black' : hoveredItem === 'addemployee' ? 'black' : 'white', fontSize: '15px' }}>Add Employee</Typography>}
                                 />
                             </ListItemButton>
+                            
                         </List>
                     </Collapse>
 
@@ -369,6 +386,7 @@ export default function Sidebar(props) {
                                     primary={<Typography variant="body1" sx={{ color: selectedItem === 'addexpense' ? 'black' : hoveredItem === 'addexpense' ? 'black' : 'white', fontSize: '15px' }}>Add Expense</Typography>}
                                 />
                             </ListItemButton>
+                            
                           /*   <ListItemButton
                                 selected={selectedItem === 'addVehicle'}
                                 onClick={() => handleItemClick('addVehicle')}
@@ -385,6 +403,22 @@ export default function Sidebar(props) {
                                     primary={<Typography variant="body1" sx={{ color: selectedItem === 'addVehicle' ? 'black' : hoveredItem === 'addVehicle' ? 'black' : 'white', fontSize: '15px' }}>Add Vehicle</Typography>}
                                 />
                             </ListItemButton> */}
+                            <ListItemButton
+                                selected={selectedItem === 'expenseTabularReport'}
+                                onClick={() => handleItemClick('expenseTabularReport')}
+                                onMouseEnter={() => setHoveredItem('expenseTabularReport')}
+                                onMouseLeave={() => setHoveredItem(null)}
+                                style={{
+                                    paddingLeft: 30, background: selectedItem === 'expenseTabularReport' ? '#ffffff' : hoveredItem === 'expenseTabularReport' ? '#f0f0f0' : Constant.color[2]
+                                }}
+                            >
+                                <ListItemIcon>
+                                    <ArrowLeftIcon sx={{ color: selectedItem === 'expenseTabularReport' ? 'black' : hoveredItem === 'expenseTabularReport' ? 'black' : 'white', fontSize: '20px' }} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'expenseTabularReport' ? 'black' : hoveredItem === 'expenseTabularReport' ? 'black' : 'white', fontSize: '15px' }}>Expense Tabular Report</Typography>}
+                                />
+                            </ListItemButton>
                         </List>
                     </Collapse>
 
