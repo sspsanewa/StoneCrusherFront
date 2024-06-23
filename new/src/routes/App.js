@@ -43,8 +43,6 @@ import ViewVehicle from '../pages/ViewVehicle';
 import EditVehicle from '../pages/EditVehicle';
 import ExpenseList from '../pages/ExpenseList';
 import AddExpense from '../pages/AddExpense';
-import ClientTabularReport from '../pages/ClientTabularReport';
-import ExpenseTabularReport from '../pages/ExpenseTabularReport';
 
 const drawerWidth = 270;
 
@@ -70,23 +68,32 @@ const closedMixin = (theme) => ({
 });
 
 
+
+
+
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
+    overflow: 'hidden', // Added to remove scrollbar
     ...(open && {
       ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
+      '& .MuiDrawer-paper': {
+        ...openedMixin(theme),
+        overflow: 'hidden', // Added to remove scrollbar from the paper element
+      },
     }),
     ...(!open && {
       ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
+      '& .MuiDrawer-paper': {
+        ...closedMixin(theme),
+        overflow: 'hidden', // Added to remove scrollbar from the paper element
+      },
     }),
   }),
 );
-
 
 function App() {
   const location = useLocation();
@@ -180,7 +187,6 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/subscription`} element={<Subscription language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/addclient`} element={<AddClient language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/editclient/:id`} element={<EditClient language={language} />} />
-                    <Route path={`/${APP_PREFIX_PATH}/clientTabularReport`} element={<ClientTabularReport language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/bill`} element={<Bill language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/addemployee`} element={<AddEmployee language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/editemployee/:id`} element={<EditEmployee language={language} />} />
@@ -192,8 +198,6 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/editVehicle/:id`} element={<EditVehicle language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/expenselist`} element={<ExpenseList language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/addExpense`} element={<AddExpense language={language} />} />
-                    <Route path={`/${APP_PREFIX_PATH}/expenseTabularReport`} element={<ExpenseTabularReport language={language} />} />
-
 
 
                   </Routes>

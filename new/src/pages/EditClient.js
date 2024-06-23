@@ -46,7 +46,7 @@ export default function EditClient() {
         amountCollectedBy: '',
         discount: '',
         totalAmount: '',
-        materials: [{ size: '', cubicMeter: '', rate: '', amount: '' }]
+        materials: [{ quantity: '', size: '', cubicMeter: '', rate: '', amount: '', vehicle: '', driver: '' }]
     });
 
 
@@ -97,7 +97,7 @@ export default function EditClient() {
     const addMaterial = () => {
         setFormData({
             ...formData,
-            materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '' }]
+            materials: [...formData.materials, { quantity: '', size: '', cubicMeter: '', rate: '', amount: '', vehicle: '', driver: '' }]
         });
     };
 
@@ -248,6 +248,42 @@ export default function EditClient() {
                                     <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
                                         <Grid marginTop={2} item xs={12} md={4}>
                                             <FormControl fullWidth>
+                                                <InputLabel id={`quantity-${index}`}>Quantity</InputLabel>
+                                                <Select
+                                                    required
+                                                    labelId={`quantity-${index}`}
+                                                    id={`quantity-${index}`}
+                                                    name='quantity'
+                                                    value={material.quantity}
+                                                    onChange={(e) => handleChange(e, index)}
+                                                    label="quantity"
+                                                >
+                                                    <MenuItem value='1'>1</MenuItem>
+                                                    <MenuItem value='2'>2</MenuItem>
+                                                    <MenuItem value='3'>3</MenuItem>
+                                                    <MenuItem value='4'>4</MenuItem>
+                                                    <MenuItem value='5'>5</MenuItem>
+                                                    <MenuItem value='6'>6</MenuItem>
+                                                    <MenuItem value='7'>7</MenuItem>
+                                                    <MenuItem value='8'>8</MenuItem>
+                                                    <MenuItem value='9'>9</MenuItem>
+                                                    <MenuItem value='10'>10</MenuItem>
+                                                    <MenuItem value='11'>11</MenuItem>
+                                                    <MenuItem value='12'>12</MenuItem>
+                                                    <MenuItem value='13'>13</MenuItem>
+                                                    <MenuItem value='14'>14</MenuItem>
+                                                    <MenuItem value='15'>15</MenuItem>
+                                                    <MenuItem value='16'>16</MenuItem>
+                                                    <MenuItem value='17'>17</MenuItem>
+                                                    <MenuItem value='18'>18</MenuItem>
+                                                    <MenuItem value='19'>19</MenuItem>
+                                                    <MenuItem value='20'>20</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                            {material.size === '' && <FormHelperText>This field is required.</FormHelperText>}
+                                        </Grid>
+                                        <Grid marginTop={2} item xs={12} md={4}>
+                                            <FormControl fullWidth>
                                                 <InputLabel id={`size-${index}`}>Size</InputLabel>
                                                 <Select
                                                     required
@@ -307,6 +343,43 @@ export default function EditClient() {
                                                 margin="normal"
                                             />
                                         </Grid>
+                                        <Grid item xs={12} md={4}>
+                                            <TextField
+                                                required
+                                                label="Vehicle No."
+                                                variant="outlined"
+                                                name='vehicle'
+                                                value={formData.vehicle}
+                                                onChange={handleChange}
+                                                fullWidth
+                                                margin="normal"
+                                            />
+
+                                        </Grid>
+                                        <Grid marginTop={2} item xs={12} md={4}>
+                                            <FormControl fullWidth>
+                                                <InputLabel id="collection">Driver</InputLabel>
+                                                <Select
+                                                    required
+                                                    labelId="driver"
+                                                    id="driver"
+                                                    name='driver'
+                                                    value={formData.driver}
+                                                    onChange={(e) => handleChange(e)}
+                                                    autoWidth
+                                                    label="driver"
+                                                >
+                                                    <MenuItem value={'kamal'}>kamal</MenuItem>
+                                                    <MenuItem value={'raj'}>raj</MenuItem>
+                                                    <MenuItem value={'jaysing'}>jaysing</MenuItem>
+                                                    <MenuItem value={'mohan'}>mohan</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                            {formData.driver === '' && <FormHelperText>This field is required.</FormHelperText>}
+
+                                        </Grid>
+
+
 
                                     </Grid>
 
@@ -484,52 +557,7 @@ export default function EditClient() {
                         </Item>
 
                     </Grid>
-                    <Grid marginY={5} item xs={12} md={12}>
-                        <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Other Information</b></Typography>
 
-                            <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
-
-                                <Grid marginTop={2} item xs={12} md={4}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="collection">Driver</InputLabel>
-                                        <Select
-                                            required
-                                            labelId="driver"
-                                            id="driver"
-                                            name='driver'
-                                            value={formData.driver}
-                                            onChange={(e) => handleChange(e)}
-                                            autoWidth
-                                            label="driver"
-                                        >
-                                            <MenuItem value={'kamal'}>kamal</MenuItem>
-                                            <MenuItem value={'raj'}>raj</MenuItem>
-                                            <MenuItem value={'jaysing'}>jaysing</MenuItem>
-                                            <MenuItem value={'mohan'}>mohan</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                    {formData.driver === '' && <FormHelperText>This field is required.</FormHelperText>}
-
-                                </Grid>
-
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        required
-                                        label="Vihicle No."
-                                        variant="outlined"
-                                        name='vihicle'
-                                        value={formData.vihicle}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
-
-                                </Grid>
-                            </Grid>
-                        </Item>
-
-                    </Grid>
                     <Box marginY={5} display={'flex'} alignItems={'center'} justifyContent={'center'} >
                         <Button size='small' type="submit" variant="contained" color="primary">
                             Submit

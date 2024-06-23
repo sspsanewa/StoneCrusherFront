@@ -307,7 +307,7 @@ export default function VehicleList() {
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
             <Helmet>
-                <title>{Language.APP_NAME} | Manage Employees | Employees List</title>
+                <title>{Language.APP_NAME} | Manage Vehicle | Vehicle List</title>
             </Helmet>
             <Box display={'flex'} justifyContent={'space-between'}>
                 <Box marginBottom={2} gap={1} display={'flex'}>

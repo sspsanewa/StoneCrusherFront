@@ -284,6 +284,7 @@ export default function ClientList() {
         const params = { action: 'get_all_users', delete_flag: 0 };
         Console("users")
 
+
         axios.get(`${Url}/api/v1/client`, { params })
             .then(obj => {
                 const res = obj.data;
