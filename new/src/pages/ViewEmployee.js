@@ -93,10 +93,10 @@ export default function ViewEmployee() {
 
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Typography marginTop={1} sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Manage Clients List</Typography>
+                <Typography marginTop={1} sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/employeelist`)}>Manage Employees List</Typography>
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Typography marginTop={1.2} fontSize={20} >View Client</Typography>
+                <Typography marginTop={1.2} fontSize={20} >View Employee</Typography>
             </Box>
             <Box sx={{ flexGrow: 1, bgcolor: Constant.color[1], padding: '5px', borderRadius: '10px' }}>
                 <Grid marginY={5} item xs={12} md={12} marginTop={2}>

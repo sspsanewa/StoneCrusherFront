@@ -42,7 +42,7 @@ export default function ViewClient() {
         amountCollectedBy: '',
         discount: '',
         totalAmount: '',
-        materials: [{ size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
+        materials: [{ size: '', cubicMeter: '', rate: '', amount: '', vehicle: '', driver: '' }]
     });
 
 
@@ -95,7 +95,7 @@ export default function ViewClient() {
     const addMaterial = () => {
         setFormData({
             ...formData,
-            materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
+            materials: [...formData.materials, { quantity: '', size: '', cubicMeter: '', rate: '', amount: '', vehicle: '', driver: '' }]
         });
     };
 
@@ -276,6 +276,20 @@ export default function ViewClient() {
                                     <Grid marginTop={2} item xs={12} md={4}>
                                         <TextField
                                             required
+                                            label="Quantity"
+                                            variant="filled"
+                                            name='quantity'
+                                            value={material.quantity}
+                                            // onChange={handleChange}
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+
+                                        />
+                                    </Grid>
+                                    <Grid marginTop={2} item xs={12} md={4}>
+                                        <TextField
+                                            required
                                             label="size"
                                             variant="filled"
                                             name='size'
@@ -284,7 +298,7 @@ export default function ViewClient() {
                                             InputProps={{
                                                 readOnly: true,
                                             }}
-                                            
+
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={4}>
@@ -338,6 +352,24 @@ export default function ViewClient() {
                                         />
                                     </Grid>
 
+
+                                    <Grid item xs={12} md={4}>
+                                        <TextField
+                                            required
+                                            label="Vehicle No."
+                                            variant="filled"
+                                            name='vehicle'
+                                            value={material.vehicle}
+                                            // onChange={handleChange}
+                                            fullWidth
+                                            margin="normal"
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+
+                                        />
+
+                                    </Grid>
                                     <Grid marginTop={2} item xs={12} md={4}>
                                         <TextField
                                             required
@@ -352,24 +384,6 @@ export default function ViewClient() {
 
                                         />
                                     </Grid>
-                                    <Grid item xs={12} md={4}>
-                                        <TextField
-                                            required
-                                            label="Vihicle No."
-                                            variant="filled"
-                                            name='vihicle'
-                                            value={material.vihicle}
-                                            // onChange={handleChange}
-                                            fullWidth
-                                            margin="normal"
-                                            InputProps={{
-                                                readOnly: true,
-                                            }}
-
-                                        />
-
-                                    </Grid>
-
                                 </Grid>
 
                             </Item>

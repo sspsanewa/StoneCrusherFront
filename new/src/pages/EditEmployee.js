@@ -133,7 +133,7 @@ export default function EditEmployee() {
 
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Typography sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Employee</Typography>
+                <Typography sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Manage Employees List</Typography>
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
                 <Typography marginTop={1.2} fontSize={20} >Add Employee</Typography>

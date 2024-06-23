@@ -43,10 +43,10 @@ export default function AddClient() {
         paymentMode: '',
         amountCollectedBy: '',
         discount: '',
-        depositeAmount:'',
+        depositeAmount: '',
         totalAmount: 0,
-        remainingAmount:'',
-        materials: [{ quantity:'', size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
+        remainingAmount: '',
+        materials: [{ quantity: '', size: '', cubicMeter: '', rate: '', amount: '', vehicle: '', driver: '' }]
     });
 
 
@@ -106,7 +106,7 @@ export default function AddClient() {
     const addMaterial = () => {
         setFormData({
             ...formData,
-            materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '', vihicle: '', driver: '' }]
+            materials: [...formData.materials, { quantity: '', size: '', cubicMeter: '', rate: '', amount: '', vehicle: '', driver: '' }]
         });
     };
 
@@ -358,6 +358,19 @@ export default function AddClient() {
                                                 margin="normal"
                                             />
                                         </Grid>
+                                        <Grid item xs={12} md={4}>
+                                            <TextField
+                                                required
+                                                label="Vehicle No."
+                                                variant="outlined"
+                                                name='vehicle'
+                                                value={material.vehicle}
+                                                onChange={(e) => handleChange(e, index)}
+                                                fullWidth
+                                                margin="normal"
+                                            />
+
+                                        </Grid>
                                         <Grid marginTop={2} item xs={12} md={4}>
                                             <FormControl fullWidth>
                                                 <InputLabel id="collection">Driver</InputLabel>
@@ -381,20 +394,8 @@ export default function AddClient() {
 
                                         </Grid>
 
-                                        <Grid item xs={12} md={4}>
-                                            <TextField
-                                                required
-                                                label="Vihicle No."
-                                                variant="outlined"
-                                                name='vihicle'
-                                                value={material.vihicle}
-                                                onChange={(e) => handleChange(e, index)}
-                                                fullWidth
-                                                margin="normal"
-                                            />
 
-                                        </Grid>
-                                        
+
 
                                     </Grid>
 
