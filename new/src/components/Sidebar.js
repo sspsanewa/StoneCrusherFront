@@ -197,6 +197,30 @@ export default function Sidebar(props) {
                                     primary={<Typography variant="body1" sx={{ color: selectedItem === 'addclient' ? Constant.color[0] : hoveredItem === 'addclient' ? 'black' : 'white', fontSize: '14px' }}>Add Client</Typography>}
                                 />
                             </ListItemButton>
+                            <ListItemButton
+                                selected={selectedItem === 'clientTabularReport'}
+                                onClick={() => handleItemClick('clientTabularReport')}
+                                onMouseEnter={() => setHoveredItem('clientTabularReport')}
+                                onMouseLeave={() => setHoveredItem(null)}
+                                style={{
+                                    borderRadius: '20px',
+                                    margin: '5px',
+                                    paddingLeft: 30, background: selectedItem === 'clientTabularReport' ? '#ffffff' : hoveredItem === 'clientTabularReport' ? '#f0f0f0' : Constant.color[2]
+                                }}
+                            >
+                                <ListItemIcon sx={{ minWidth: '40px' }}>
+                                    <ArrowLeftIcon
+                                        sx={{
+                                            color: selectedItem === 'clientTabularReport' ? Constant.color[0] : hoveredItem === 'clientTabularReport' ? 'black' : 'white',
+                                            fontSize: '22px',
+                                            transform: selectedItem === 'clientTabularReport' && 'rotate(360deg)', // Rotate the icon if isClicked is true
+                                            transition: 'transform 1s ease-in-out' // Smooth transition for the rotation
+                                        }} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={<Typography variant="body1" sx={{ color: selectedItem === 'clientTabularReport' ? Constant.color[0] : hoveredItem === 'clientTabularReport' ? 'black' : 'white', fontSize: '14px' }}>Clients Report</Typography>}
+                                />
+                            </ListItemButton>
                         </List>
                     </Collapse>
 

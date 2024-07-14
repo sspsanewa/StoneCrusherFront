@@ -120,7 +120,6 @@ export default function ViewClient() {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
                 setFormData(res)
-
             })
             .catch(err => console.error("Error fetching users:", err));
         // .then(err => console.log("eoeee", err))
