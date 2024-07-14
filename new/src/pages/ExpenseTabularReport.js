@@ -57,7 +57,7 @@ const ExpenseTabularReport = () => {
         const params = { startDate: formattedStartDate, endDate: formattedEndDate };
         Console("users", params)
 
-        axios.get(`${Url}/api/v1/report`, { params })
+        axios.get(`${Url}/api/v1/report/expense`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
