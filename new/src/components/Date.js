@@ -19,6 +19,7 @@ export default function Date(props) {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer
+
                 components={[
                     'DatePicker',
                     'MobileDatePicker',
@@ -27,7 +28,7 @@ export default function Date(props) {
                 ]}
             >
                 <DemoItem>
-                    <DatePicker value={selectedDate} onChange={handleDateChange} />
+                    <DatePicker readOnly value={selectedDate} onChange={handleDateChange} />
                 </DemoItem>
             </DemoContainer>
         </LocalizationProvider>

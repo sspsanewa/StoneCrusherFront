@@ -133,6 +133,8 @@ export default function AddClient() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
+
+
         axios.post('http://localhost:8080/api/v1/client', formData)
             .then(res => {
                 navigate(`/${APP_PREFIX_PATH}/clientlist`)
@@ -140,6 +142,7 @@ export default function AddClient() {
             .catch(err => {
                 console.log(err)
             })
+
     };
 
     const navigate = useNavigate();
@@ -154,7 +157,7 @@ export default function AddClient() {
 
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Typography sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Manage Clients List</Typography>
+                <Typography marginTop={1} sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Manage Clients List</Typography>
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
                 <Typography marginTop={1.2} fontSize={20} >Add Client</Typography>
@@ -525,7 +528,7 @@ export default function AddClient() {
 
                                         </Select>
                                     </FormControl>
-                                    {formData.amount === '' && <FormHelperText>This field is required.</FormHelperText>}
+                                    {formData.amountCollectedBy === '' && <FormHelperText>This field is required.</FormHelperText>}
 
                                 </Grid>
 

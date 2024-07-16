@@ -114,7 +114,7 @@ export default function EditEmployee() {
         // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/employee', formData)
             .then(res => {
-                navigate('/userList')
+                navigate(`/${APP_PREFIX_PATH}/employeelist`)
             })
             .catch(err => {
                 console.log(err)

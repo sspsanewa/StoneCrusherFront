@@ -28,7 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function AddEmployee() {
     const [dateOfJoining, setDateOfJoining] = useState('')
     const [formData, setFormData] = useState({
-        employeeId:'',
+        employeeId: '',
         employeeFirstName: '',
         employeeLastName: '',
         dateOfJoining: '',
@@ -115,7 +115,7 @@ export default function AddEmployee() {
         // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/employee', formData)
             .then(res => {
-                navigate('/userList')
+                navigate(`/${APP_PREFIX_PATH}/employeelist`)
             })
             .catch(err => {
                 console.log(err)

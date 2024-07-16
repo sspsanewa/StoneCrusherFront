@@ -135,7 +135,7 @@ export default function EditClient() {
 
         axios.post(`http://localhost:8080/api/v1/client`, formData)
             .then(res => {
-                navigate('/userList')
+                navigate(`/${APP_PREFIX_PATH}/clientlist`)
             })
             .catch(err => {
                 console.log(err)

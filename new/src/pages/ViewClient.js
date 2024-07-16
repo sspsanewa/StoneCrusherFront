@@ -187,15 +187,29 @@ export default function ViewClient() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+
                                     InputProps={{
                                         readOnly: true,
                                     }}
 
                                 />
                             </Grid>
-                            <Grid marginTop={1} item xs={12} md={4}>
+                            <Grid item xs={12} md={4}>
+                                <TextField
+                                    required
+                                    label="Date"
+                                    variant="filled"
+                                    name='date'
+                                    value={formData.date}
+                                    // onChange={handleChange}
+                                    fullWidth
+                                    margin="normal"
 
-                                <Date date={date} setDate={setDate} />
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
+                                />
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <TextField
@@ -242,11 +256,6 @@ export default function ViewClient() {
 
                                 <Grid display={'flex'} marginLeft={'40%'} gap={40} >
                                     <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Material Information</b></Typography>
-                                    {index != 0 &&
-                                        <Box display={'flex'} justifyContent={'center'} >
-                                            <Button size='small' onClick={() => removeMaterial(index)} variant="filled" color="secondary">Remove</Button>
-                                        </Box>
-                                    }
                                 </Grid>
                                 <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
                                     {/* <Grid marginTop={2} item xs={12} md={4}>
@@ -277,14 +286,13 @@ export default function ViewClient() {
                                             required
                                             label="Quantity"
                                             variant="filled"
-                                            name='quantity'
+                                            name='qantity'
                                             value={material.quantity}
                                             fullWidth
                                             // onChange={handleChange}
                                             InputProps={{
                                                 readOnly: true,
                                             }}
-
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={4}>
@@ -387,9 +395,7 @@ export default function ViewClient() {
                             </Item>
                         </Grid>
                     ))}
-                    <Grid display={'flex'} alignItems={'center'} justifyContent={'center'} item xs={12}>
-                        <Button size='small' onClick={addMaterial} variant="contained" color="primary">Add More</Button>
-                    </Grid>
+
                 </Grid>
                 <Grid marginY={5} item xs={12} md={12}>
                     <Item sx={{ borderRadius: '10px', margin: '30px' }}>
