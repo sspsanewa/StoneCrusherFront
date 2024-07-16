@@ -6,7 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function Date(props) {
-    const [selectedDate, setSelectedDate] = useState(dayjs('2022-04-17'));
+    const [selectedDate, setSelectedDate] = useState(dayjs());
 
     const handleDateChange = (date) => {
         setSelectedDate(date);

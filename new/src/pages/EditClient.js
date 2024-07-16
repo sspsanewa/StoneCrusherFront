@@ -37,18 +37,19 @@ export default function EditClient() {
         address: '',
         mobile: '',
         gstNumber: '',
-        cgstAmount: '',
-        sgstAmount: '',
+        cgstAmount: 0,
+        sgstAmount: 0,
         billNumber: '',
-        royaltiAmount: '',
+        royaltiAmount: 0,
         fermName: '',
         paymentMode: '',
         amountCollectedBy: '',
         discount: '',
-        totalAmount: '',
+        depositeAmount: '',
+        totalAmount: 0,
+        remainingAmount: '',
         materials: [{ quantity: '', size: '', cubicMeter: '', rate: '', amount: '', vehicle: '', driver: '' }]
     });
-
 
 
     if (formData.cgstAmount !== '') {
