@@ -272,13 +272,14 @@ export default function ViewClient() {
                                         </FormControl>
                                         {material.size === '' && <FormHelperText>This field is required.</FormHelperText>}
                                     </Grid> */}
-                                    <Grid marginTop={2} item xs={12} md={4}>
+                                    <Grid item xs={12} md={4}>
                                         <TextField
                                             required
                                             label="Quantity"
                                             variant="filled"
                                             name='quantity'
                                             value={material.quantity}
+                                            fullWidth
                                             // onChange={handleChange}
                                             InputProps={{
                                                 readOnly: true,
@@ -286,13 +287,14 @@ export default function ViewClient() {
 
                                         />
                                     </Grid>
-                                    <Grid marginTop={2} item xs={12} md={4}>
+                                    <Grid item xs={12} md={4}>
                                         <TextField
                                             required
                                             label="size"
                                             variant="filled"
                                             name='size'
                                             value={material.size}
+                                            fullWidth
                                             // onChange={handleChange}
                                             InputProps={{
                                                 readOnly: true,
@@ -309,7 +311,6 @@ export default function ViewClient() {
                                             value={material.cubicMeter} // Change formData.cubicMeter to material.cubicMeter
                                             onChange={(e) => handleChange(e, index)} // Ensure you pass index for correct material
                                             fullWidth
-                                            margin="normal"
                                             InputProps={{
                                                 readOnly: true,
                                             }}
@@ -326,7 +327,6 @@ export default function ViewClient() {
                                             value={material.rate} // Change formData.rate to material.rate
                                             onChange={(e) => handleChange(e, index)} // Ensure you pass index for correct material
                                             fullWidth
-                                            margin="normal"
                                             InputProps={{
                                                 readOnly: true,
                                             }}
@@ -343,7 +343,6 @@ export default function ViewClient() {
                                             value={material.amount} // Change formData.amount to material.amount
                                             onChange={(e) => handleChange(e, index)} // Ensure you pass index for correct material
                                             fullWidth
-                                            margin="normal"
                                             InputProps={{
                                                 readOnly: true,
                                             }}
@@ -361,7 +360,6 @@ export default function ViewClient() {
                                             value={material.vehicle}
                                             // onChange={handleChange}
                                             fullWidth
-                                            margin="normal"
                                             InputProps={{
                                                 readOnly: true,
                                             }}
@@ -376,6 +374,7 @@ export default function ViewClient() {
                                             variant="filled"
                                             name='driver'
                                             value={material.driver}
+                                            fullWidth
                                             // onChange={handleChange}
                                             InputProps={{
                                                 readOnly: true,
@@ -511,6 +510,7 @@ export default function ViewClient() {
                                     name='fermName'
                                     value={formData.fermName}
                                     // onChange={handleChange}
+                                    fullWidth
                                     InputProps={{
                                         readOnly: true,
                                     }}
@@ -545,6 +545,7 @@ export default function ViewClient() {
                                     variant="filled"
                                     name='Payment Mode'
                                     value={formData.paymentMode}
+                                    fullWidth
                                     // onChange={handleChange}
                                     InputProps={{
                                         readOnly: true,
@@ -582,6 +583,7 @@ export default function ViewClient() {
                                     variant="filled"
                                     name='Payment Mode'
                                     value={formData.amountCollectedBy}
+                                    fullWidth
                                     // onChange={handleChange}
                                     InputProps={{
                                         readOnly: true,
@@ -629,69 +631,7 @@ export default function ViewClient() {
                     </Item>
 
                 </Grid>
-                <Grid marginY={5} item xs={12} md={12}>
-                    <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-                        <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Other Information</b></Typography>
 
-                        <Grid padding={2} item md={12} display={'flex'} container spacing={2}>
-
-                            {/* <Grid marginTop={2} item xs={12} md={4}>
-                                <FormControl fullWidth>
-                                    <InputLabel id="collection">Driver</InputLabel>
-                                    <Select
-                                        required
-                                        labelId="driver"
-                                        id="driver"
-                                        name='driver'
-                                        value={formData.driver}
-                                        onChange={(e) => handleChange(e)}
-                                        autoWidth
-                                        label="driver"
-                                    >
-                                        <MenuItem value={'kamal'}>kamal</MenuItem>
-                                        <MenuItem value={'raj'}>raj</MenuItem>
-                                        <MenuItem value={'jaysing'}>jaysing</MenuItem>
-                                        <MenuItem value={'mohan'}>mohan</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                {formData.driver === '' && <FormHelperText>This field is required.</FormHelperText>}
-
-                            </Grid> */}
-                            <Grid marginTop={2} item xs={12} md={4}>
-                                <TextField
-                                    required
-                                    label="Driver Name"
-                                    variant="filled"
-                                    name='driver'
-                                    value={formData.driver}
-                                    // onChange={handleChange}
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
-
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                                <TextField
-                                    required
-                                    label="Vihicle No."
-                                    variant="filled"
-                                    name='vihicle'
-                                    value={formData.vihicle}
-                                    // onChange={handleChange}
-                                    fullWidth
-                                    margin="normal"
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
-
-                                />
-
-                            </Grid>
-                        </Grid>
-                    </Item>
-
-                </Grid>
                 <Box marginY={5} display={'flex'} alignItems={'center'} justifyContent={'center'} >
                     <Button size='small' type="submit" variant="contained" color="primary">
                         Submit

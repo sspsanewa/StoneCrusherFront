@@ -28,36 +28,37 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function AddClient() {
     const [date, setDate] = useState('')
     const [formData, setFormData] = useState({
-        firstName: 'John',
-        lastName: 'Doe',
-        date: '2024-07-14',
-        village: 'Greenwood',
-        address: '123 Main St, Greenwood',
-        mobile: '1234567890',
-        gstNumber: '29ABCDE1234F1Z5',
-        cgstAmount: 100.00,
-        sgstAmount: 100.00,
-        billNumber: 'INV-001234',
-        royaltiAmount: 50.00,
-        fermName: 'ABC Enterprises',
-        paymentMode: 'Cash',
-        amountCollectedBy: 'Jane Smith',
-        discount: '10%',
-        depositeAmount: 500.00,
-        totalAmount: 2000.00,
-        remainingAmount: '1500.00',
+        firstName: '',
+        lastName: '',
+        date: '',
+        village: '',
+        address: '',
+        mobile: '',
+        gstNumber: '',
+        cgstAmount: 0.00,
+        sgstAmount: 0.00,
+        billNumber: '',
+        royaltiAmount: 0.00,
+        fermName: '',
+        paymentMode: '',
+        amountCollectedBy: '',
+        discount: '',
+        depositeAmount: 0.00,
+        totalAmount: 0.00,
+        remainingAmount: '',
         materials: [
             {
-                quantity: '10',
-                size: 'Large',
-                cubicMeter: '15.5',
-                rate: '200',
-                amount: '2000',
-                vehicle: 'Truck-123',
-                driver: 'Mark Johnson'
+                quantity: '',
+                size: '',
+                cubicMeter: '',
+                rate: '',
+                amount: '',
+                vehicle: '',
+                driver: ''
             }
         ]
     });
+
 
 
 

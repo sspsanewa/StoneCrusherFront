@@ -350,8 +350,8 @@ export default function EditClient() {
                                                 label="Vehicle No."
                                                 variant="outlined"
                                                 name='vehicle'
-                                                value={formData.vehicle}
-                                                onChange={handleChange}
+                                                value={material.vehicle}
+                                                onChange={(e) => handleChange(e, index)}
                                                 fullWidth
                                                 margin="normal"
                                             />
@@ -365,8 +365,8 @@ export default function EditClient() {
                                                     labelId="driver"
                                                     id="driver"
                                                     name='driver'
-                                                    value={formData.driver}
-                                                    onChange={(e) => handleChange(e)}
+                                                    value={material.driver}
+                                                    onChange={(e) => handleChange(e, index)}
                                                     autoWidth
                                                     label="driver"
                                                 >
@@ -376,7 +376,7 @@ export default function EditClient() {
                                                     <MenuItem value={'mohan'}>mohan</MenuItem>
                                                 </Select>
                                             </FormControl>
-                                            {formData.driver === '' && <FormHelperText>This field is required.</FormHelperText>}
+                                            {material.driver === '' && <FormHelperText>This field is required.</FormHelperText>}
 
                                         </Grid>
 
