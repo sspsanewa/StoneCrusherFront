@@ -113,6 +113,10 @@ export default function ViewEmployee() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+
                                 />
                             </Grid>
                             <Grid item xs={12} md={4}>
@@ -124,6 +128,9 @@ export default function ViewEmployee() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12} md={4}>
@@ -136,6 +143,9 @@ export default function ViewEmployee() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                 />
                             </Grid>
                             <Grid marginTop={1} item xs={12} md={4}>
@@ -149,6 +159,9 @@ export default function ViewEmployee() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                 />                            </Grid>
                             <Grid item xs={12} md={4}>
                                 <TextField
@@ -160,6 +173,9 @@ export default function ViewEmployee() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12} md={4}>
@@ -172,18 +188,24 @@ export default function ViewEmployee() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     required
                                     label="AadharCard Number"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='employeeAadharcard'
                                     value={formData.employeeAadharcard}
                                     onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                     type='number'
                                 />
                             </Grid>
@@ -191,24 +213,30 @@ export default function ViewEmployee() {
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     label="Salary"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='employeeSalary'
                                     value={formData.employeeSalary}
                                     onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                     type='text'
                                 />
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     label="Employee Type"
-                                    variant="outlined"
+                                    variant="filled"
                                     name='employeetype'
                                     value={formData.employeeType}
                                     onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                     type='text'
                                 />
                             </Grid>

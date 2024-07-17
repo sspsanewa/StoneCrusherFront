@@ -185,7 +185,7 @@ export default function EditEmployee() {
                                         required
                                         label="Village"
                                         variant="outlined"
-                                        name='village'
+                                        name='employeeVillage'
                                         value={formData.employeeVillage}
                                         onChange={handleChange}
                                         fullWidth
@@ -201,7 +201,7 @@ export default function EditEmployee() {
                                         required
                                         label="Address"
                                         variant="outlined"
-                                        name='address'
+                                        name='employeeAddress'
                                         value={formData.employeeAddress}
                                         onChange={handleChange}
                                         fullWidth

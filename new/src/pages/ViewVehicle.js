@@ -107,6 +107,9 @@ export default function ViewVehicle() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12} md={4}>
@@ -118,6 +121,9 @@ export default function ViewVehicle() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12} md={4}>
@@ -130,6 +136,9 @@ export default function ViewVehicle() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                 />
                             </Grid>
                             <Grid marginTop={1} item xs={12} md={4}>
@@ -143,6 +152,9 @@ export default function ViewVehicle() {
                                     // onChange={handleChange}
                                     fullWidth
                                     margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                 />
                             </Grid>
 

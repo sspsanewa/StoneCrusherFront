@@ -69,7 +69,7 @@ export default function AddVehical() {
         // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/vehicle', formData)
             .then(res => {
-                navigate('/userList')
+                navigate(`/${APP_PREFIX_PATH}/vehiclelist`)
             })
             .catch(err => {
                 console.log(err)
@@ -151,6 +151,8 @@ export default function AddVehical() {
                                         >
                                             <MenuItem value='Tractor'>Tractor</MenuItem>
                                             <MenuItem value='Trolly'>Trolly</MenuItem>
+                                            <MenuItem value={'Dumper'}>Dumper</MenuItem>
+
                                             <MenuItem value='Other'>Other</MenuItem>
                                         </Select>
                                     </FormControl>

@@ -180,17 +180,19 @@ export default function EditVehicle() {
                                         <InputLabel id="demo-simple-select-autowidth-label">Vehicle type</InputLabel>
                                         <Select
                                             required
-                                            labelId="demo-simple-select-autowidth-label"
-                                            id="demo-simple-select-autowidth"
+                                            labelId="Vehicle Type"
+                                            id="Vehicle Type"
                                             name='vehicleType'
                                             value={formData.vehicleType}
                                             onChange={(e) => handleChange(e)} // Ensure to pass the event directly
                                             autoWidth
                                             label="Employee Type"
                                         >
-                                            <MenuItem value='Tractor'>Tractor</MenuItem>
-                                            <MenuItem value='Trolly'>Trolly</MenuItem>
-                                            <MenuItem value='Other'>Other</MenuItem>
+                                            <MenuItem value={'Tractor'}>Tractor</MenuItem>
+                                            <MenuItem value={'Trolly'}>Trolly</MenuItem>
+                                            <MenuItem value={'Dumper'}>Dumper</MenuItem>
+
+                                            <MenuItem value={'Other'}>Other</MenuItem>
                                         </Select>
                                     </FormControl>
                                     {formData.employeeType === '' && <FormHelperText>This field is required.</FormHelperText>}
