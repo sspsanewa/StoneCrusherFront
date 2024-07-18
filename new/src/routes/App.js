@@ -44,6 +44,8 @@ import EditVehicle from '../pages/EditVehicle';
 import ExpenseList from '../pages/ExpenseList';
 import AddExpense from '../pages/AddExpense';
 import ClientTabularReport from '../pages/ClientTabularReport';
+import EditExpense from '../pages/EditExpense';
+import ViewExpense from '../pages/ViewExpense';
 
 const drawerWidth = 270;
 
@@ -199,6 +201,8 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/editVehicle/:id`} element={<EditVehicle language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/expenselist`} element={<ExpenseList language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/addExpense`} element={<AddExpense language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/viewExpense`} element={<ViewExpense language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/editExpense/:id`} element={<EditExpense language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/clientTabularReport`} element={<ClientTabularReport language={language} />} />
 
 

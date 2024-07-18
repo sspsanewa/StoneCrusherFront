@@ -378,7 +378,7 @@ export default function ExpenseList() {
                                     >
                                         <TableCell align="left">{index + 1 + page * rowsPerPage}</TableCell>
                                         <TableCell>
-                                            <ActionUserList render={render} setRender={setRender} view='View' viewPath={`/${APP_PREFIX_PATH}/viewVehicle/`} id={row.vehicleId} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} statusValue={row.active_flag} status={row.active_flag === 1 ? 'Deactive' : 'Active'} url1='user_controller/active_deactive_status' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} delete='Delete' url='api/v1/employee' delete_flag='0' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} setShow={setShow} setShow1={setShow1} editUrl='editVehicle' editIcon={<Edit sx={{ color: Constant.color[0] }} />} edit='Edit' />
+                                            <ActionUserList render={render} setRender={setRender} view='View' viewPath={`/${APP_PREFIX_PATH}/viewExpense/`} id={row.id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} statusValue={row.active_flag} status={row.active_flag === 1 ? 'Deactive' : 'Active'} url1='user_controller/active_deactive_status' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} delete='Delete' url='api/v1/expense' delete_flag='0' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} setShow={setShow} setShow1={setShow1} editUrl='editExpense' editIcon={<Edit sx={{ color: Constant.color[0] }} />} edit='Edit' />
                                         </TableCell>
 
                                         {/* <TableCell
@@ -399,7 +399,7 @@ export default function ExpenseList() {
 
                                         </TableCell> */}
                                         <TableCell align="left">{row.expenseAmount ? row.expenseAmount : 'NA'}</TableCell>
-                                        
+
 
 
                                         <TableCell align="left">{row.expensePerson ? row.expensePerson : 'NA'}</TableCell>
