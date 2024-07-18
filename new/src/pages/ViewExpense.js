@@ -29,8 +29,12 @@ export default function ViewExpense() {
         expenseAmount: '',
         expenseDate: ''
     });
+    console.log("After form declaration");
+
+    formData.expenseDate = expenseDate
 
     useEffect(() => {
+        console.log("Entering into the api");
         axios.get(`${Url}/api/v1/expense/${id}`)
             .then(obj => {
                 const res = obj.data;

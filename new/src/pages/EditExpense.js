@@ -27,20 +27,20 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function EditExpense() {
     const { id } = useParams();
-
-    const [dateOfJoining, setDateOfJoining] = useState('')
+    const [expenseDate, setExpenseDate] = useState('');
     const [formData, setFormData] = useState({
-        vehicleName: '',
-        vehicleDriverName: '',
-        vehicleNumber: '',
-        vehicleType: '',
+        expenseType: '',
+        expenseDescription: '',
+        expensePerson: '',
+        expenseAmount: '',
+        expenseDate: ''
     });
 
 
     // if (formData.employeeSalary !== '') {
     //     formData.employeeSalary = parseDouble(formData.employeeSalary);
     // }
-    formData.dateOfJoining = dateOfJoining
+    formData.expenseDate = expenseDate
 
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
@@ -73,7 +73,7 @@ export default function EditExpense() {
     React.useEffect(() => {
         const params = { action: 'get_users', delete_flag: 0 };
 
-        axios.get(`http://localhost:8080/api/v1/vehicle/${id}`, { params })
+        axios.get(`http://localhost:8080/api/v1/expense/${id}`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
@@ -106,9 +106,9 @@ export default function EditExpense() {
 
         // Set the updated form data
         // setFormData(updatedFormData);
-        axios.post('http://localhost:8080/api/v1/vehicle', formData)
+        axios.post('http://localhost:8080/api/v1/expense', formData)
             .then(res => {
-                navigate('/userList')
+                navigate('/expenseList')
             })
             .catch(err => {
                 console.log(err)
@@ -142,10 +142,10 @@ export default function EditExpense() {
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Vehical Name"
+                                        label="Expense Type"
                                         variant="outlined"
-                                        name='vehicleName'
-                                        value={formData.vehicleName}
+                                        name='expenseType'
+                                        value={formData.expenseType}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
@@ -154,10 +154,10 @@ export default function EditExpense() {
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Vehicle Driver Name "
+                                        label="Expense Description"
                                         variant="outlined"
-                                        name='vehicleDriverName'
-                                        value={formData.vehicleDriverName}
+                                        name='expenseDescription'
+                                        value={formData.expenseDescription}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
@@ -165,37 +165,30 @@ export default function EditExpense() {
                                 </Grid>
                                 <Grid item xs={12} md={4}>
                                     <TextField
-                                        label="Vehicle Number"
+                                        label="Expense Person Name"
                                         variant="outlined"
-                                        name='vehicleNumber'
-                                        value={formData.vehicleNumber}
+                                        name='expensePerson'
+                                        value={formData.expensePerson}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
                                     />
                                 </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <TextField
+                                        label="Expense Amount"
+                                        variant="outlined"
+                                        name='expenseAmount'
+                                        value={formData.expenseAmount}
+                                        onChange={handleChange}
+                                        fullWidth
+                                        margin="normal"
+                                    />
+                                </Grid>
+                                
+                                <Grid marginTop={1} item xs={12} md={4}>
 
-                                <Grid marginTop={2} item xs={12} md={4}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-autowidth-label">Vehicle type</InputLabel>
-                                        <Select
-                                            required
-                                            labelId="Vehicle Type"
-                                            id="Vehicle Type"
-                                            name='vehicleType'
-                                            value={formData.vehicleType}
-                                            onChange={(e) => handleChange(e)} // Ensure to pass the event directly
-                                            autoWidth
-                                            label="Employee Type"
-                                        >
-                                            <MenuItem value={'Tractor'}>Tractor</MenuItem>
-                                            <MenuItem value={'Trolly'}>Trolly</MenuItem>
-                                            <MenuItem value={'Dumper'}>Dumper</MenuItem>
-
-                                            <MenuItem value={'Other'}>Other</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                    {formData.employeeType === '' && <FormHelperText>This field is required.</FormHelperText>}
+                                    <Date date={expenseDate} setDate={setExpenseDate} />
                                 </Grid>
                                 {/* <Grid marginTop={2} item xs={12} md={4}>
                                     <FormControl fullWidth>

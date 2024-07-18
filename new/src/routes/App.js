@@ -201,7 +201,7 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/editVehicle/:id`} element={<EditVehicle language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/expenselist`} element={<ExpenseList language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/addExpense`} element={<AddExpense language={language} />} />
-                    <Route path={`/${APP_PREFIX_PATH}/viewExpense`} element={<ViewExpense language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/viewExpense/:id`} element={<ViewExpense language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/editExpense/:id`} element={<EditExpense language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/clientTabularReport`} element={<ClientTabularReport language={language} />} />
 
