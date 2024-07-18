@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-export default function Date(props) {
+export default function DateEdit(props) {
     const [selectedDate, setSelectedDate] = useState(dayjs());
 
     const handleDateChange = (date) => {
@@ -28,7 +28,7 @@ export default function Date(props) {
                 ]}
             >
                 <DemoItem>
-                    <DatePicker readOnly value={selectedDate} onChange={handleDateChange} />
+                    <DatePicker value={selectedDate} onChange={handleDateChange} />
                 </DemoItem>
             </DemoContainer>
         </LocalizationProvider>

@@ -32,7 +32,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Url from '../Config/Url';
 import moment from 'moment'
-import Date from '../components/Date';
+// import Date from '../components/Date';
 import Console from '../debug_log';
 import { APP_PREFIX_PATH, IMAGE_PATH } from '../Config/AppConfig';
 import PopupImage from '../components/PopupImage';

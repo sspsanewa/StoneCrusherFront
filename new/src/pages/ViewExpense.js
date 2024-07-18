@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import { Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, TextField, styled } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import Date from '../components/Date';
+// import Date from '../components/Date';
 import Constant from '../Config/Color';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import Console from '../debug_log';
@@ -21,7 +21,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function ViewExpense() {
     const { id } = useParams();
-    const [expenseDate, setExpenseDate] = useState('');
     const [formData, setFormData] = useState({
         expenseType: '',
         expenseDescription: '',
@@ -29,9 +28,10 @@ export default function ViewExpense() {
         expenseAmount: '',
         expenseDate: ''
     });
+
+
     console.log("After form declaration");
 
-    formData.expenseDate = expenseDate
 
     useEffect(() => {
         console.log("Entering into the api");

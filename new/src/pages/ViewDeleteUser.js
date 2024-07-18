@@ -7,8 +7,6 @@ import { Avatar, Button, Grid, TextField, ToggleButton, ToggleButtonGroup } from
 import { useNavigate, useParams } from 'react-router-dom';
 import profile1 from '../assets/profile1.jpg'
 import axios from 'axios';
-import TableMyMusas from '../components/TableMyMusas';
-import TableContributor from '../components/TableMyContributors';
 import Constant from '../Config/Color'
 import Url from '../Config/Url';
 import Console from '../debug_log'
@@ -170,13 +168,13 @@ export default function ViewDeleteUser() {
                 <ToggleButton style={{ backgroundColor: clickedButton === 'my' ? Constant.color[0] : 'inherit', color: clickedButton === 'my' ? 'white' : Constant.color[0], }} value="my" onClick={(e) => handleClick(e, 'my')}>My MUSA</ToggleButton>
                 <ToggleButton style={{ backgroundColor: clickedButton === 'contributor' ? Constant.color[0] : 'inherit', color: clickedButton === 'contributor' ? 'white' : Constant.color[0], }} value="contributor" onClick={(e) => handleClick(e, 'contributor')}>Contributor MUSA</ToggleButton>
             </ToggleButtonGroup>
-            {alignment === 'my' ?
+            {/* {alignment === 'my' ?
                 <TableMyMusas id={id} />
                 :
                 (
                     alignment === 'contributor' && <TableContributor id={id} />
                 )
-            }
+            } */}
         </Box>
     );
 }

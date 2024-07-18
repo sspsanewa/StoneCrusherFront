@@ -31,7 +31,6 @@ import profile4 from '../assets/profile4.jpg'
 import Url from '../Config/Url';
 import axios from 'axios';
 import moment from 'moment'
-import Date from '../components/Date';
 import Console from '../debug_log';
 import { APP_PREFIX_PATH, IMAGE_PATH } from '../Config/AppConfig';
 import ActionDeletedUserList from '../components/ActionDeletedUserList';
@@ -416,7 +415,7 @@ export default function DeletedUserList() {
                                                 height: '25px', color: '#f44336'
                                             }} >Inactive</Typography>}
                                         </TableCell> */}
-                                        <TableCell align="left">{Date(row.createtime)}</TableCell>
+                                        <TableCell align="left">{(row.createtime)}</TableCell>
 
 
                                     </TableRow>

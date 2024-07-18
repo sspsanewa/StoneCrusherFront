@@ -12,7 +12,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
-import Date from '../components/Date';
+import Date from '../components/DateAdd';
 import Constant from '../Config/Color'
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 
@@ -34,7 +34,7 @@ export default function AddExpense() {
         expenseDescription: '',
         expensePerson: '',
         expenseAmount: '',
-        expenseDate:''
+        expenseDate: ''
     });
 
 
@@ -109,7 +109,7 @@ export default function AddExpense() {
         // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/expense', formData)
             .then(res => {
-                navigate('/userList')
+                navigate(`/${APP_PREFIX_PATH}/expenselist`)
             })
             .catch(err => {
                 console.log(err)
@@ -159,7 +159,7 @@ export default function AddExpense() {
                                             <MenuItem value='Tambaku'>Tambaku</MenuItem>
                                             <MenuItem value='Nasta'>Nasta</MenuItem>
                                             <MenuItem value='Other'>Other</MenuItem>
-                                
+
                                         </Select>
                                     </FormControl>
                                     {formData.expenseType === '' && <FormHelperText>This field is required.</FormHelperText>}

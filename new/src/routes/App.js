@@ -26,8 +26,6 @@ import axios from 'axios';
 import New from '../pages/New';
 import New1 from '../pages/New1';
 import Subscription from '../pages/Subscription';
-import ViewTrip from '../pages/ViewTrip';
-import Trip from '../pages/Trip';
 import Car from '../pages/Car';
 import ClientList from '../pages/ClientList';
 import AddClient from '../pages/AddClient';
@@ -46,6 +44,7 @@ import AddExpense from '../pages/AddExpense';
 import ClientTabularReport from '../pages/ClientTabularReport';
 import EditExpense from '../pages/EditExpense';
 import ViewExpense from '../pages/ViewExpense';
+import ExpenseTabularReport from '../pages/ExpenseTabularReport';
 
 const drawerWidth = 270;
 
@@ -177,11 +176,9 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/contactUs`} element={<ContactUs language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/content`} element={<Content />} language={language} />
                     <Route path={`/${APP_PREFIX_PATH}/clientlist`} element={<ClientList language={language} />} />
-                    <Route path={`/${APP_PREFIX_PATH}/triplist`} element={<Trip language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/carlist`} element={<Car />} language={language} />
                     <Route path={`/${APP_PREFIX_PATH}/deleteduserlist`} element={<DeletedUserList language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/viewclient/:id`} element={<ViewClient language={language} />} />
-                    <Route path={`/${APP_PREFIX_PATH}/viewtrip/:id`} element={<ViewTrip language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/viewDeleteUser/:id`} element={<ViewDeleteUser language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/userAnalyticalReport`} element={<UserAnalyticalReport language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/userTabularReport`} element={<UserTabularReport language={language} />} />
@@ -204,6 +201,7 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/viewExpense/:id`} element={<ViewExpense language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/editExpense/:id`} element={<EditExpense language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/clientTabularReport`} element={<ClientTabularReport language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/expenseTabularReport`} element={<ExpenseTabularReport language={language} />} />
 
 
                   </Routes>

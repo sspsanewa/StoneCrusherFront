@@ -12,7 +12,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
-import Date from '../components/Date';
+import Date from '../components/DateEdit';
 import Constant from '../Config/Color'
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 
@@ -108,7 +108,7 @@ export default function EditExpense() {
         // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/expense', formData)
             .then(res => {
-                navigate('/expenseList')
+                navigate(`/${APP_PREFIX_PATH}/expenselist`)
             })
             .catch(err => {
                 console.log(err)
@@ -139,17 +139,29 @@ export default function EditExpense() {
                         <Item sx={{ borderRadius: '10px', margin: '30px' }}>
                             <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Employee Information</b></Typography>
                             <Grid padding={1} item md={12} display={'flex'} container spacing={2}>
-                                <Grid item xs={12} md={4}>
-                                    <TextField
-                                        required
-                                        label="Expense Type"
-                                        variant="outlined"
-                                        name='expenseType'
-                                        value={formData.expenseType}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        margin="normal"
-                                    />
+                                <Grid marginTop={2} item xs={12} md={4}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-autowidth-label">Expense type</InputLabel>
+                                        <Select
+                                            required
+                                            labelId="demo-simple-select-autowidth-label"
+                                            id="demo-simple-select-autowidth"
+                                            name='expenseType'
+                                            value={formData.expenseType}
+                                            onChange={(e) => handleChange(e)} // Ensure to pass the event directly
+                                            autoWidth
+                                            label="Expense Type"
+                                        >
+                                            <MenuItem value='Petrol'>Petrol</MenuItem>
+                                            <MenuItem value='Disel'>Disel</MenuItem>
+                                            <MenuItem value='Chai'>Chai</MenuItem>
+                                            <MenuItem value='Tambaku'>Tambaku</MenuItem>
+                                            <MenuItem value='Nasta'>Nasta</MenuItem>
+                                            <MenuItem value='Other'>Other</MenuItem>
+
+                                        </Select>
+                                    </FormControl>
+                                    {formData.expenseType === '' && <FormHelperText>This field is required.</FormHelperText>}
                                 </Grid>
                                 <Grid item xs={12} md={4}>
                                     <TextField
@@ -185,7 +197,7 @@ export default function EditExpense() {
                                         margin="normal"
                                     />
                                 </Grid>
-                                
+
                                 <Grid marginTop={1} item xs={12} md={4}>
 
                                     <Date date={expenseDate} setDate={setExpenseDate} />
