@@ -15,6 +15,7 @@ import moment from 'moment';
 import Date from '../components/DateEdit';
 import Constant from '../Config/Color'
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
+import DateEdit from '../components/DateEdit';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -28,7 +29,6 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function EditClient() {
     const { id } = useParams();
 
-    const [date, setDate] = useState('')
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -68,7 +68,6 @@ export default function EditClient() {
     if (formData.totalAmount !== '') {
         formData.totalAmount = parseInt(formData.totalAmount);
     }
-    formData.date = date
 
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
@@ -200,8 +199,14 @@ export default function EditClient() {
                                     />
                                 </Grid>
                                 <Grid marginTop={1} item xs={12} md={4}>
-
-                                    <Date date={date} setDate={setDate} />
+                                    <LocalizationProvider dateAdapter={AdapterMoment}>
+                                        <DatePicker
+                                            label="Date"
+                                            value={moment(formData.date)}
+                                            onChange={(newValue) => setFormData({ ...formData, date: newValue.format('YYYY-MM-DD') })}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
+                                    </LocalizationProvider>
                                 </Grid>
                                 <Grid item xs={12} md={4}>
                                     <TextField

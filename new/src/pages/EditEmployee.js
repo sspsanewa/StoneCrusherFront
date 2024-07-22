@@ -28,7 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function EditEmployee() {
     const { id } = useParams();
 
-    const [dateOfJoining, setDateOfJoining] = useState('')
+    const [initialDate, setInitialDate] = useState('')
     const [formData, setFormData] = useState({
         employeeId: '',
         employeeFirstName: '',
@@ -42,11 +42,23 @@ export default function EditEmployee() {
         employeeType: ''
     });
 
+    React.useEffect(() => {
+        const params = { action: 'get_users', delete_flag: 0 };
 
+        axios.get(`http://localhost:8080/api/v1/employee/${id}`, { params })
+            .then(obj => {
+                const res = obj.data;
+                console.log("Users fetched successfully:", res);
+                setFormData(res)
+                setInitialDate(res.dateOfJoining)
+
+            })
+            .catch(err => console.error("Error fetching users:", err));
+        // .then(err => console.log("eoeee", err))
+    }, [id])
     // if (formData.employeeSalary !== '') {
     //     formData.employeeSalary = parseDouble(formData.employeeSalary);
     // }
-    formData.dateOfJoining = dateOfJoining
 
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
@@ -76,19 +88,7 @@ export default function EditEmployee() {
 
     // Calculate amount for each material and sum up to get totalAmount
 
-    React.useEffect(() => {
-        const params = { action: 'get_users', delete_flag: 0 };
 
-        axios.get(`http://localhost:8080/api/v1/employee/${id}`, { params })
-            .then(obj => {
-                const res = obj.data;
-                console.log("Users fetched successfully:", res);
-                setFormData(res)
-
-            })
-            .catch(err => console.error("Error fetching users:", err));
-        // .then(err => console.log("eoeee", err))
-    }, [])
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -122,7 +122,6 @@ export default function EditEmployee() {
     };
 
     const navigate = useNavigate();
-    console.log("formdata", formData)
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
 
@@ -193,8 +192,14 @@ export default function EditEmployee() {
                                     />
                                 </Grid>
                                 <Grid marginTop={1} item xs={12} md={4}>
-
-                                    <Date date={dateOfJoining} setDate={setDateOfJoining} />
+                                    <LocalizationProvider dateAdapter={AdapterMoment}>
+                                        <DatePicker
+                                            label="Date of joining"
+                                            value={moment(formData.dateOfJoining)}
+                                            onChange={(newValue) => setFormData({ ...formData, dateOfJoining: newValue.format('YYYY-MM-DD') })}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
+                                    </LocalizationProvider>
                                 </Grid>
                                 <Grid item xs={12} md={4}>
                                     <TextField

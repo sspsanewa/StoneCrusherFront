@@ -16,6 +16,7 @@ import Url from '../Config/Url';
 import axios from 'axios';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import Language from '../Config/Language'
+import ExpenseTabularReportTable from '../components/TableExpenseTabularReport';
 
 const ExpenseTabularReport = () => {
 
@@ -61,11 +62,11 @@ const ExpenseTabularReport = () => {
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
-                render ? setUserList(res.data.user_arr) : setUserList(res.data.user_arr);
+                setUserList(res)
             })
             .catch(err => console.error("Error fetching users:", err));
         // .then(err => console.log("eoeee", err))
-    }, [render, formattedStartDate, formattedEndDate])
+    }, [userList.length])
 
 
     const handleSearch = () => {
@@ -134,7 +135,7 @@ const ExpenseTabularReport = () => {
             {
                 (show && userList) &&
                 <Grid marginLeft={1.5} marginY={4} item xs={12}>
-                    <UserTabularReportTable userList={userList} />
+                    <ExpenseTabularReportTable userList={userList} />
                 </Grid>
             }
         </Box >

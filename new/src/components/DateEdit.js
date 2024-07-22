@@ -6,16 +6,23 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function DateEdit(props) {
-    const [selectedDate, setSelectedDate] = useState(dayjs());
+    console.log('initialDate prop', props.date)
+    let dateStr = props.date; // Example of a different format
+    let parts = dateStr.split("-");
+    let temp = `${parts[2]}-${parts[1]}-${parts[0]}`;
+    console.log('temp', temp); // Output: 2024-07-16
+
+    const [selectedDate, setSelectedDate] = useState(dayjs(temp));
 
     const handleDateChange = (date) => {
-        setSelectedDate(date);
+        props.setDate(date);
     };
-    const dayjsObject = dayjs(selectedDate); // Replace '2022-04-14' with your actual date string
+    const dayjsObject = dayjs(temp); // Replace '2022-04-14' with your actual date string
+    console.log('dayjsObject', dayjsObject); // Output: 2024-07-16
 
     const formattedDate = dayjsObject.format('YYYY-MM-DD'); // Change the format string as per your requirement
     props.setDate(formattedDate)
-    console.log(formattedDate);
+    console.log('two', selectedDate, formattedDate);
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer
@@ -28,7 +35,7 @@ export default function DateEdit(props) {
                 ]}
             >
                 <DemoItem>
-                    <DatePicker value={selectedDate} onChange={handleDateChange} />
+                    <DatePicker value={dayjsObject} onChange={handleDateChange} />
                 </DemoItem>
             </DemoContainer>
         </LocalizationProvider>

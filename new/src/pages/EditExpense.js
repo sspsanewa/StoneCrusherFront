@@ -1,21 +1,17 @@
-//Add detail
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import { Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, TextField, styled } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Grid, styled } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-// import "react-datepicker/dist/react-datepicker.css";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
-import Date from '../components/DateEdit';
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
-
+import DateEdit from '../components/DateEdit';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -27,7 +23,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function EditExpense() {
     const { id } = useParams();
-    const [expenseDate, setExpenseDate] = useState('');
     const [formData, setFormData] = useState({
         expenseType: '',
         expenseDescription: '',
@@ -36,103 +31,47 @@ export default function EditExpense() {
         expenseDate: ''
     });
 
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/v1/expense/${id}`)
+            .then(response => {
+                const res = response.data;
+                setFormData(res);
+            })
+            .catch(err => console.error("Error fetching expense data:", err));
+    }, [id]);
 
-    // if (formData.employeeSalary !== '') {
-    //     formData.employeeSalary = parseDouble(formData.employeeSalary);
-    // }
-    formData.expenseDate = expenseDate
-
-    //formData.amount = formData.cubicMeter * formData.rate
-    const handleChange = (e, index) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
-
         setFormData({
             ...formData,
             [name]: value
         });
-
     };
-    // const addMaterial = () => {
-    //     setFormData({
-    //         ...formData,
-    //         materials: [...formData.materials, { size: '', cubicMeter: '', rate: '', amount: '' }]
-    //     });
-    // };
-
-    // const removeMaterial = (index) => {
-    //     const newMaterials = [...formData.materials];
-    //     newMaterials.splice(index, 1);
-    //     setFormData({
-    //         ...formData,
-    //         materials: newMaterials
-    //     });
-    // };
-
-    // Calculate amount for each material and sum up to get totalAmount
-
-    React.useEffect(() => {
-        const params = { action: 'get_users', delete_flag: 0 };
-
-        axios.get(`http://localhost:8080/api/v1/expense/${id}`, { params })
-            .then(obj => {
-                const res = obj.data;
-                console.log("Users fetched successfully:", res);
-                setFormData(res)
-
-            })
-            .catch(err => console.error("Error fetching users:", err));
-        // .then(err => console.log("eoeee", err))
-    }, [])
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(formData);
-
-
-        // const totalMaterialAmount = formData.materials.reduce((total, material) => {
-        //     // Calculate amount for current material
-        //     const amountForMaterial = parseFloat(material.cubicMeter) * parseFloat(material.rate);
-        //     // Add the amount to the total
-        //     return total + amountForMaterial;
-        // }, 0);
-
-
-
-        // // Update the totalAmount in the formData
-        // const updatedFormData = {
-        //     ...formData,
-        //     totalAmount: totalMaterialAmount
-        // };
-
-        // Set the updated form data
-        // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/expense', formData)
             .then(res => {
-                navigate(`/${APP_PREFIX_PATH}/expenselist`)
+                navigate(`/${APP_PREFIX_PATH}/expenselist`);
             })
             .catch(err => {
-                console.log(err)
-            })
+                console.log(err);
+            });
     };
 
     const navigate = useNavigate();
-    console.log("formdata", formData)
+
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
-
             <Box marginBottom={2} gap={1} display={'flex'}>
-                <Button sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/dashboard`)}  >
+                <Button sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/dashboard`)}>
                     Dashboard
                 </Button>
-
-                <Typography marginTop={1.2} fontSize={20} >/</Typography>
-
+                <Typography marginTop={1.2} fontSize={20}>/</Typography>
                 <Typography sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Employee</Typography>
-                <Typography marginTop={1.2} fontSize={20} >/</Typography>
-
-                <Typography marginTop={1.2} fontSize={20} >Add Employee</Typography>
+                <Typography marginTop={1.2} fontSize={20}>/</Typography>
+                <Typography marginTop={1.2} fontSize={20}>Add Employee</Typography>
             </Box>
-
             <Box sx={{ flexGrow: 1, bgcolor: Constant.color[1], padding: '5px', borderRadius: '10px' }}>
                 <form onSubmit={handleSubmit}>
                     <Grid marginY={5} item xs={12} md={12} marginTop={2}>
@@ -148,7 +87,7 @@ export default function EditExpense() {
                                             id="demo-simple-select-autowidth"
                                             name='expenseType'
                                             value={formData.expenseType}
-                                            onChange={(e) => handleChange(e)} // Ensure to pass the event directly
+                                            onChange={handleChange}
                                             autoWidth
                                             label="Expense Type"
                                         >
@@ -158,10 +97,8 @@ export default function EditExpense() {
                                             <MenuItem value='Tambaku'>Tambaku</MenuItem>
                                             <MenuItem value='Nasta'>Nasta</MenuItem>
                                             <MenuItem value='Other'>Other</MenuItem>
-
                                         </Select>
                                     </FormControl>
-                                    {formData.expenseType === '' && <FormHelperText>This field is required.</FormHelperText>}
                                 </Grid>
                                 <Grid item xs={12} md={4}>
                                     <TextField
@@ -197,40 +134,26 @@ export default function EditExpense() {
                                         margin="normal"
                                     />
                                 </Grid>
-
                                 <Grid marginTop={1} item xs={12} md={4}>
-
-                                    <Date date={expenseDate} setDate={setExpenseDate} />
+                                    <LocalizationProvider dateAdapter={AdapterMoment}>
+                                        <DatePicker
+                                            label="Expense Date"
+                                            value={moment(formData.expenseDate)}
+                                            onChange={(newValue) => setFormData({ ...formData, expenseDate: newValue.format('YYYY-MM-DD') })}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
+                                    </LocalizationProvider>
                                 </Grid>
-                                {/* <Grid marginTop={2} item xs={12} md={4}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id={`size-${index}`}>Vehicle Type</InputLabel>
-                                        <Select
-                                            required
-                                            labelId={`size-${index}`}
-                                            id={`size-${index}`}
-                                            name='size'
-                                            value={material.size}
-                                            onChange={(e) => handleChange(e, index)}
-                                            label="size"
-                                        >
-                                            <MenuItem value='Labour'>Tractor</MenuItem>
-                                            <MenuItem value='Manager'>Trolly</MenuItem>
-                                            <MenuItem value='Driver'>Other</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                    {<FormHelperText>This field is required.</FormHelperText>}
-                                </Grid> */}
                             </Grid>
                         </Item>
                     </Grid>
-                    <Box marginY={5} display={'flex'} alignItems={'center'} justifyContent={'center'} >
+                    <Box marginY={5} display={'flex'} alignItems={'center'} justifyContent={'center'}>
                         <Button size='small' type="submit" variant="contained" color="primary">
                             Submit
                         </Button>
                     </Box>
                 </form>
-            </Box >
-        </Box >
+            </Box>
+        </Box>
     );
 }
