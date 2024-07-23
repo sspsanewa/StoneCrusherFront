@@ -15,7 +15,6 @@ import DeletedUserList from '../pages/DeletedUserList';
 import ViewClient from '../pages/ViewClient';
 import ViewDeleteUser from '../pages/ViewDeleteUser';
 import UserAnalyticalReport from '../pages/UserAnalyticalReport';
-import UserTabularReport from '../pages/UserTabularReport';
 
 import ResetPassword from '../pages/ResetPassword';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
@@ -181,7 +180,6 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/viewclient/:id`} element={<ViewClient language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/viewDeleteUser/:id`} element={<ViewDeleteUser language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/userAnalyticalReport`} element={<UserAnalyticalReport language={language} />} />
-                    <Route path={`/${APP_PREFIX_PATH}/userTabularReport`} element={<UserTabularReport language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/new`} element={<New language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/new1`} element={<New1 language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/subscription`} element={<Subscription language={language} />} />

@@ -6,7 +6,6 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import AddPhotoAlternate from '@mui/icons-material/AddPhotoAlternate';
 import { Helmet } from 'react-helmet';
 
-import UserTabularReportTable from '../components/TableUserTabularReport';
 import Constant from '../Config/Color'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -34,6 +33,7 @@ const ExpenseTabularReport = () => {
         setFromDate(date);
     };
     const handleToDateChange = (date) => {
+        setShow(false)
         setToDate(date);
     };
     Console("tabular", fromDate, toDate)
@@ -62,11 +62,11 @@ const ExpenseTabularReport = () => {
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
-                setUserList(res)
+                render ? setUserList(res) : setUserList(res);
             })
             .catch(err => console.error("Error fetching users:", err));
         // .then(err => console.log("eoeee", err))
-    }, [userList.length])
+    }, [render, formattedStartDate, formattedEndDate])
 
 
     const handleSearch = () => {

@@ -6,7 +6,6 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import AddPhotoAlternate from '@mui/icons-material/AddPhotoAlternate';
 import { Helmet } from 'react-helmet';
 
-import UserTabularReportTable from '../components/TableUserTabularReport';
 import Constant from '../Config/Color'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -16,6 +15,8 @@ import Url from '../Config/Url';
 import axios from 'axios';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import Language from '../Config/Language'
+import ExpenseTabularReportTable from '../components/TableExpenseTabularReport';
+import ClientTabularReportTable from '../components/TableClientTabularReport';
 
 const ClientTabularReport = () => {
 
@@ -33,6 +34,7 @@ const ClientTabularReport = () => {
         setFromDate(date);
     };
     const handleToDateChange = (date) => {
+        setShow(false)
         setToDate(date);
     };
     Console("tabular", fromDate, toDate)
@@ -61,7 +63,7 @@ const ClientTabularReport = () => {
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
-                render ? setUserList(res.data.user_arr) : setUserList(res.data.user_arr);
+                render ? setUserList(res) : setUserList(res);
             })
             .catch(err => console.error("Error fetching users:", err));
         // .then(err => console.log("eoeee", err))
@@ -82,9 +84,8 @@ const ClientTabularReport = () => {
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
             <Helmet>
-                <title>{Language.APP_NAME} | Client Tabular Report</title>
+                <title>{Language.APP_NAME} |  Client Tabular Report</title>
             </Helmet>
-
             <Box display={'flex'} justifyContent={'space-between'}>
                 <Box marginBottom={2} gap={1} display={'flex'}>
                     <Button sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/dashboard`)}  >
@@ -92,7 +93,7 @@ const ClientTabularReport = () => {
                     </Button>
                     <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                    <Typography marginTop={1.2} fontSize={20} >Client Tabular Report</Typography>
+                    <Typography marginTop={1.2} fontSize={20} >Expense Tabular Report</Typography>
                 </Box>
                 {show1 &&
                     <Alert sx={{ bgcolor: '#ffffff', marginBottom: '5px' }} variant="outlined" severity="error">
@@ -135,7 +136,7 @@ const ClientTabularReport = () => {
             {
                 (show && userList) &&
                 <Grid marginLeft={1.5} marginY={4} item xs={12}>
-                    <UserTabularReportTable userList={userList} />
+                    <ClientTabularReportTable userList={userList} />
                 </Grid>
             }
         </Box >

@@ -125,7 +125,6 @@ function stableSort(setSearch, array, comparator) {
 
 const headCells = [
     { id: 'sno', numeric: false, label: 'S.NO.', minWidth: 100 },
-    { id: 'action', numeric: false, label: 'Action', minWidth: 100 },
     { id: 'name', numeric: false, label: 'Name', minWidth: 100 },
     { id: 'village', numeric: false, label: 'Village', minWidth: 100 },
     // { id: 'email', numeric: false, label: 'Email', minWidth: 100 },
@@ -139,6 +138,7 @@ const headCells = [
     },
 
 ];
+
 
 
 function EnhancedTableHead(props) {
@@ -219,7 +219,7 @@ const SearchInput = ({ onSearch }) => {
     );
 };
 
-export default function UserTabularReportTable(props) {
+export default function ClientTabularReportTable(props) {
     const [userList, setUserList] = useState(props.userList)
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
@@ -351,7 +351,7 @@ export default function UserTabularReportTable(props) {
                                         sx={{ cursor: 'pointer' }}
 
                                     >
-                                        <TableCell align="left">{row.s_no}</TableCell>
+                                        <TableCell align="left">{index + 1 + page * rowsPerPage}</TableCell>
 
 
                                         <TableCell
@@ -360,26 +360,24 @@ export default function UserTabularReportTable(props) {
                                             scope="row"
                                             align="left"
                                         >
-                                            {/* {(row.f_name + ' ' + row.l_name) ? (row.f_name + ' ' + row.l_name) : "NA"}
+                                            {(row.firstName + ' ' + row.lastName) ? (row.firstName + ' ' + row.lastName) : "NA"}
                                         </TableCell>
-                                        <TableCell align="left">
+                                        {/* <TableCell align="left">
 
-                                            <Avatar src={`${IMAGE_PATH}` + row.image} alt={row.name && row.name.charAt(0).toUpperCase()} /> */}
+                                            <Avatar src={`${IMAGE_PATH}` + row.image} alt={row.name && row.name.charAt(0).toUpperCase()} />
 
-                                        </TableCell>
-                                        <TableCell align="left">{row.name ? row.email : 'NA'}</TableCell>
+                                        </TableCell> */}
+                                        <TableCell align="left">{row.village ? row.village : 'NA'}</TableCell>
 
-                                        <TableCell align="left">{row.village ? row.mobile : 'NA'}</TableCell>
+
+
                                         <TableCell align="left">{row.mobile ? row.mobile : 'NA'}</TableCell>
-
-                                        <TableCell align="left">{row.date ? row.mobile : 'NA'}</TableCell>
-
                                         {/* <TableCell align="left">
                                             {row.active_flag === 1 ? <Typography variant='outlined' size='small' style={{ height: '25px', color: '#00c853' }} >Active</Typography> : <Typography variant='outlined' size='small' style={{
                                                 height: '25px', color: '#f44336'
                                             }} >Deactive</Typography>}
-                                        </TableCell>
-                                        <TableCell align="left">{row.createtime}</TableCell> */}
+                                        </TableCell> */}
+                                        <TableCell align="left">{row.date}</TableCell>
 
                                     </TableRow>
                                 );
