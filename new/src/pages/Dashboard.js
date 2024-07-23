@@ -28,15 +28,16 @@ const Item = styled(Paper)(({ theme }) => ({
 const Dashboard = () => {
     const [data, setData] = useState([])
     const [expenseAmount, setExpenseAmount] = useState([])
+    const [all, setAll] = useState([])
 
     React.useEffect(() => {
         // const params = { action: 'get_dashboard_data' };
-        axios.get(`${Url}/api/v1/report/today`)
-            .then(res => {
-                setData(res.data)
-                console.log(data);
-            })
-            .catch(err => console.log("eroor", err))
+        // axios.get(`${Url}/api/v1/report/today`)
+        //     .then(res => {
+        //         setData(res.data)
+        //         console.log(data);
+        //     })
+        //     .catch(err => console.log("eroor", err))
 
         axios.get(`${Url}/api/v1/expense/today`)
             .then(res => {
@@ -45,6 +46,13 @@ const Dashboard = () => {
             })
             .catch(err => console.log("eroor", err))
 
+
+        axios.get(`${Url}/api/v1/report/all`)
+            .then(res => {
+                setAll(res.data)
+                console.log('all data dashboard', res.data);
+            })
+            .catch(err => console.log("eroor", err))
         // axios.get(`${Url}/common_controller/dashboard_data`, { params })
         //     .then(res => {
         //         setData(res.data.data)

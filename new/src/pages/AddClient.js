@@ -90,6 +90,8 @@ export default function AddClient() {
     }
     formData.date = date
 
+
+
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
         const { name, value } = e.target;
@@ -128,7 +130,19 @@ export default function AddClient() {
 
     // Calculate amount for each material and sum up to get totalAmount
 
+    console.log('sdf', formData.materials.amount, formData.cgstAmount)
+    let finalAmount = 0
+    formData.materials.map((material, index) => {
+        finalAmount = parseInt(finalAmount) + parseInt(material.amount)
+    })
 
+
+
+    formData.totalAmount = parseInt(finalAmount) + parseInt(formData.cgstAmount) + parseInt(formData.sgstAmount) + parseInt(formData.royaltiAmount) - parseInt(formData.discount)
+
+    formData.remainingAmount = parseInt(formData.totalAmount) - parseInt(formData.depositeAmount)
+
+    // formData.depositeAmount = parseInt(formData.totalAmount) - parseInt(formData.remainingAmount)
 
     const handleSubmit = (event) => {
         event.preventDefault();
