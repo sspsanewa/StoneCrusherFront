@@ -7,6 +7,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
+import profile from '../assets/profile.jpg'
 import Constant from '../Config/Color'
 import Console from '../debug_log';
 import Url from '../Config/Url';
@@ -86,7 +87,7 @@ const Navbar = (props) => {
                     <MenuIcon fontSize='large' sx={{ color: '#ffffff', marginTop: '10px' }} />
                 </IconButton>
                 <Box onClick={handleOpenUserMenu} marginTop={1} display={'flex'} alignItems={'center'}>
-                    <img style={{ borderRadius: '100%' }} width={40} src={`${IMAGE_PATH}` + image} alt='logo' />
+                    <img style={{ borderRadius: '100%' }} width={50} height={50} src={profile} alt='logo' />
                     <Typography color={'#ffffff'} marginLeft={1} fontSize={18}>
                         {name}
                     </Typography>

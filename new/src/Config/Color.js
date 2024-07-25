@@ -1,7 +1,7 @@
 
 
 const Color = {
-    color: ['#5DC89A', '#cfd8dc'],
+    color: ['#FF7D29', '#cfd8dc'],
 }
 
 export default Color

@@ -12,6 +12,7 @@ import moment from 'moment';
 import Constant from '../Config/Color';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import DateEdit from '../components/DateEdit';
+import Swal from 'sweetalert2';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -52,12 +53,20 @@ export default function EditExpense() {
         event.preventDefault();
         axios.post('http://localhost:8080/api/v1/expense', formData)
             .then(res => {
-                navigate(`/${APP_PREFIX_PATH}/expenselist`);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Expense updated successfully.',
+                    icon: 'success',
+                    timer: 3000,
+                    showConfirmButton: false
+                }).then(() => {
+                });
             })
             .catch(err => {
                 console.log(err);
             });
     };
+
 
     const navigate = useNavigate();
 
