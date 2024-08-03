@@ -16,6 +16,7 @@ import Date from '../components/DateAdd';
 import Constant from '../Config/Color'
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 
+import Swal from 'sweetalert2';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -151,7 +152,16 @@ export default function AddClient() {
 
         axios.post('http://localhost:8080/api/v1/client', formData)
             .then(res => {
-                navigate(`/${APP_PREFIX_PATH}/clientlist`)
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Expense added successfully.',
+                    icon: 'success',
+                    timer: 3000,
+                    showConfirmButton: false
+                })
+                    .then(res => {
+                        navigate(`/${APP_PREFIX_PATH}/clientlist`)
+                    })
             })
             .catch(err => {
                 console.log(err)

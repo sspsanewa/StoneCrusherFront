@@ -68,13 +68,14 @@ function ActionUserList(props) {
                             Edit
                         </Button>
                     </Box>
-                    <Box onClick={() => navigate(`/${APP_PREFIX_PATH}/bill`)} paddingX={2} display={'flex'} alignItems={'center'} gap={1} sx={{ '&:hover': { backgroundColor: 'lightgray' } }}>
-                        {props.editIcon}
-                        <Button color="primary" >
-                            Generate Bill
-                        </Button>
-                    </Box>
-
+                    {props.bill === 'yes' &&
+                        <Box onClick={() => navigate(`/${APP_PREFIX_PATH}/bill`)} paddingX={2} display={'flex'} alignItems={'center'} gap={1} sx={{ '&:hover': { backgroundColor: 'lightgray' } }}>
+                            {props.editIcon}
+                            <Button color="primary" >
+                                Generate Bill
+                            </Button>
+                        </Box>
+                    }
                     {/*
                     <Box paddingX={2} display={'flex'} alignItems={'center'} gap={1} sx={{ '&:hover': { backgroundColor: 'lightgray' } }}>
                         {props.replyIcon}

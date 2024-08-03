@@ -16,6 +16,7 @@ import Date from '../components/DateEdit';
 import Constant from '../Config/Color'
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import DateEdit from '../components/DateEdit';
+import Swal from 'sweetalert2';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -118,6 +119,7 @@ export default function EditClient() {
         const params = { action: 'get_users', delete_flag: 0 };
 
         axios.get(`http://localhost:8080/api/v1/client/${id}`, { params })
+
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
@@ -134,7 +136,16 @@ export default function EditClient() {
 
         axios.post(`http://localhost:8080/api/v1/client`, formData)
             .then(res => {
-                navigate(`/${APP_PREFIX_PATH}/clientlist`)
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Client updated successfully.',
+                    icon: 'success',
+                    timer: 3000,
+                    showConfirmButton: false
+                })
+                    .then(res => {
+                        navigate(`/${APP_PREFIX_PATH}/clientlist`)
+                    })
             })
             .catch(err => {
                 console.log(err)

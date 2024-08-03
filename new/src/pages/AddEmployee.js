@@ -15,6 +15,7 @@ import moment from 'moment';
 import Date from '../components/DateAdd';
 import Constant from '../Config/Color'
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
+import Swal from 'sweetalert2';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -115,7 +116,16 @@ export default function AddEmployee() {
         // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/employee', formData)
             .then(res => {
-                navigate(`/${APP_PREFIX_PATH}/employeelist`)
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Expense added successfully.',
+                    icon: 'success',
+                    timer: 3000,
+                    showConfirmButton: false
+                })
+                    .then(res => {
+                        navigate(`/${APP_PREFIX_PATH}/employeelist`)
+                    })
             })
             .catch(err => {
                 console.log(err)
@@ -134,7 +144,7 @@ export default function AddEmployee() {
 
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Typography sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Employee</Typography>
+                <Typography marginTop={1} sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Employee</Typography>
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
                 <Typography marginTop={1.2} fontSize={20} >Add Employee</Typography>

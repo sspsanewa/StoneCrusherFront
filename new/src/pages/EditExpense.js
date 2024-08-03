@@ -60,6 +60,7 @@ export default function EditExpense() {
                     timer: 3000,
                     showConfirmButton: false
                 }).then(() => {
+                    navigate(`/${APP_PREFIX_PATH}/expenselist`)
                 });
             })
             .catch(err => {
@@ -77,15 +78,15 @@ export default function EditExpense() {
                     Dashboard
                 </Button>
                 <Typography marginTop={1.2} fontSize={20}>/</Typography>
-                <Typography sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Employee</Typography>
+                <Typography marginTop={1} sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/expenselist`)}>Expense</Typography>
                 <Typography marginTop={1.2} fontSize={20}>/</Typography>
-                <Typography marginTop={1.2} fontSize={20}>Add Employee</Typography>
+                <Typography marginTop={1.2} fontSize={20}>Edit Expense</Typography>
             </Box>
             <Box sx={{ flexGrow: 1, bgcolor: Constant.color[1], padding: '5px', borderRadius: '10px' }}>
                 <form onSubmit={handleSubmit}>
                     <Grid marginY={5} item xs={12} md={12} marginTop={2}>
                         <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Employee Information</b></Typography>
+                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Expense Information</b></Typography>
                             <Grid padding={1} item md={12} display={'flex'} container spacing={2}>
                                 <Grid marginTop={2} item xs={12} md={4}>
                                     <FormControl fullWidth>

@@ -101,7 +101,7 @@ export default function ViewEmployee() {
             <Box sx={{ flexGrow: 1, bgcolor: Constant.color[1], padding: '5px', borderRadius: '10px' }}>
                 <Grid marginY={5} item xs={12} md={12} marginTop={2}>
                     <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-                        <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Client Information</b></Typography>
+                        <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Employee Information</b></Typography>
                         <Grid padding={1} item md={12} display={'flex'} container spacing={2}>
                             <Grid item xs={12} md={4}>
                                 <TextField

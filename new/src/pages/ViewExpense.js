@@ -55,15 +55,15 @@ export default function ViewExpense() {
 
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Typography marginTop={1} sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/expenselist`)}>Manage Clients List</Typography>
+                <Typography marginTop={1} sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/expenselist`)}>Manage Expenses List</Typography>
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Typography marginTop={1.2} fontSize={20} >View Client</Typography>
+                <Typography marginTop={1.2} fontSize={20} >View Expense</Typography>
             </Box>
             <Box sx={{ flexGrow: 1, bgcolor: Constant.color[1], padding: '5px', borderRadius: '10px' }}>
                 <Grid marginY={5} item xs={12} md={12} marginTop={2}>
                     <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-                        <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Client Information</b></Typography>
+                        <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Expense Information</b></Typography>
                         <Grid padding={1} item md={12} display={'flex'} container spacing={2}>
                             <Grid item xs={12} md={4}>
                                 <TextField

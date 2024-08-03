@@ -150,7 +150,7 @@ function EnhancedTableToolbar(props) {
     const { numSelected } = props;
 
     return (
-        <Typography marginBottom={4} fontSize={18} color={'gray'}>Users List</Typography>
+        <Typography marginBottom={4} fontSize={18} color={'gray'}>Expenses List</Typography>
     );
 }
 
@@ -333,8 +333,8 @@ export default function ExpenseList() {
 
             </Box>
             <Box marginBottom={2} display={'flex'} justifyContent={'right'}>
-                <Box onClick={() => navigate(`/${APP_PREFIX_PATH}/addVehicle`)}>
-                    <New name='Add Employee' />
+                <Box onClick={() => navigate(`/${APP_PREFIX_PATH}/addExpense`)}>
+                    <New name='Add Expense' />
                     {/* <PopupAddPlan setMessage={setMessage} button='Add Subscription' message='Updated Successfully' path='/categories' setShow3={setShow3} setShow={setShow2} render={render} setRender={setRender} /> */}
                 </Box>
             </Box>

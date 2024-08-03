@@ -15,6 +15,7 @@ import moment from 'moment';
 import Date from '../components/DateAdd';
 import Constant from '../Config/Color'
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
+import Swal from 'sweetalert2';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -25,7 +26,7 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export default function AddVehical() {
+export default function AddVehicle() {
     const [date, setDate] = useState('')
     const [formData, setFormData] = useState({
         vehicleName: '',
@@ -69,7 +70,16 @@ export default function AddVehical() {
         // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/vehicle', formData)
             .then(res => {
-                navigate(`/${APP_PREFIX_PATH}/vehiclelist`)
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Expense added successfully.',
+                    icon: 'success',
+                    timer: 3000,
+                    showConfirmButton: false
+                })
+                    .then(res => {
+                        navigate(`/${APP_PREFIX_PATH}/vehiclelist`)
+                    })
             })
             .catch(err => {
                 console.log(err)
@@ -88,22 +98,22 @@ export default function AddVehical() {
 
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Typography sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Vehical</Typography>
+                <Typography marginTop={1} sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Vehicle</Typography>
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Typography marginTop={1.2} fontSize={20} >Add Vehical</Typography>
+                <Typography marginTop={1.2} fontSize={20} >Add Vehicle</Typography>
             </Box>
 
             <Box sx={{ flexGrow: 1, bgcolor: Constant.color[1], padding: '5px', borderRadius: '10px' }}>
                 <form onSubmit={handleSubmit}>
                     <Grid marginY={5} item xs={12} md={12} marginTop={2}>
                         <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Vehical Information</b></Typography>
+                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Vehicle Information</b></Typography>
                             <Grid padding={1} item md={12} display={'flex'} container spacing={2}>
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Vehical Name"
+                                        label="Vehicle Name"
                                         variant="outlined"
                                         name='vehicleName'
                                         value={formData.vehicleName}

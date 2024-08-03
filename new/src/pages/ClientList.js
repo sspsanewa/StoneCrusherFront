@@ -382,7 +382,7 @@ export default function ClientList() {
                                     >
                                         <TableCell align="left">{index + 1 + page * rowsPerPage}</TableCell>
                                         <TableCell>
-                                            <ActionUserList render={render} setRender={setRender} view='View' viewPath={`/${APP_PREFIX_PATH}/viewclient/`} id={row.id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} statusValue={row.active_flag} status={row.active_flag === 1 ? 'Deactive' : 'Active'} url1='user_controller/active_deactive_status' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} delete='Delete' url='api/v1/client' delete_flag='0' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} setShow={setShow} setShow1={setShow1} editUrl='editclient' editIcon={<Edit sx={{ color: Constant.color[0] }} />} edit='Edit' />
+                                            <ActionUserList bill='yes' render={render} setRender={setRender} view='View' viewPath={`/${APP_PREFIX_PATH}/viewclient/`} id={row.id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} statusValue={row.active_flag} status={row.active_flag === 1 ? 'Deactive' : 'Active'} url1='user_controller/active_deactive_status' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} delete='Delete' url='api/v1/client' delete_flag='0' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} setShow={setShow} setShow1={setShow1} editUrl='editclient' editIcon={<Edit sx={{ color: Constant.color[0] }} />} edit='Edit' />
                                         </TableCell>
 
                                         <TableCell

@@ -149,7 +149,7 @@ function EnhancedTableToolbar(props) {
     const { numSelected } = props;
 
     return (
-        <Typography marginBottom={4} fontSize={18} color={'gray'}>Users List</Typography>
+        <Typography marginBottom={4} fontSize={18} color={'gray'}>Vehicles List</Typography>
     );
 }
 
@@ -317,7 +317,7 @@ export default function VehicleList() {
 
                     <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                    <Typography marginTop={1.2} fontSize={20} >Manage Employees List</Typography>
+                    <Typography marginTop={1.2} fontSize={20} >Manage Vehicles List</Typography>
                 </Box>
                 {show &&
                     <Alert sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', bgcolor: '#ffffff', zIndex: 10, marginBottom: '5px', position: 'fixed', top: '48%', left: '45%' }} variant="outlined" severity="success">
@@ -333,7 +333,7 @@ export default function VehicleList() {
             </Box>
             <Box marginBottom={2} display={'flex'} justifyContent={'right'}>
                 <Box onClick={() => navigate(`/${APP_PREFIX_PATH}/addVehicle`)}>
-                    <New name='Add Employee' />
+                    <New name='Add Vehicle' />
                     {/* <PopupAddPlan setMessage={setMessage} button='Add Subscription' message='Updated Successfully' path='/categories' setShow3={setShow3} setShow={setShow2} render={render} setRender={setRender} /> */}
                 </Box>
             </Box>

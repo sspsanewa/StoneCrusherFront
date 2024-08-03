@@ -15,6 +15,7 @@ import moment from 'moment';
 import Date from '../components/DateAdd';
 import Constant from '../Config/Color'
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
+import Swal from 'sweetalert2';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -109,7 +110,16 @@ export default function AddExpense() {
         // setFormData(updatedFormData);
         axios.post('http://localhost:8080/api/v1/expense', formData)
             .then(res => {
-                navigate(`/${APP_PREFIX_PATH}/expenselist`)
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Expense added successfully.',
+                    icon: 'success',
+                    timer: 3000,
+                    showConfirmButton: false
+                })
+                    .then(res => {
+                        navigate(`/${APP_PREFIX_PATH}/expenselist`)
+                    })
             })
             .catch(err => {
                 console.log(err)
@@ -128,7 +138,7 @@ export default function AddExpense() {
 
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Typography sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Employee</Typography>
+                <Typography marginTop={1} sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/clientlist`)}>Expense</Typography>
                 <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
                 <Typography marginTop={1.2} fontSize={20} >Add Expense</Typography>
@@ -138,7 +148,7 @@ export default function AddExpense() {
                 <form onSubmit={handleSubmit}>
                     <Grid marginY={5} item xs={12} md={12} marginTop={2}>
                         <Item sx={{ borderRadius: '10px', margin: '30px' }}>
-                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Employee Information</b></Typography>
+                            <Typography style={{ fontFamily: 'Roboto', fontWeight: 100 }} fontSize={20}><b>Expense Information</b></Typography>
                             <Grid padding={1} item md={12} display={'flex'} container spacing={2}>
                                 <Grid marginTop={2} item xs={12} md={4}>
                                     <FormControl fullWidth>

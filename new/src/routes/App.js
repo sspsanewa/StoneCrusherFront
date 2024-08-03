@@ -23,7 +23,6 @@ import MuiDrawer from '@mui/material/Drawer';
 import Url from '../Config/Url';
 import axios from 'axios';
 import New from '../pages/New';
-import New1 from '../pages/New1';
 import Subscription from '../pages/Subscription';
 import Car from '../pages/Car';
 import ClientList from '../pages/ClientList';
@@ -181,7 +180,6 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/viewDeleteUser/:id`} element={<ViewDeleteUser language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/userAnalyticalReport`} element={<UserAnalyticalReport language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/new`} element={<New language={language} />} />
-                    <Route path={`/${APP_PREFIX_PATH}/new1`} element={<New1 language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/subscription`} element={<Subscription language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/addclient`} element={<AddClient language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/editclient/:id`} element={<EditClient language={language} />} />
