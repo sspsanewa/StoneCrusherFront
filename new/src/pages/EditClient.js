@@ -545,17 +545,18 @@ export default function EditClient() {
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Total Amount"
+                                        label="Deposite Amount"
                                         variant="outlined"
-                                        name='totalAmount'
+                                        name='depositeAmount'
                                         type='number'
-                                        value={formData.totalAmount}
+                                        value={formData.depositeAmount}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
                                     />
 
                                 </Grid>
+
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
@@ -568,6 +569,54 @@ export default function EditClient() {
                                         fullWidth
                                         margin="normal"
                                     />
+
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <TextField
+                                        required
+                                        label="Remaining Amount"
+                                        variant="outlined"
+                                        name='remainingAmount'
+                                        type='number'
+                                        value={formData.remainingAmount}
+                                        onChange={handleChange}
+                                        fullWidth
+                                        margin="normal"
+                                    />
+
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <TextField
+                                        required
+                                        label="Total Amount"
+                                        variant="outlined"
+                                        name='totalAmount'
+                                        type='number'
+                                        value={formData.totalAmount}
+                                        onChange={handleChange}
+                                        fullWidth
+                                        margin="normal"
+                                    />
+
+                                </Grid>
+                                <Grid marginTop={2} item xs={12} md={4}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="pay">Payment Status</InputLabel>
+                                        <Select
+                                            required
+                                            labelId="Payment Status"
+                                            id="paymentStatus"
+                                            name='paymentStatus'
+                                            value={formData.paymentStatus}
+                                            onChange={(e) => handleChange(e)} autoWidth
+                                            label="Payment"
+                                        >
+
+                                            <MenuItem value={'OPEN'}>Open</MenuItem>
+                                            <MenuItem value={'CLOSED'}>Closed</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                    {formData.paymentStatus === '' && <FormHelperText>This field is required.</FormHelperText>}
 
                                 </Grid>
                             </Grid>
