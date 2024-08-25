@@ -16,6 +16,7 @@ import Language from '../Config/Language'
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
+import DashboardClientList from './DashboardClientList';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -74,6 +75,7 @@ const Dashboard = () => {
                             <Card nav={`/${APP_PREFIX_PATH}/todayexpenselist`} title="Today Expense" users={expenseAmount} icon={<GroupsIcon sx={{ fontSize: '2rem' }} />} />
                         </Item>
                     </Grid>
+                    <DashboardClientList />
                     {/* <Grid item xs={12} md={4}>
                         <Item>
                             <Card nav={`/${APP_PREFIX_PATH}/Triplist`} title="Total Trips" users={data.musas} icon={<DirectionsCarFilledIcon sx={{ fontSize: '2rem' }} />} />

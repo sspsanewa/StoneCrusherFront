@@ -11,6 +11,7 @@ import Console from '../debug_log';
 import PopupReply from './PopupReply';
 import New from '../pages/New';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
+import SubmitAmount from './SubmitAmount';
 
 function ActionUserList(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -58,6 +59,11 @@ function ActionUserList(props) {
                         {props.deleteIcon}
                         <PopupDelete render={props.render} setRender={props.setRender} setAnchorEl={setAnchorEl} delete_flag={props.delete_flag} button={props.delete} id={props.id} url={props.url} setShow={props.setShow} />
                     </Box>
+                    <Box paddingX={2} display={'flex'} alignItems={'center'} gap={1} sx={{ '&:hover': { backgroundColor: 'lightgray' } }}>
+                        {props.deleteIcon}
+                        <SubmitAmount id={props.id} setAnchorEl={setAnchorEl} />
+                    </Box>
+
                     {/* <Box paddingX={2} display={'flex'} alignItems={'center'} gap={1} sx={{ '&:hover': { backgroundColor: 'lightgray' } }}>
                         {props.statusIcon}
                         <PopupStatus render={props.render} setRender={props.setRender} setAnchorEl={setAnchorEl} button={props.status} message={`${props.status} Successfully`} id={props.id} url={props.url1} setShow1={props.setShow1} statusValue={props.statusValue} />

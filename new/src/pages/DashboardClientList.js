@@ -183,7 +183,7 @@ const SearchInput = ({ onSearch }) => {
     );
 };
 
-export default function ClientList() {
+export default function DashboardClientList() {
 
     const [render, setRender] = useState(false)
     const [userList, setUserList] = useState([])
@@ -282,11 +282,11 @@ export default function ClientList() {
 
 
     React.useEffect(() => {
-        const params = { action: 'get_all_users', delete_flag: 0 };
+        const params = { action: 'get_all_user' };
         Console("users")
 
 
-        axios.get(`${Url}/api/v1/client`, { params })
+        axios.get(`${Url}/api/v1/client/dashboard/list`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
@@ -311,38 +311,9 @@ export default function ClientList() {
     // }
 
     return (
-        <Box paddingY={4} paddingX={8} marginBottom={10} >
-            <Helmet>
-                <title>{Language.APP_NAME} | Manage Users | Users List</title>
-            </Helmet>
-            <Box display={'flex'} justifyContent={'space-between'}>
-                <Box marginBottom={2} gap={1} display={'flex'}>
-                    <Button sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/dashboard`)}  >
-                        Dashboard
-                    </Button>
+        <Box paddingY={4} paddingLeft={2} marginBottom={10} >
 
-                    <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                    <Typography marginTop={1.2} fontSize={20} >Manage Clients List</Typography>
-                </Box>
-                {show &&
-                    <Alert sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', bgcolor: '#ffffff', zIndex: 10, marginBottom: '5px', position: 'fixed', top: '48%', left: '45%' }} variant="outlined" severity="success">
-                        Client deleted successfully
-                    </Alert>
-                }
-                {show1 &&
-                    <Alert sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', bgcolor: '#ffffff', zIndex: 10, marginBottom: '5px', position: 'fixed', top: '48%', left: '45%' }} variant="outlined" severity="success">
-                        Status updated successfully
-                    </Alert>
-                }
-
-            </Box>
-            <Box marginBottom={2} display={'flex'} justifyContent={'right'}>
-                <Box onClick={() => navigate(`/${APP_PREFIX_PATH}/addclient`)}>
-                    <New name='Add Client' />
-                    {/* <PopupAddPlan setMessage={setMessage} button='Add Subscription' message='Updated Successfully' path='/categories' setShow3={setShow3} setShow={setShow2} render={render} setRender={setRender} /> */}
-                </Box>
-            </Box>
             <Paper sx={{ borderRadius: '10px', padding: '20px', bgcolor: Constant.color[1] }}>
 
                 <Box display={'flex'} justifyContent={'space-between'}>

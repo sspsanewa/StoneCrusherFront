@@ -39,6 +39,7 @@ export default function ViewClient() {
         royaltiAmount: '',
         fermName: '',
         paymentMode: '',
+        paymentStatus: '',
         amountCollectedBy: '',
         discount: '',
         totalAmount: '',
@@ -600,21 +601,21 @@ export default function ViewClient() {
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     required
-                                    label="Total Amount"
+                                    label="Deposite Amount"
                                     variant="filled"
-                                    name='totalAmount'
+                                    name='depositeAmount'
                                     type='number'
-                                    value={formData.totalAmount}
-                                    // onChange={handleChange}
+                                    value={formData.depositeAmount}
+                                    onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                     InputProps={{
                                         readOnly: true,
                                     }}
-
                                 />
 
                             </Grid>
+
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     required
@@ -623,16 +624,72 @@ export default function ViewClient() {
                                     name='discount'
                                     type='number'
                                     value={formData.discount}
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     fullWidth
                                     margin="normal"
                                     InputProps={{
                                         readOnly: true,
                                     }}
-
                                 />
 
                             </Grid>
+                            <Grid item xs={12} md={4}>
+                                <TextField
+                                    required
+                                    label="Remaining Amount"
+                                    variant="filled"
+                                    name='remainingAmount'
+                                    type='number'
+                                    value={formData.remainingAmount}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                />
+
+                            </Grid>
+                            <Grid item xs={12} md={4}>
+                                <TextField
+                                    required
+                                    label="Total Amount"
+                                    variant="filled"
+                                    name='totalAmount'
+                                    type='number'
+                                    value={formData.totalAmount}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                />
+
+                            </Grid>
+                            <Grid marginTop={2} item xs={12} md={4}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="pay">Payment Status</InputLabel>
+                                    <Select
+                                        required
+                                        labelId="Payment Status"
+                                        id="paymentStatus"
+                                        name='paymentStatus'
+                                        value={formData.paymentStatus}
+                                        onChange={(e) => handleChange(e)} autoWidth
+                                        label="Payment"
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                    >
+
+                                        <MenuItem value={'OPEN'}>Open</MenuItem>
+                                        <MenuItem value={'CLOSED'}>Closed</MenuItem>
+                                    </Select>
+                                </FormControl>
+                                {formData.paymentStatus === '' && <FormHelperText>This field is required.</FormHelperText>}
+
+                            </Grid>s
                         </Grid>
                     </Item>
 

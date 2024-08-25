@@ -44,6 +44,7 @@ export default function EditClient() {
         royaltiAmount: 0,
         fermName: '',
         paymentMode: '',
+        paymentStatus: '',
         amountCollectedBy: '',
         discount: '',
         depositeAmount: '',
@@ -129,6 +130,18 @@ export default function EditClient() {
             .catch(err => console.error("Error fetching users:", err));
         // .then(err => console.log("eoeee", err))
     }, [])
+
+
+    let finalAmount = 0
+    formData.materials.map((material, index) => {
+        finalAmount = parseInt(finalAmount) + parseInt(material.amount)
+    })
+
+
+
+    formData.totalAmount = parseInt(finalAmount) + parseInt(formData.cgstAmount) + parseInt(formData.sgstAmount) + parseInt(formData.royaltiAmount) - parseInt(formData.discount)
+
+    formData.remainingAmount = parseInt(formData.totalAmount) - parseInt(formData.depositeAmount)
 
     const handleSubmit = (event) => {
         event.preventDefault();
