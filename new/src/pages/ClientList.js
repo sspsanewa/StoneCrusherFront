@@ -94,12 +94,13 @@ const headCells = [
     // { id: 'email', numeric: false, label: 'Email', minWidth: 100 },
 
     { id: 'mobile', numeric: false, label: 'Mobile', minWidth: 100 },
+    { id: 'totalAmount', numeric: false, label: 'Total Amount', minWidth: 100 },
 
     // { id: 'status', numeric: false, label: 'Status', minWidth: 100 },
     { id: 'paymentStatus', numeric: false, label: 'Payment Status', minWidth: 100 },
 
     {
-        id: 'date', numeric: false, label: 'Create Date & Time', minWidth: 100
+        id: 'date', numeric: false, label: 'Date', minWidth: 100
     },
 
 ];
@@ -409,6 +410,8 @@ export default function ClientList() {
                                                 height: '25px', color: '#f44336'
                                             }} >Deactive</Typography>}
                                         </TableCell> */}
+                                        <TableCell align="left">{row.totalAmount}</TableCell>
+
                                         <TableCell align="left">{row.paymentStatus}</TableCell>
 
                                         <TableCell align="left">{row.date}</TableCell>

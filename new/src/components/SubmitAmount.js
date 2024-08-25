@@ -27,15 +27,33 @@ const SubmitAmount = (props) => {
         if (amount) {
             // Handle the submitted amount here
             console.log('Submitted amount:', amount);
-            axios.post(`http://localhost:8080/api/v1/client/submit/amount/${props.id}`, amount)
+            axios.post(`http://localhost:8080/api/v1/client/submit/amount/${props.id}`, { 'amount': amount })
                 .then(res => {
-                    navigate(`/${APP_PREFIX_PATH}/clientlist`)
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Expense added successfully.',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    })
+                        .then(res => {
+                            navigate(`/${APP_PREFIX_PATH}/clientlist`)
+                        })
                 })
                 .catch(err => {
-                    console.log(err)
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Amount not added successfully.',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    })
                 })
         }
     };
+
+
+
 
 
 
