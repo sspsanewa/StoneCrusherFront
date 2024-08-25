@@ -27,7 +27,7 @@ const SubmitAmount = (props) => {
         if (amount) {
             // Handle the submitted amount here
             console.log('Submitted amount:', amount);
-            axios.post(`http://localhost:8080/api/v1/client/submit/amount/${props.id}`, { 'amount': amount })
+            axios.post(`http://localhost:8080/api/v1/client/submit/amount/${props.id}`, { 'submitAmount': amount })
                 .then(res => {
                     Swal.fire({
                         title: 'Success!',
