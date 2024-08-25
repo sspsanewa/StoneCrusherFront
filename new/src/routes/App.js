@@ -45,6 +45,7 @@ import ViewExpense from '../pages/ViewExpense';
 import ExpenseTabularReport from '../pages/ExpenseTabularReport';
 import CollectionList from '../pages/CollectionList';
 import TodayExpenseList from '../pages/TodayExpenseList';
+import MonthlyReport from '../pages/MonthlyDashboard';
 
 const drawerWidth = 270;
 
@@ -198,6 +199,7 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/editVehicle/:id`} element={<EditVehicle language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/expenselist`} element={<ExpenseList language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/todayexpenselist`} element={<TodayExpenseList language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/monthlyreport`} element={<MonthlyReport language={language} />} />
 
                     <Route path={`/${APP_PREFIX_PATH}/addExpense`} element={<AddExpense language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/viewExpense/:id`} element={<ViewExpense language={language} />} />

@@ -61,7 +61,7 @@ function ActionUserList(props) {
                     </Box>
                     <Box paddingX={2} display={'flex'} alignItems={'center'} gap={1} sx={{ '&:hover': { backgroundColor: 'lightgray' } }}>
                         {props.deleteIcon}
-                        <SubmitAmount id={props.id} setAnchorEl={setAnchorEl} />
+                        <SubmitAmount render={props.render} setRender={props.setRender} id={props.id} setAnchorEl={setAnchorEl} />
                     </Box>
 
                     {/* <Box paddingX={2} display={'flex'} alignItems={'center'} gap={1} sx={{ '&:hover': { backgroundColor: 'lightgray' } }}>

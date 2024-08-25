@@ -37,6 +37,8 @@ const SubmitAmount = (props) => {
                         showConfirmButton: false
                     })
                         .then(res => {
+                            props.render ? props.setRender(false) : props.setRender(true)
+
                             navigate(`/${APP_PREFIX_PATH}/clientlist`)
                         })
                 })

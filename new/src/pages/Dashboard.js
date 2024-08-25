@@ -29,7 +29,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const Dashboard = () => {
     const [expenseAmount, setExpenseAmount] = useState([])
     const [collectionAmount, setCollectionAmount] = useState([])
-
+    const [monthly, setMonthly] = useState([])
     React.useEffect(() => {
         // const params = { action: 'get_dashboard_data' };
         // axios.get(`${Url}/api/v1/report/today`)
@@ -73,6 +73,11 @@ const Dashboard = () => {
                     <Grid item xs={12} md={4}>
                         <Item >
                             <Card nav={`/${APP_PREFIX_PATH}/todayexpenselist`} title="Today Expense" users={expenseAmount} icon={<GroupsIcon sx={{ fontSize: '2rem' }} />} />
+                        </Item>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                        <Item >
+                            <Card nav={`/${APP_PREFIX_PATH}/monthlyreport`} title="Monthly Report" users={monthly} icon={<GroupsIcon sx={{ fontSize: '2rem' }} />} />
                         </Item>
                     </Grid>
                     <DashboardClientList />
