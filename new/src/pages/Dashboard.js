@@ -26,9 +26,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Dashboard = () => {
-    const [data, setData] = useState([])
     const [expenseAmount, setExpenseAmount] = useState([])
-    const [all, setAll] = useState([])
+    const [collectionAmount, setCollectionAmount] = useState([])
 
     React.useEffect(() => {
         // const params = { action: 'get_dashboard_data' };
@@ -39,25 +38,19 @@ const Dashboard = () => {
         //     })
         //     .catch(err => console.log("eroor", err))
 
-        axios.get(`${Url}/api/v1/expense/today`)
+        axios.get(`${Url}/api/v1/expense/today/amount`)
             .then(res => {
-                setExpenseAmount(res.data)
-                console.log(data);
+                setExpenseAmount(res.data.amount)
             })
             .catch(err => console.log("eroor", err))
 
 
-        axios.get(`${Url}/api/v1/report/all`)
+        axios.get(`${Url}/api/v1/client/today/amount`)
             .then(res => {
-                setAll(res.data)
-                console.log('all data dashboard', res.data);
+                setCollectionAmount(res.data.amount)
             })
             .catch(err => console.log("eroor", err))
-        // axios.get(`${Url}/common_controller/dashboard_data`, { params })
-        //     .then(res => {
-        //         setData(res.data.data)
-        //     })
-        //     .catch(err => console.log("eroor", err))
+
     }, [])
 
     return (
@@ -73,12 +66,12 @@ const Dashboard = () => {
                 <Grid paddingY={1} container spacing={2}>
                     <Grid item xs={12} md={4}>
                         <Item >
-                            <Card title="Today Collection" users={data.amount} icon={<GroupsIcon sx={{ fontSize: '2rem' }} />} />
+                            <Card nav={`/${APP_PREFIX_PATH}/collectionlist`} title="Today Collection" users={collectionAmount} icon={<GroupsIcon sx={{ fontSize: '2rem' }} />} />
                         </Item>
                     </Grid>
                     <Grid item xs={12} md={4}>
                         <Item >
-                            <Card title="Today Expense" users={expenseAmount.amount} icon={<GroupsIcon sx={{ fontSize: '2rem' }} />} />
+                            <Card nav={`/${APP_PREFIX_PATH}/todayexpenselist`} title="Today Expense" users={expenseAmount} icon={<GroupsIcon sx={{ fontSize: '2rem' }} />} />
                         </Item>
                     </Grid>
                     {/* <Grid item xs={12} md={4}>

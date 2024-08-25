@@ -42,6 +42,7 @@ export default function AddClient() {
         royaltiAmount: 0.00,
         fermName: '',
         paymentMode: '',
+        paymentStatus: '',
         amountCollectedBy: '',
         discount: '',
         depositeAmount: 0.00,
@@ -570,14 +571,15 @@ export default function AddClient() {
                                     />
 
                                 </Grid>
+
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Remaining Amount"
+                                        label="Discount"
                                         variant="outlined"
-                                        name='remainingAmount'
+                                        name='discount'
                                         type='number'
-                                        value={formData.remainingAmount}
+                                        value={formData.discount}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
@@ -587,11 +589,11 @@ export default function AddClient() {
                                 <Grid item xs={12} md={4}>
                                     <TextField
                                         required
-                                        label="Discount"
+                                        label="Remaining Amount"
                                         variant="outlined"
-                                        name='discount'
+                                        name='remainingAmount'
                                         type='number'
-                                        value={formData.discount}
+                                        value={formData.remainingAmount}
                                         onChange={handleChange}
                                         fullWidth
                                         margin="normal"
@@ -610,6 +612,26 @@ export default function AddClient() {
                                         fullWidth
                                         margin="normal"
                                     />
+
+                                </Grid>
+                                <Grid marginTop={2} item xs={12} md={4}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="pay">Payment Status</InputLabel>
+                                        <Select
+                                            required
+                                            labelId="Payment Status"
+                                            id="paymentStatus"
+                                            name='paymentStatus'
+                                            value={formData.paymentStatus}
+                                            onChange={(e) => handleChange(e)} autoWidth
+                                            label="Payment"
+                                        >
+
+                                            <MenuItem value={'OPEN'}>Open</MenuItem>
+                                            <MenuItem value={'CLOSED'}>Closed</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                    {formData.paymentStatus === '' && <FormHelperText>This field is required.</FormHelperText>}
 
                                 </Grid>
                             </Grid>

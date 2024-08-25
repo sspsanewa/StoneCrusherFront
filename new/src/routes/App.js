@@ -43,6 +43,8 @@ import ClientTabularReport from '../pages/ClientTabularReport';
 import EditExpense from '../pages/EditExpense';
 import ViewExpense from '../pages/ViewExpense';
 import ExpenseTabularReport from '../pages/ExpenseTabularReport';
+import CollectionList from '../pages/CollectionList';
+import TodayExpenseList from '../pages/TodayExpenseList';
 
 const drawerWidth = 270;
 
@@ -174,6 +176,8 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/contactUs`} element={<ContactUs language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/content`} element={<Content />} language={language} />
                     <Route path={`/${APP_PREFIX_PATH}/clientlist`} element={<ClientList language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/collectionlist`} element={<CollectionList language={language} />} />
+
                     <Route path={`/${APP_PREFIX_PATH}/carlist`} element={<Car />} language={language} />
                     <Route path={`/${APP_PREFIX_PATH}/deleteduserlist`} element={<DeletedUserList language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/viewclient/:id`} element={<ViewClient language={language} />} />
@@ -193,6 +197,8 @@ function App() {
                     <Route path={`/${APP_PREFIX_PATH}/viewVehicle/:id`} element={<ViewVehicle language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/editVehicle/:id`} element={<EditVehicle language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/expenselist`} element={<ExpenseList language={language} />} />
+                    <Route path={`/${APP_PREFIX_PATH}/todayexpenselist`} element={<TodayExpenseList language={language} />} />
+
                     <Route path={`/${APP_PREFIX_PATH}/addExpense`} element={<AddExpense language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/viewExpense/:id`} element={<ViewExpense language={language} />} />
                     <Route path={`/${APP_PREFIX_PATH}/editExpense/:id`} element={<EditExpense language={language} />} />
