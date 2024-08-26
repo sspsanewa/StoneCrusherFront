@@ -411,7 +411,7 @@ export default function ExpenseList() {
                                         <TableCell align="left">{row.expenseType}</TableCell>
 
                                         <TableCell align="left">{row.expenseDescription}</TableCell>
-                                        <TableCell align="left">{row.updatedAt}</TableCell>
+                                        <TableCell align="left">{row.expenseDate}</TableCell>
 
 
                                         {/* <TableCell align="left">{row.date}</TableCell> */}

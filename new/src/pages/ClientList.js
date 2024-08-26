@@ -87,13 +87,14 @@ function stableSort(setSearch, array, comparator) {
 }
 
 const headCells = [
-    { id: 'sno', numeric: false, label: 'S.NO.', minWidth: 100 },
-    { id: 'action', numeric: false, label: 'Action', minWidth: 100 },
+    { id: 'sno', numeric: false, label: 'S.NO.', minWidth: 20 },
+    { id: 'action', numeric: false, label: 'Action', minWidth: 50},
     { id: 'name', numeric: false, label: 'Name', minWidth: 100 },
     { id: 'village', numeric: false, label: 'Village', minWidth: 100 },
     // { id: 'email', numeric: false, label: 'Email', minWidth: 100 },
 
     { id: 'mobile', numeric: false, label: 'Mobile', minWidth: 100 },
+    { id: 'remainingAmount', numeric: false, label: 'Remaining Amount', minWidth: 100 },
     { id: 'totalAmount', numeric: false, label: 'Total Amount', minWidth: 100 },
 
     // { id: 'status', numeric: false, label: 'Status', minWidth: 100 },
@@ -383,7 +384,7 @@ export default function ClientList() {
 
                                     >
                                         <TableCell align="left">{index + 1 + page * rowsPerPage}</TableCell>
-                                        <TableCell>
+                                        <TableCell  >
                                             <ActionUserList bill='yes' render={render} setRender={setRender} view='View' viewPath={`/${APP_PREFIX_PATH}/viewclient/`} id={row.id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} statusValue={row.active_flag} status={row.active_flag === 1 ? 'Deactive' : 'Active'} url1='user_controller/active_deactive_status' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} delete='Delete' url='api/v1/client' delete_flag='0' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} setShow={setShow} setShow1={setShow1} editUrl='editclient' editIcon={<Edit sx={{ color: Constant.color[0] }} />} edit='Edit' />
                                         </TableCell>
 
@@ -410,6 +411,7 @@ export default function ClientList() {
                                                 height: '25px', color: '#f44336'
                                             }} >Deactive</Typography>}
                                         </TableCell> */}
+                                        <TableCell align="left">{row.remainingAmount}</TableCell>
                                         <TableCell align="left">{row.totalAmount}</TableCell>
 
                                         <TableCell align="left">{row.paymentStatus}</TableCell>
@@ -428,7 +430,7 @@ export default function ClientList() {
                     </Table>
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
+                    rowsPerPageOptions={[25, 10, 5]}
                     component="div"
                     count={userList.length}
                     rowsPerPage={rowsPerPage}
