@@ -6,13 +6,14 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Grid, sty
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
 import Constant from '../Config/Color';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import DateEdit from '../components/DateEdit';
 import Swal from 'sweetalert2';
+import Url from '../Config/Url';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -33,7 +34,7 @@ export default function EditExpense() {
     });
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/v1/expense/${id}`)
+        axios.get(`${Url}/api/v1/expense/${id}`)
             .then(response => {
                 const res = response.data;
                 setFormData(res);
@@ -51,7 +52,7 @@ export default function EditExpense() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8080/api/v1/expense', formData)
+        axios.post(`${Url}/api/v1/expense`, formData)
             .then(res => {
                 Swal.fire({
                     title: 'Success!',
@@ -60,7 +61,7 @@ export default function EditExpense() {
                     timer: 3000,
                     showConfirmButton: false
                 }).then(() => {
-                    navigate(`/${APP_PREFIX_PATH}/expenselist`)
+                    navigate(`/${APP_PREFIX_PATH}/expenselist`);
                 });
             })
             .catch(err => {

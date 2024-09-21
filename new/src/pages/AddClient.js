@@ -9,14 +9,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // import "react-datepicker/dist/react-datepicker.css";
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
 import Date from '../components/DateAdd';
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 
 import Swal from 'sweetalert2';
+import Url from '../Config/Url';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -27,7 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function AddClient() {
-    const [date, setDate] = useState('')
+    const [date, setDate] = useState('');
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -90,18 +91,18 @@ export default function AddClient() {
     if (formData.depositeAmount !== '') {
         formData.depositeAmount = parseInt(formData.depositeAmount);
     }
-    formData.date = date
+    formData.date = date;
 
 
 
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
         const { name, value } = e.target;
-        console.log('aaa', e, index)
+        console.log('aaa', e, index);
         if (index !== undefined) {
             const newMaterials = [...formData.materials];
             newMaterials[index][name] = value;
-            console.log('aaa', newMaterials)
+            console.log('aaa', newMaterials);
 
             setFormData({
                 ...formData,
@@ -132,17 +133,17 @@ export default function AddClient() {
 
     // Calculate amount for each material and sum up to get totalAmount
 
-    console.log('sdf', formData.materials.amount, formData.cgstAmount)
-    let finalAmount = 0
+    console.log('sdf', formData.materials.amount, formData.cgstAmount);
+    let finalAmount = 0;
     formData.materials.map((material, index) => {
-        finalAmount = parseInt(finalAmount) + parseInt(material.amount)
-    })
+        finalAmount = parseInt(finalAmount) + parseInt(material.amount);
+    });
 
 
 
-    formData.totalAmount = parseInt(finalAmount) + parseInt(formData.cgstAmount) + parseInt(formData.sgstAmount) + parseInt(formData.royaltiAmount) - parseInt(formData.discount)
+    formData.totalAmount = parseInt(finalAmount) + parseInt(formData.cgstAmount) + parseInt(formData.sgstAmount) + parseInt(formData.royaltiAmount) - parseInt(formData.discount);
 
-    formData.remainingAmount = parseInt(formData.totalAmount) - parseInt(formData.depositeAmount)
+    formData.remainingAmount = parseInt(formData.totalAmount) - parseInt(formData.depositeAmount);
 
     // formData.depositeAmount = parseInt(formData.totalAmount) - parseInt(formData.remainingAmount)
 
@@ -151,7 +152,7 @@ export default function AddClient() {
         console.log(formData);
 
 
-        axios.post('http://localhost:8080/api/v1/client', formData)
+        axios.post(`${Url}/api/v1/client`, formData)
             .then(res => {
                 Swal.fire({
                     title: 'Success!',
@@ -161,17 +162,17 @@ export default function AddClient() {
                     showConfirmButton: false
                 })
                     .then(res => {
-                        navigate(`/${APP_PREFIX_PATH}/clientlist`)
-                    })
+                        navigate(`/${APP_PREFIX_PATH}/clientlist`);
+                    });
             })
             .catch(err => {
-                console.log(err)
-            })
+                console.log(err);
+            });
 
     };
 
     const navigate = useNavigate();
-    console.log("formdata", formData)
+    console.log("formdata", formData);
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
 

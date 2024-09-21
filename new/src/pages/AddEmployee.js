@@ -9,13 +9,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // import "react-datepicker/dist/react-datepicker.css";
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
 import Date from '../components/DateAdd';
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import Swal from 'sweetalert2';
+import Url from '../Config/Url';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -27,7 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function AddEmployee() {
-    const [dateOfJoining, setDateOfJoining] = useState('')
+    const [dateOfJoining, setDateOfJoining] = useState('');
     const [formData, setFormData] = useState({
         employeeId: '',
         employeeFirstName: '',
@@ -45,7 +46,7 @@ export default function AddEmployee() {
     // if (formData.employeeSalary !== '') {
     //     formData.employeeSalary = parseDouble(formData.employeeSalary);
     // }
-    formData.dateOfJoining = dateOfJoining
+    formData.dateOfJoining = dateOfJoining;
 
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
@@ -114,7 +115,7 @@ export default function AddEmployee() {
 
         // Set the updated form data
         // setFormData(updatedFormData);
-        axios.post('http://localhost:8080/api/v1/employee', formData)
+        axios.post(`${Url}/api/v1/employee`, formData)
             .then(res => {
                 Swal.fire({
                     title: 'Success!',
@@ -124,16 +125,16 @@ export default function AddEmployee() {
                     showConfirmButton: false
                 })
                     .then(res => {
-                        navigate(`/${APP_PREFIX_PATH}/employeelist`)
-                    })
+                        navigate(`/${APP_PREFIX_PATH}/employeelist`);
+                    });
             })
             .catch(err => {
-                console.log(err)
-            })
+                console.log(err);
+            });
     };
 
     const navigate = useNavigate();
-    console.log("formdata", formData)
+    console.log("formdata", formData);
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
 

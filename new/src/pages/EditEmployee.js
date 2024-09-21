@@ -9,13 +9,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 // import "react-datepicker/dist/react-datepicker.css";
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
 import Date from '../components/DateEdit';
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import Swal from 'sweetalert2';
+import Url from '../Config/Url';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -29,7 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function EditEmployee() {
     const { id } = useParams();
 
-    const [initialDate, setInitialDate] = useState('')
+    const [initialDate, setInitialDate] = useState('');
     const [formData, setFormData] = useState({
         employeeId: '',
         employeeFirstName: '',
@@ -46,17 +47,17 @@ export default function EditEmployee() {
     React.useEffect(() => {
         const params = { action: 'get_users', delete_flag: 0 };
 
-        axios.get(`http://localhost:8080/api/v1/employee/${id}`, { params })
+        axios.get(`${Url}/api/v1/employee/${id}`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
-                setFormData(res)
-                setInitialDate(res.dateOfJoining)
+                setFormData(res);
+                setInitialDate(res.dateOfJoining);
 
             })
             .catch(err => console.error("Error fetching users:", err));
         // .then(err => console.log("eoeee", err))
-    }, [id])
+    }, [id]);
     // if (formData.employeeSalary !== '') {
     //     formData.employeeSalary = parseDouble(formData.employeeSalary);
     // }
@@ -113,7 +114,7 @@ export default function EditEmployee() {
 
         // Set the updated form data
         // setFormData(updatedFormData);
-        axios.post('http://localhost:8080/api/v1/employee', formData)
+        axios.post(`${Url}/api/v1/employee`, formData)
             .then(res => {
                 Swal.fire({
                     title: 'Success!',
@@ -123,12 +124,12 @@ export default function EditEmployee() {
                     showConfirmButton: false
                 })
                     .then(res => {
-                        navigate(`/${APP_PREFIX_PATH}/employeelist`)
-                    })
+                        navigate(`/${APP_PREFIX_PATH}/employeelist`);
+                    });
             })
             .catch(err => {
-                console.log(err)
-            })
+                console.log(err);
+            });
     };
 
     const navigate = useNavigate();

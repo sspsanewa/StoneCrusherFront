@@ -4,11 +4,12 @@ import { Box, Button } from '@mui/material';  // Adjust the import according to 
 import axios from 'axios';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import { useNavigate } from 'react-router-dom';
+import Url from '../Config/Url';
 
 const SubmitAmount = (props) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const handleAlert = async () => {
-        props.setAnchorEl(null)
+        props.setAnchorEl(null);
         const { value: amount } = await Swal.fire({
             title: 'Enter Amount',
             input: 'number',
@@ -27,7 +28,7 @@ const SubmitAmount = (props) => {
         if (amount) {
             // Handle the submitted amount here
             console.log('Submitted amount:', amount);
-            axios.post(`http://localhost:8080/api/v1/client/submit/amount/${props.id}`, { 'submitAmount': amount })
+            axios.post(`${Url}/api/v1/client/submit/amount/${props.id}`, { 'submitAmount': amount })
                 .then(res => {
                     Swal.fire({
                         title: 'Success!',
@@ -37,10 +38,10 @@ const SubmitAmount = (props) => {
                         showConfirmButton: false
                     })
                         .then(res => {
-                            props.render ? props.setRender(false) : props.setRender(true)
+                            props.render ? props.setRender(false) : props.setRender(true);
 
-                            navigate(`/${APP_PREFIX_PATH}/clientlist`)
-                        })
+                            navigate(`/${APP_PREFIX_PATH}/clientlist`);
+                        });
                 })
                 .catch(err => {
                     Swal.fire({
@@ -49,8 +50,8 @@ const SubmitAmount = (props) => {
                         icon: 'success',
                         timer: 3000,
                         showConfirmButton: false
-                    })
-                })
+                    });
+                });
         }
     };
 

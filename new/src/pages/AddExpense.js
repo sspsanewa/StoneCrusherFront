@@ -9,13 +9,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 // import "react-datepicker/dist/react-datepicker.css";
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
 import Date from '../components/DateAdd';
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import Swal from 'sweetalert2';
+import Url from '../Config/Url';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -29,7 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function AddExpense() {
     const { id } = useParams();
 
-    const [expenseDate, setExpenseDate] = useState('')
+    const [expenseDate, setExpenseDate] = useState('');
     const [formData, setFormData] = useState({
         expenseType: '',
         expenseDescription: '',
@@ -42,7 +43,7 @@ export default function AddExpense() {
     // if (formData.employeeSalary !== '') {
     //     formData.employeeSalary = parseDouble(formData.employeeSalary);
     // }
-    formData.expenseDate = expenseDate
+    formData.expenseDate = expenseDate;
 
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
@@ -75,16 +76,16 @@ export default function AddExpense() {
     React.useEffect(() => {
         const params = { action: 'get_users', delete_flag: 0 };
 
-        axios.get(`http://localhost:8080/api/v1/vehicle/${id}`, { params })
+        axios.get(`${Url}/api/v1/vehicle/${id}`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
-                setFormData(res)
+                setFormData(res);
 
             })
             .catch(err => console.error("Error fetching users:", err));
         // .then(err => console.log("eoeee", err))
-    }, [])
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -108,7 +109,7 @@ export default function AddExpense() {
 
         // Set the updated form data
         // setFormData(updatedFormData);
-        axios.post('http://localhost:8080/api/v1/expense', formData)
+        axios.post(`${Url}/api/v1/expense`, formData)
             .then(res => {
                 Swal.fire({
                     title: 'Success!',
@@ -118,16 +119,16 @@ export default function AddExpense() {
                     showConfirmButton: false
                 })
                     .then(res => {
-                        navigate(`/${APP_PREFIX_PATH}/expenselist`)
-                    })
+                        navigate(`/${APP_PREFIX_PATH}/expenselist`);
+                    });
             })
             .catch(err => {
-                console.log(err)
-            })
+                console.log(err);
+            });
     };
 
     const navigate = useNavigate();
-    console.log("formdata", formData)
+    console.log("formdata", formData);
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
 

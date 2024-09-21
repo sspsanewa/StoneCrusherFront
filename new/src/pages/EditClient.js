@@ -9,14 +9,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 // import "react-datepicker/dist/react-datepicker.css";
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
 import Date from '../components/DateEdit';
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import DateEdit from '../components/DateEdit';
 import Swal from 'sweetalert2';
+import Url from '../Config/Url';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -119,35 +120,35 @@ export default function EditClient() {
     React.useEffect(() => {
         const params = { action: 'get_users', delete_flag: 0 };
 
-        axios.get(`http://localhost:8080/api/v1/client/${id}`, { params })
+        axios.get(`${Url}/api/v1/client/${id}`, { params })
 
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
-                setFormData(res)
+                setFormData(res);
 
             })
             .catch(err => console.error("Error fetching users:", err));
         // .then(err => console.log("eoeee", err))
-    }, [])
+    }, []);
 
 
-    let finalAmount = 0
+    let finalAmount = 0;
     formData.materials.map((material, index) => {
-        finalAmount = parseInt(finalAmount) + parseInt(material.amount)
-    })
+        finalAmount = parseInt(finalAmount) + parseInt(material.amount);
+    });
 
 
 
-    formData.totalAmount = parseInt(finalAmount) + parseInt(formData.cgstAmount) + parseInt(formData.sgstAmount) + parseInt(formData.royaltiAmount) - parseInt(formData.discount)
+    formData.totalAmount = parseInt(finalAmount) + parseInt(formData.cgstAmount) + parseInt(formData.sgstAmount) + parseInt(formData.royaltiAmount) - parseInt(formData.discount);
 
-    formData.remainingAmount = parseInt(formData.totalAmount) - parseInt(formData.depositeAmount)
+    formData.remainingAmount = parseInt(formData.totalAmount) - parseInt(formData.depositeAmount);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
 
-        axios.post(`http://localhost:8080/api/v1/client`, formData)
+        axios.post(`${Url}/api/v1/client`, formData)
             .then(res => {
                 Swal.fire({
                     title: 'Success!',
@@ -157,16 +158,16 @@ export default function EditClient() {
                     showConfirmButton: false
                 })
                     .then(res => {
-                        navigate(`/${APP_PREFIX_PATH}/clientlist`)
-                    })
+                        navigate(`/${APP_PREFIX_PATH}/clientlist`);
+                    });
             })
             .catch(err => {
-                console.log(err)
-            })
+                console.log(err);
+            });
     };
 
     const navigate = useNavigate();
-    console.log("formdata", formData)
+    console.log("formdata", formData);
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
             <Box marginBottom={2} gap={1} display={'flex'}>

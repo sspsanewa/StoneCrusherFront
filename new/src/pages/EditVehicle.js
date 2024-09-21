@@ -9,13 +9,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 // import "react-datepicker/dist/react-datepicker.css";
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
 import Date from '../components/DateEdit';
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import Swal from 'sweetalert2';
+import Url from '../Config/Url';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -29,7 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function EditVehicle() {
     const { id } = useParams();
 
-    const [dateOfJoining, setDateOfJoining] = useState('')
+    const [dateOfJoining, setDateOfJoining] = useState('');
     const [formData, setFormData] = useState({
         vehicleName: '',
         vehicleDriverName: '',
@@ -41,7 +42,7 @@ export default function EditVehicle() {
     // if (formData.employeeSalary !== '') {
     //     formData.employeeSalary = parseDouble(formData.employeeSalary);
     // }
-    formData.dateOfJoining = dateOfJoining
+    formData.dateOfJoining = dateOfJoining;
 
     //formData.amount = formData.cubicMeter * formData.rate
     const handleChange = (e, index) => {
@@ -74,16 +75,16 @@ export default function EditVehicle() {
     React.useEffect(() => {
         const params = { action: 'get_users', delete_flag: 0 };
 
-        axios.get(`http://localhost:8080/api/v1/vehicle/${id}`, { params })
+        axios.get(`${Url}/api/v1/vehicle/${id}`, { params })
             .then(obj => {
                 const res = obj.data;
                 console.log("Users fetched successfully:", res);
-                setFormData(res)
+                setFormData(res);
 
             })
             .catch(err => console.error("Error fetching users:", err));
         // .then(err => console.log("eoeee", err))
-    }, [])
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -107,7 +108,7 @@ export default function EditVehicle() {
 
         // Set the updated form data
         // setFormData(updatedFormData);
-        axios.post('http://localhost:8080/api/v1/vehicle', formData)
+        axios.post(`${Url}/api/v1/vehicle`, formData)
             .then(res => {
                 Swal.fire({
                     title: 'Success!',
@@ -117,16 +118,16 @@ export default function EditVehicle() {
                     showConfirmButton: false
                 })
                     .then(res => {
-                        navigate('/userList')
-                    })
+                        navigate('/userList');
+                    });
             })
             .catch(err => {
-                console.log(err)
-            })
+                console.log(err);
+            });
     };
 
     const navigate = useNavigate();
-    console.log("formdata", formData)
+    console.log("formdata", formData);
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
 
