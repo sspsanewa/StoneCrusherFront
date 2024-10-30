@@ -281,20 +281,45 @@ export default function DashboardClientList() {
     show1 && setTimeout(() => { setShow1(false); }, 4000)
 
 
+    // React.useEffect(() => {
+    //     const params = { action: 'get_all_user' };
+    //     Console("users")
+
+
+    //     axios.get(`${Url}/api/v1/client/dashboard/list`, { params })
+    //         .then(obj => {
+    //             const res = obj.data;
+    //             console.log("Users fetched successfully:", res);
+    //             render ? setUserList(res) : setUserList(res);
+    //         })
+    //         .catch(err => console.error("Error fetching users:", err));
+    //     // .then(err => console.log("eoeee", err))
+    // }, [render])
     React.useEffect(() => {
-        const params = { action: 'get_all_user' };
-        Console("users")
-
-
-        axios.get(`${Url}/api/v1/client/dashboard/list`, { params })
+        // Function to fetch user data
+        const fetchData = () => {
+          const params = { action: 'get_all_user' };
+          console.log("Fetching users...");
+    
+          axios.get(`${Url}/api/v1/client/dashboard/list`, { params })
             .then(obj => {
-                const res = obj.data;
-                console.log("Users fetched successfully:", res);
-                render ? setUserList(res) : setUserList(res);
+              const res = obj.data;
+              console.log("Users fetched successfully:", res);
+              setUserList(res);
             })
             .catch(err => console.error("Error fetching users:", err));
-        // .then(err => console.log("eoeee", err))
-    }, [render])
+        };
+    
+        // Initial fetch when the component mounts
+        fetchData();
+    
+        // Set up interval to refresh every 5 minutes
+        const intervalId = setInterval(fetchData, 300);
+    
+        // Clear interval on unmount
+        return () => clearInterval(intervalId);
+      }, [render, Url]); // Reruns if `render` or `Url` changes
+    
 
     // const handleClick1 = (id) => {
     //     const params = { action: 'get_popup_image', user_id: id };
