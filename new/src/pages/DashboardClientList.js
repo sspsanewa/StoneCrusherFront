@@ -314,7 +314,7 @@ export default function DashboardClientList() {
         fetchData();
     
         // Set up interval to refresh every 5 minutes
-        const intervalId = setInterval(fetchData, 300);
+        const intervalId = setInterval(fetchData, 30000);
     
         // Clear interval on unmount
         return () => clearInterval(intervalId);
