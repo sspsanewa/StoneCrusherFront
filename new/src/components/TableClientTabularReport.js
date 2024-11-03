@@ -18,20 +18,20 @@ import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
 import { Avatar, Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import EditIcon from '@mui/icons-material/Edit';
 import PopupReply from '../components/PopupReply';
 import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
 import { Helmet } from 'react-helmet';
-import profile1 from '../assets/profile1.jpg'
-import profile2 from '../assets/profile2.jpg'
-import profile3 from '../assets/profile3.jpg'
-import profile4 from '../assets/profile4.jpg'
+import profile1 from '../assets/profile1.jpg';
+import profile2 from '../assets/profile2.jpg';
+import profile3 from '../assets/profile3.jpg';
+import profile4 from '../assets/profile4.jpg';
 import { useState } from 'react';
 import axios from 'axios';
 import Url from '../Config/Url';
-import moment from 'moment'
+import moment from 'moment';
 // import Date from '../components/Date';
 import Console from '../debug_log';
 import { IMAGE_PATH } from '../Config/AppConfig';
@@ -111,7 +111,7 @@ function getComparator(order, orderBy) {
 
 function stableSort(setSearch, array, comparator) {
     const stabilizedThis = array.map((el, index) => [el, index]);
-    setSearch(false)
+    setSearch(false);
 
     stabilizedThis.sort((a, b) => {
         const order = comparator(a[0], b[0]);
@@ -220,15 +220,15 @@ const SearchInput = ({ onSearch }) => {
 };
 
 export default function ClientTabularReportTable(props) {
-    const [userList, setUserList] = useState(props.userList)
+    const [userList, setUserList] = useState(props.userList);
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [filteredRows, setFilteredRows] = React.useState(userList);
-    const [search, setSearch] = React.useState(false)
-    const navigate = useNavigate()
+    const [search, setSearch] = React.useState(false);
+    const navigate = useNavigate();
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
@@ -282,7 +282,7 @@ export default function ClientTabularReportTable(props) {
 
 
     const handleSearch = (searchTerm) => {
-        setSearch(true)
+        setSearch(true);
         const filtered = userList.filter((row) =>
             (row.f_name + row.l_name + row.mobile + row.createtime + row.email).toLowerCase().includes(searchTerm.toLowerCase())
 
@@ -297,14 +297,14 @@ export default function ClientTabularReportTable(props) {
             ),
         [order, userList, orderBy, page, rowsPerPage],
     );
-    const [show, setShow] = React.useState(false)
+    const [show, setShow] = React.useState(false);
 
-    show && setTimeout(() => { setShow(false); }, 4000)
+    show && setTimeout(() => { setShow(false); }, 4000);
 
 
-    const [show1, setShow1] = React.useState(false)
+    const [show1, setShow1] = React.useState(false);
 
-    show1 && setTimeout(() => { setShow1(false); }, 4000)
+    show1 && setTimeout(() => { setShow1(false); }, 4000);
 
 
 

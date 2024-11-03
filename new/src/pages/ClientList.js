@@ -18,30 +18,32 @@ import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
 import { Avatar, Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import EditIcon from '@mui/icons-material/Edit';
 import PopupReply from '../components/PopupReply';
 import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
 import { Helmet } from 'react-helmet';
-import profile1 from '../assets/profile1.jpg'
-import profile2 from '../assets/profile2.jpg'
-import profile3 from '../assets/profile3.jpg'
-import profile4 from '../assets/profile4.jpg'
+import profile1 from '../assets/profile1.jpg';
+import profile2 from '../assets/profile2.jpg';
+import profile3 from '../assets/profile3.jpg';
+import profile4 from '../assets/profile4.jpg';
 import { useState } from 'react';
 import axios from 'axios';
 import Url from '../Config/Url';
-import moment from 'moment'
+import moment from 'moment';
 // import Date from '../components/Date';
 import Console from '../debug_log';
 import { APP_PREFIX_PATH, IMAGE_PATH } from '../Config/AppConfig';
 import PopupImage from '../components/PopupImage';
 import Modal from '@mui/material/Modal';
 import ActionUserList from '../components/ActionUserList';
-import Language from '../Config/Language'
+import Language from '../Config/Language';
 import New from './New';
 import Edit from '@mui/icons-material/Edit';
-
+import Loader from '../components/Loader';
+import NoDataFound from '../components/NoDataFound';
+import Load from '../components/Load';
 
 const style = {
     position: 'absolute',
@@ -74,7 +76,7 @@ function getComparator(order, orderBy) {
 
 function stableSort(setSearch, array, comparator) {
     const stabilizedThis = array.map((el, index) => [el, index]);
-    setSearch(false)
+    setSearch(false);
 
     stabilizedThis.sort((a, b) => {
         const order = comparator(a[0], b[0]);
@@ -88,7 +90,7 @@ function stableSort(setSearch, array, comparator) {
 
 const headCells = [
     { id: 'sno', numeric: false, label: 'S.NO.', minWidth: 20 },
-    { id: 'action', numeric: false, label: 'Action', minWidth: 50},
+    { id: 'action', numeric: false, label: 'Action', minWidth: 50 },
     { id: 'name', numeric: false, label: 'Name', minWidth: 100 },
     { id: 'village', numeric: false, label: 'Village', minWidth: 100 },
     // { id: 'email', numeric: false, label: 'Email', minWidth: 100 },
@@ -187,24 +189,25 @@ const SearchInput = ({ onSearch }) => {
 
 export default function ClientList() {
 
-    const [render, setRender] = useState(false)
-    const [userList, setUserList] = useState([])
+    const [render, setRender] = useState(false);
+    const [userList, setUserList] = useState([]);
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [filteredRows, setFilteredRows] = React.useState(userList);
-    const [search, setSearch] = React.useState(false)
-    const [clickImage, setClickImage] = useState(false)
-    const [popImage, setPopImage] = useState('')
+    const [search, setSearch] = React.useState(false);
+    const [clickImage, setClickImage] = useState(false);
+    const [popImage, setPopImage] = useState('');
 
     const [open, setOpen] = React.useState(true);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => { setOpen(false); setClickImage(false) };
+    const handleClose = () => { setOpen(false); setClickImage(false); };
+    const [loading, setLoading] = useState(true);
 
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
@@ -258,7 +261,7 @@ export default function ClientList() {
 
 
     const handleSearch = (searchTerm) => {
-        setSearch(true)
+        setSearch(true);
         const filtered = userList.filter((row) =>
             (row.f_name + row.l_name + row.mobile + row.createtime + row.email).toLowerCase().includes(searchTerm.toLowerCase())
 
@@ -273,30 +276,32 @@ export default function ClientList() {
             ),
         [order, userList, orderBy, page, rowsPerPage],
     );
-    const [show, setShow] = React.useState(false)
+    const [show, setShow] = React.useState(false);
 
-    show && setTimeout(() => { setShow(false); }, 4000)
+    show && setTimeout(() => { setShow(false); }, 4000);
 
 
-    const [show1, setShow1] = React.useState(false)
+    const [show1, setShow1] = React.useState(false);
 
-    show1 && setTimeout(() => { setShow1(false); }, 4000)
+    show1 && setTimeout(() => { setShow1(false); }, 4000);
 
 
     React.useEffect(() => {
         const params = { action: 'get_all_users', delete_flag: 0 };
-        Console("users")
+        Console("users");
 
 
         axios.get(`${Url}/api/v1/client`, { params })
-            .then(obj => {
-                const res = obj.data;
-                console.log("Users fetched successfully:", res);
-                render ? setUserList(res) : setUserList(res);
+            .then(res => {
+                if (res.status === 200) {
+                    setLoading(false);
+                    console.log("Users fetched successfully:", res);
+                    render ? setUserList(res.data) : setUserList(res.data);
+                }
             })
             .catch(err => console.error("Error fetching users:", err));
         // .then(err => console.log("eoeee", err))
-    }, [render])
+    }, [render]);
 
     // const handleClick1 = (id) => {
     //     const params = { action: 'get_popup_image', user_id: id };
@@ -314,131 +319,146 @@ export default function ClientList() {
 
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
+
             <Helmet>
                 <title>{Language.APP_NAME} | Manage Users | Users List</title>
             </Helmet>
-            <Box display={'flex'} justifyContent={'space-between'}>
-                <Box marginBottom={2} gap={1} display={'flex'}>
-                    <Button sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/dashboard`)}  >
-                        Dashboard
-                    </Button>
+            {loading ?
 
-                    <Typography marginTop={1.2} fontSize={20} >/</Typography>
+                < Load />
+                :
 
-                    <Typography marginTop={1.2} fontSize={20} >Manage Clients List</Typography>
-                </Box>
-                {show &&
-                    <Alert sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', bgcolor: '#ffffff', zIndex: 10, marginBottom: '5px', position: 'fixed', top: '48%', left: '45%' }} variant="outlined" severity="success">
-                        Client deleted successfully
-                    </Alert>
-                }
-                {show1 &&
-                    <Alert sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', bgcolor: '#ffffff', zIndex: 10, marginBottom: '5px', position: 'fixed', top: '48%', left: '45%' }} variant="outlined" severity="success">
-                        Status updated successfully
-                    </Alert>
-                }
+                <>
+                    <Box display={'flex'} justifyContent={'space-between'}>
+                        <Box marginBottom={2} gap={1} display={'flex'}>
+                            <Button sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/dashboard`)}  >
+                                Dashboard
+                            </Button>
 
-            </Box>
-            <Box marginBottom={2} display={'flex'} justifyContent={'right'}>
-                <Box onClick={() => navigate(`/${APP_PREFIX_PATH}/addclient`)}>
-                    <New name='Add Client' />
-                    {/* <PopupAddPlan setMessage={setMessage} button='Add Subscription' message='Updated Successfully' path='/categories' setShow3={setShow3} setShow={setShow2} render={render} setRender={setRender} /> */}
-                </Box>
-            </Box>
-            <Paper sx={{ borderRadius: '10px', padding: '20px', bgcolor: Constant.color[1] }}>
+                            <Typography marginTop={1.2} fontSize={20} >/</Typography>
 
-                <Box display={'flex'} justifyContent={'space-between'}>
-                    <EnhancedTableToolbar numSelected={selected.length} />
-                    <Box marginRight={1}>
-                        <SearchInput onSearch={handleSearch} />
+                            <Typography marginTop={1.2} fontSize={20} >Manage Clients List</Typography>
+                        </Box>
+                        {show &&
+                            <Alert sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', bgcolor: '#ffffff', zIndex: 10, marginBottom: '5px', position: 'fixed', top: '48%', left: '45%' }} variant="outlined" severity="success">
+                                Client deleted successfully
+                            </Alert>
+                        }
+                        {show1 &&
+                            <Alert sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', bgcolor: '#ffffff', zIndex: 10, marginBottom: '5px', position: 'fixed', top: '48%', left: '45%' }} variant="outlined" severity="success">
+                                Status updated successfully
+                            </Alert>
+                        }
+
                     </Box>
-                </Box>
-                <TableContainer>
-                    <Table
-                        sx={{ minWidth: 800 }}
-                        aria-labelledby="tableTitle"
-                    >
-                        <EnhancedTableHead
-                            numSelected={selected.length}
-                            order={order}
-                            orderBy={orderBy}
-                            onSelectAllClick={handleSelectAllClick}
-                            onRequestSort={handleRequestSort}
-                            rowCount={userList.length}
-                        />
-                        <TableBody>
-                            {(search ? filteredRows : visibleRows).map((row, index) => {
-                                const isItemSelected = isSelected(row.id);
-                                const labelId = `enhanced-table-checkbox-${index}`;
+                    <Box marginBottom={2} display={'flex'} justifyContent={'right'}>
+                        <Box onClick={() => navigate(`/${APP_PREFIX_PATH}/addclient`)}>
+                            <New name='Add Client' />
+                            {/* <PopupAddPlan setMessage={setMessage} button='Add Subscription' message='Updated Successfully' path='/categories' setShow3={setShow3} setShow={setShow2} render={render} setRender={setRender} /> */}
+                        </Box>
+                    </Box>
+                    <Paper sx={{ borderRadius: '10px', padding: '20px', bgcolor: Constant.color[1] }}>
 
-                                return (
-                                    <TableRow
-                                        hover
-                                        onClick={(event) => handleClick(event, row.id)}
-                                        role="checkbox"
-                                        aria-checked={isItemSelected}
-                                        tabIndex={-1}
-                                        key={row.sno}
-                                        selected={isItemSelected}
-                                        sx={{ cursor: 'pointer' }}
-
-                                    >
-                                        <TableCell align="left">{index + 1 + page * rowsPerPage}</TableCell>
-                                        <TableCell  >
-                                            <ActionUserList bill='yes' render={render} setRender={setRender} view='View' viewPath={`/${APP_PREFIX_PATH}/viewclient/`} id={row.id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} statusValue={row.active_flag} status={row.active_flag === 1 ? 'Deactive' : 'Active'} url1='user_controller/active_deactive_status' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} delete='Delete' url='api/v1/client' delete_flag='0' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} setShow={setShow} setShow1={setShow1} editUrl='editclient' editIcon={<Edit sx={{ color: Constant.color[0] }} />} edit='Edit' />
-                                        </TableCell>
-
-                                        <TableCell
-                                            component="th"
-                                            id={labelId}
-                                            scope="row"
-                                            align="left"
+                        <Box display={'flex'} justifyContent={'space-between'}>
+                            <EnhancedTableToolbar numSelected={selected.length} />
+                            <Box marginRight={1}>
+                                <SearchInput onSearch={handleSearch} />
+                            </Box>
+                        </Box>
+                        {
+                            (userList && userList.length <= 0) ? <NoDataFound />
+                                :
+                                <>
+                                    <TableContainer>
+                                        <Table
+                                            sx={{ minWidth: 800 }}
+                                            aria-labelledby="tableTitle"
                                         >
-                                            {(row.firstName + ' ' + row.lastName) ? (row.firstName + ' ' + row.lastName) : "NA"}
-                                        </TableCell>
-                                        {/* <TableCell align="left">
+                                            <EnhancedTableHead
+                                                numSelected={selected.length}
+                                                order={order}
+                                                orderBy={orderBy}
+                                                onSelectAllClick={handleSelectAllClick}
+                                                onRequestSort={handleRequestSort}
+                                                rowCount={userList.length}
+                                            />
+                                            <TableBody>
+                                                {(search ? filteredRows : visibleRows).map((row, index) => {
+                                                    const isItemSelected = isSelected(row.id);
+                                                    const labelId = `enhanced-table-checkbox-${index}`;
+
+                                                    return (
+                                                        <TableRow
+                                                            hover
+                                                            onClick={(event) => handleClick(event, row.id)}
+                                                            role="checkbox"
+                                                            aria-checked={isItemSelected}
+                                                            tabIndex={-1}
+                                                            key={row.sno}
+                                                            selected={isItemSelected}
+                                                            sx={{ cursor: 'pointer' }}
+
+                                                        >
+                                                            <TableCell align="left">{index + 1 + page * rowsPerPage}</TableCell>
+                                                            <TableCell  >
+                                                                <ActionUserList bill='yes' render={render} setRender={setRender} view='View' viewPath={`/${APP_PREFIX_PATH}/viewclient/`} id={row.id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} statusValue={row.active_flag} status={row.active_flag === 1 ? 'Deactive' : 'Active'} url1='user_controller/active_deactive_status' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} delete='Delete' url='api/v1/client' delete_flag='0' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} setShow={setShow} setShow1={setShow1} editUrl='editclient' editIcon={<Edit sx={{ color: Constant.color[0] }} />} edit='Edit' />
+                                                            </TableCell>
+
+                                                            <TableCell
+                                                                component="th"
+                                                                id={labelId}
+                                                                scope="row"
+                                                                align="left"
+                                                            >
+                                                                {(row.firstName + ' ' + row.lastName) ? (row.firstName + ' ' + row.lastName) : "NA"}
+                                                            </TableCell>
+                                                            {/* <TableCell align="left">
 
                                             <Avatar src={`${IMAGE_PATH}` + row.image} alt={row.name && row.name.charAt(0).toUpperCase()} />
 
                                         </TableCell> */}
-                                        <TableCell align="left">{row.village ? row.village : 'NA'}</TableCell>
+                                                            <TableCell align="left">{row.village ? row.village : 'NA'}</TableCell>
 
 
 
-                                        <TableCell align="left">{row.mobile ? row.mobile : 'NA'}</TableCell>
-                                        {/* <TableCell align="left">
+                                                            <TableCell align="left">{row.mobile ? row.mobile : 'NA'}</TableCell>
+                                                            {/* <TableCell align="left">
                                             {row.active_flag === 1 ? <Typography variant='outlined' size='small' style={{ height: '25px', color: '#00c853' }} >Active</Typography> : <Typography variant='outlined' size='small' style={{
                                                 height: '25px', color: '#f44336'
                                             }} >Deactive</Typography>}
                                         </TableCell> */}
-                                        <TableCell align="left">{row.remainingAmount}</TableCell>
-                                        <TableCell align="left">{row.totalAmount}</TableCell>
+                                                            <TableCell align="left">{row.remainingAmount}</TableCell>
+                                                            <TableCell align="left">{row.totalAmount}</TableCell>
 
-                                        <TableCell align="left">{row.paymentStatus}</TableCell>
+                                                            <TableCell align="left">{row.paymentStatus}</TableCell>
 
-                                        <TableCell align="left">{row.date}</TableCell>
+                                                            <TableCell align="left">{row.date}</TableCell>
 
-                                    </TableRow>
-                                );
-                            })}
-                            {emptyRows > 0 && (
-                                <TableRow>
-                                    <TableCell colSpan={6} />
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[25, 10, 5]}
-                    component="div"
-                    count={userList.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </Paper>
+                                                        </TableRow>
+                                                    );
+                                                })}
+                                                {emptyRows > 0 && (
+                                                    <TableRow>
+                                                        <TableCell colSpan={6} />
+                                                    </TableRow>
+                                                )}
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                    <TablePagination
+                                        rowsPerPageOptions={[25, 10, 5]}
+                                        component="div"
+                                        count={userList.length}
+                                        rowsPerPage={rowsPerPage}
+                                        page={page}
+                                        onPageChange={handleChangePage}
+                                        onRowsPerPageChange={handleChangeRowsPerPage}
+                                    />
+                                </>
+                        }
+                    </Paper>
+                </>
+            }
         </Box>
     );
 }

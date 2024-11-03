@@ -18,6 +18,7 @@ import { APP_PREFIX_PATH } from '../Config/AppConfig';
 
 import Swal from 'sweetalert2';
 import Url from '../Config/Url';
+import Load from '../components/Load';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -146,24 +147,30 @@ export default function AddClient() {
     formData.remainingAmount = parseInt(formData.totalAmount) - parseInt(formData.depositeAmount);
 
     // formData.depositeAmount = parseInt(formData.totalAmount) - parseInt(formData.remainingAmount)
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
+        setLoading(true);
 
 
         axios.post(`${Url}/api/v1/client`, formData)
             .then(res => {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Expense added successfully.',
-                    icon: 'success',
-                    timer: 3000,
-                    showConfirmButton: false
-                })
-                    .then(res => {
-                        navigate(`/${APP_PREFIX_PATH}/clientlist`);
-                    });
+                if (res.status === 200) {
+                    setLoading(false);
+
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Expense added successfully.',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    })
+                        .then(res => {
+                            navigate(`/${APP_PREFIX_PATH}/clientlist`);
+                        });
+                }
             })
             .catch(err => {
                 console.log(err);
@@ -176,6 +183,9 @@ export default function AddClient() {
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
 
+            {loading &&
+                <Load />
+            }
             <Box marginBottom={2} gap={1} display={'flex'}>
                 <Button sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/dashboard`)}  >
                     Dashboard

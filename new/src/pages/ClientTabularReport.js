@@ -1,12 +1,12 @@
-import { Alert, Box, Button, Grid, Paper, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import Card from '../components/Card'
+import { Alert, Box, Button, Grid, Paper, TextField, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import Card from '../components/Card';
 import { useNavigate } from 'react-router-dom';
 import GroupsIcon from '@mui/icons-material/Groups';
 import AddPhotoAlternate from '@mui/icons-material/AddPhotoAlternate';
 import { Helmet } from 'react-helmet';
 
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -14,30 +14,30 @@ import Console from '../debug_log';
 import Url from '../Config/Url';
 import axios from 'axios';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
-import Language from '../Config/Language'
+import Language from '../Config/Language';
 import ExpenseTabularReportTable from '../components/TableExpenseTabularReport';
 import ClientTabularReportTable from '../components/TableClientTabularReport';
 
 const ClientTabularReport = () => {
 
-    const navigate = useNavigate()
-    const [userList, setUserList] = useState([])
+    const navigate = useNavigate();
+    const [userList, setUserList] = useState([]);
 
-    const [render, setRender] = useState(false)
+    const [render, setRender] = useState(false);
 
     const [fromDate, setFromDate] = useState(null);
     const [toDate, setToDate] = useState(null);
-    const [show, setShow] = useState(false)
-    const [show1, setShow1] = useState(false)
+    const [show, setShow] = useState(false);
+    const [show1, setShow1] = useState(false);
 
     const handleFromDateChange = (date) => {
         setFromDate(date);
     };
     const handleToDateChange = (date) => {
-        setShow(false)
+        setShow(false);
         setToDate(date);
     };
-    Console("tabular", fromDate, toDate)
+    Console("tabular", fromDate, toDate);
 
     const formatMySQLDateTime = (date) => {
         const year = date.getFullYear();
@@ -57,7 +57,7 @@ const ClientTabularReport = () => {
     React.useEffect(() => {
 
         const params = { startDate: formattedStartDate, endDate: formattedEndDate };
-        Console("users", params)
+        Console("users", params);
 
         axios.get(`${Url}/api/v1/report/client`, { params })
             .then(obj => {
@@ -67,20 +67,20 @@ const ClientTabularReport = () => {
             })
             .catch(err => console.error("Error fetching users:", err));
         // .then(err => console.log("eoeee", err))
-    }, [render, formattedStartDate, formattedEndDate])
+    }, [render, formattedStartDate, formattedEndDate]);
 
 
     const handleSearch = () => {
         if (fromDate === null || toDate === null) {
-            setShow1(true)
+            setShow1(true);
         } else {
-            setShow(true)
-            render ? setRender(false) : setRender(true)
+            setShow(true);
+            render ? setRender(false) : setRender(true);
         }
-    }
+    };
 
 
-    show1 && setTimeout(() => { setShow1(false); }, 4000)
+    show1 && setTimeout(() => { setShow1(false); }, 4000);
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
             <Helmet>
@@ -141,7 +141,7 @@ const ClientTabularReport = () => {
             }
         </Box >
 
-    )
-}
+    );
+};
 
-export default ClientTabularReport
+export default ClientTabularReport;

@@ -17,6 +17,7 @@ import Constant from '../Config/Color';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
 import Swal from 'sweetalert2';
 import Url from '../Config/Url';
+import Load from '../components/Load';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -57,30 +58,37 @@ export default function AddVehicle() {
                 materials: newMaterials
             });
         } else {
+
             setFormData({
                 ...formData,
                 [name]: value
             });
         }
     };
+
+    const [loading, setLoading] = useState(false);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
-
+        setLoading(true);
         // Set the updated form data
         // setFormData(updatedFormData);
         axios.post(`${Url}/api/v1/vehicle`, formData)
             .then(res => {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Expense added successfully.',
-                    icon: 'success',
-                    timer: 3000,
-                    showConfirmButton: false
-                })
-                    .then(res => {
-                        navigate(`/${APP_PREFIX_PATH}/vehiclelist`);
-                    });
+                if (res.status === 200) {
+                    setLoading(false);
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Expense added successfully.',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    })
+                        .then(res => {
+                            navigate(`/${APP_PREFIX_PATH}/vehiclelist`);
+                        });
+                }
             })
             .catch(err => {
                 console.log(err);
@@ -91,7 +99,9 @@ export default function AddVehicle() {
     console.log("formdata", formData);
     return (
         <Box paddingY={4} paddingX={8} marginBottom={10} >
-
+            {loading &&
+                <Load />
+            }
             <Box marginBottom={2} gap={1} display={'flex'}>
                 <Button sx={{ color: Constant.color[0], fontSize: 22, textTransform: 'none' }} onClick={() => navigate(`/${APP_PREFIX_PATH}/dashboard`)}  >
                     Dashboard

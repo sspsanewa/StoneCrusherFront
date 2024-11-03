@@ -1,31 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Grid, TextField, Button, Checkbox, FormControlLabel, Typography, Alert, InputAdornment } from '@mui/material';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
 import Popup from '../components/Popup';
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import { Helmet } from 'react-helmet';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import axios from 'axios'
-import Url from '../Config/Url'
+import axios from 'axios';
+import Url from '../Config/Url';
 import Console from '../debug_log';
 import { APP_PREFIX_PATH } from '../Config/AppConfig';
-import Language from '../Config/Language'
+import Language from '../Config/Language';
 
 
 
 const Login = () => {
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [keepSignedIn, setKeepSignedIn] = useState(false);
     const [error1, setError1] = useState('Please enter email address');
     const [error2, setError2] = useState('Please enter password');
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
     const [show, setShow] = useState(false);
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState('');
 
 
     const handleChange = (e) => {
@@ -55,35 +55,35 @@ const Login = () => {
     };
 
     const handleLogin = async () => {
-        setShow(true)
-        localStorage.setItem('token', 'nqfoh2oirgnwgosnvrioheg')
-        localStorage.setItem('userId', 1)
-        // const data = { action: 'sign-in', email: email, password: password }
-        // axios.post(`${Url}/auth/sign_in`, data)
-        //     .then(res => {
-        //         setData(res.data.data)
-        //         if (!res.data.success) {
-        //             setMessage(res.data.msg)
-        //             setShow1(true)
-        //         } else if (res.data.success) {
-        //             setShow(true)
-        //             localStorage.setItem('token', res.data.token)
-        //             localStorage.setItem('userId', res.data.data.user_arr.user_id)
-        //         }
-        //     })
-        //     .catch(err => console.log(err))
-    }
+        setShow(true);
+        localStorage.setItem('token', 'nqfoh2oirgnwgosnvrioheg');
+        localStorage.setItem('userId', 1);
+        navigate(`/${APP_PREFIX_PATH}/dashboard`);
+        const data = { action: 'sign-in', email: email, password: password };
+        axios.post(`${Url}/auth/sign_in`, data)
+            .then(res => {
+                setData(res.data.data);
+                if (!res.data.success) {
+                    setMessage(res.data.msg);
+                    setShow1(true);
+                } else if (res.data.success) {
+                    setShow(true);
+                    localStorage.setItem('token', res.data.token);
+                    localStorage.setItem('userId', res.data.data.user_arr.user_id);
+                }
+            })
+            .catch(err => console.log(err));
+    };
 
 
 
-    const [show1, setShow1] = React.useState(false)
+    const [show1, setShow1] = React.useState(false);
 
-    show1 && setTimeout(() => { setShow1(false); }, 4000)
+    show1 && setTimeout(() => { setShow1(false); }, 4000);
 
     const handleTogglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-    const navigate = useNavigate()
     return (
         <Box >
             <Helmet>
@@ -141,7 +141,7 @@ const Login = () => {
 
                         style={{ width: '300px', marginTop: '20px', backgroundColor: Constant.color[0] }}
                     >
-                        <Popup show={show} button='Login' message='Login successfully' path={`/${APP_PREFIX_PATH}/dashboard`} />
+                        Login
                     </Button>
                     <Button
                         onClick={() => navigate(`/${APP_PREFIX_PATH}/forgotPassword`)}
@@ -162,7 +162,7 @@ const Login = () => {
             </Box> */}
         </Box>
 
-    )
-}
+    );
+};
 
-export default Login
+export default Login;

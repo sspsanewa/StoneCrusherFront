@@ -18,29 +18,30 @@ import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
 import { Avatar, Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import Constant from '../Config/Color'
+import Constant from '../Config/Color';
 import EditIcon from '@mui/icons-material/Edit';
 import PopupReply from '../components/PopupReply';
 import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
 import { Helmet } from 'react-helmet';
-import profile1 from '../assets/profile1.jpg'
-import profile2 from '../assets/profile2.jpg'
-import profile3 from '../assets/profile3.jpg'
-import profile4 from '../assets/profile4.jpg'
+import profile1 from '../assets/profile1.jpg';
+import profile2 from '../assets/profile2.jpg';
+import profile3 from '../assets/profile3.jpg';
+import profile4 from '../assets/profile4.jpg';
 import { useState } from 'react';
 import axios from 'axios';
 import Url from '../Config/Url';
-import moment from 'moment'
+import moment from 'moment';
 // import Date from '../components/Date';
 import Console from '../debug_log';
 import { APP_PREFIX_PATH, IMAGE_PATH } from '../Config/AppConfig';
 import PopupImage from '../components/PopupImage';
 import Modal from '@mui/material/Modal';
 import ActionUserList from '../components/ActionUserList';
-import Language from '../Config/Language'
+import Language from '../Config/Language';
 import New from './New';
 import Edit from '@mui/icons-material/Edit';
+import Loader from '../components/Loader';
 
 
 const style = {
@@ -74,7 +75,7 @@ function getComparator(order, orderBy) {
 
 function stableSort(setSearch, array, comparator) {
     const stabilizedThis = array.map((el, index) => [el, index]);
-    setSearch(false)
+    setSearch(false);
 
     stabilizedThis.sort((a, b) => {
         const order = comparator(a[0], b[0]);
@@ -185,24 +186,24 @@ const SearchInput = ({ onSearch }) => {
 
 export default function DashboardClientList() {
 
-    const [render, setRender] = useState(false)
-    const [userList, setUserList] = useState([])
+    const [render, setRender] = useState(false);
+    const [userList, setUserList] = useState([]);
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [filteredRows, setFilteredRows] = React.useState(userList);
-    const [search, setSearch] = React.useState(false)
-    const [clickImage, setClickImage] = useState(false)
-    const [popImage, setPopImage] = useState('')
+    const [search, setSearch] = React.useState(false);
+    const [clickImage, setClickImage] = useState(false);
+    const [popImage, setPopImage] = useState('');
 
     const [open, setOpen] = React.useState(true);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => { setOpen(false); setClickImage(false) };
+    const handleClose = () => { setOpen(false); setClickImage(false); };
 
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
@@ -256,7 +257,7 @@ export default function DashboardClientList() {
 
 
     const handleSearch = (searchTerm) => {
-        setSearch(true)
+        setSearch(true);
         const filtered = userList.filter((row) =>
             (row.f_name + row.l_name + row.mobile + row.createtime + row.email).toLowerCase().includes(searchTerm.toLowerCase())
 
@@ -271,15 +272,15 @@ export default function DashboardClientList() {
             ),
         [order, userList, orderBy, page, rowsPerPage],
     );
-    const [show, setShow] = React.useState(false)
+    const [show, setShow] = React.useState(false);
 
-    show && setTimeout(() => { setShow(false); }, 4000)
+    show && setTimeout(() => { setShow(false); }, 4000);
 
 
-    const [show1, setShow1] = React.useState(false)
+    const [show1, setShow1] = React.useState(false);
 
-    show1 && setTimeout(() => { setShow1(false); }, 4000)
-
+    show1 && setTimeout(() => { setShow1(false); }, 4000);
+    const [loading, setLoading] = useState(true);
 
     // React.useEffect(() => {
     //     const params = { action: 'get_all_user' };
@@ -298,28 +299,30 @@ export default function DashboardClientList() {
     React.useEffect(() => {
         // Function to fetch user data
         const fetchData = () => {
-          const params = { action: 'get_all_user' };
-          console.log("Fetching users...");
-    
-          axios.get(`${Url}/api/v1/client/dashboard/list`, { params })
-            .then(obj => {
-              const res = obj.data;
-              console.log("Users fetched successfully:", res);
-              setUserList(res);
-            })
-            .catch(err => console.error("Error fetching users:", err));
+            const params = { action: 'get_all_user' };
+            console.log("Fetching users...");
+
+            axios.get(`${Url}/api/v1/client/dashboard/list`, { params })
+                .then(res => {
+                    if (res.status === 200) {
+                        setLoading(false);
+                        console.log("Users fetched successfully:", res);
+                        setUserList(res.data);
+                    }
+                })
+                .catch(err => console.error("Error fetching users:", err));
         };
-    
+
         // Initial fetch when the component mounts
         fetchData();
-    
+
         // Set up interval to refresh every 5 minutes
         const intervalId = setInterval(fetchData, 30000);
-    
+
         // Clear interval on unmount
         return () => clearInterval(intervalId);
-      }, [render, Url]); // Reruns if `render` or `Url` changes
-    
+    }, [render, Url]); // Reruns if `render` or `Url` changes
+
 
     // const handleClick1 = (id) => {
     //     const params = { action: 'get_popup_image', user_id: id };
@@ -338,98 +341,103 @@ export default function DashboardClientList() {
     return (
         <Box paddingY={4} paddingLeft={2} marginBottom={10} >
 
+            {loading ?
 
-            <Paper sx={{ borderRadius: '10px', padding: '20px', bgcolor: Constant.color[1] }}>
+                < Loader />
+                :
+                <Paper sx={{ borderRadius: '10px', padding: '20px', bgcolor: Constant.color[1] }}>
 
-                <Box display={'flex'} justifyContent={'space-between'}>
-                    <EnhancedTableToolbar numSelected={selected.length} />
-                    <Box marginRight={1}>
-                        <SearchInput onSearch={handleSearch} />
+                    <Box display={'flex'} justifyContent={'space-between'}>
+                        <EnhancedTableToolbar numSelected={selected.length} />
+                        <Box marginRight={1}>
+                            <SearchInput onSearch={handleSearch} />
+                        </Box>
                     </Box>
-                </Box>
-                <TableContainer>
-                    <Table
-                        sx={{ minWidth: 800 }}
-                        aria-labelledby="tableTitle"
-                    >
-                        <EnhancedTableHead
-                            numSelected={selected.length}
-                            order={order}
-                            orderBy={orderBy}
-                            onSelectAllClick={handleSelectAllClick}
-                            onRequestSort={handleRequestSort}
-                            rowCount={userList.length}
-                        />
-                        <TableBody>
-                            {(search ? filteredRows : visibleRows).map((row, index) => {
-                                const isItemSelected = isSelected(row.id);
-                                const labelId = `enhanced-table-checkbox-${index}`;
+                    <TableContainer>
+                        <Table
+                            sx={{ minWidth: 800 }}
+                            aria-labelledby="tableTitle"
+                        >
+                            <EnhancedTableHead
+                                numSelected={selected.length}
+                                order={order}
+                                orderBy={orderBy}
+                                onSelectAllClick={handleSelectAllClick}
+                                onRequestSort={handleRequestSort}
+                                rowCount={userList.length}
+                            />
+                            <TableBody>
+                                {(search ? filteredRows : visibleRows).map((row, index) => {
+                                    const isItemSelected = isSelected(row.id);
+                                    const labelId = `enhanced-table-checkbox-${index}`;
 
-                                return (
-                                    <TableRow
-                                        hover
-                                        onClick={(event) => handleClick(event, row.id)}
-                                        role="checkbox"
-                                        aria-checked={isItemSelected}
-                                        tabIndex={-1}
-                                        key={row.sno}
-                                        selected={isItemSelected}
-                                        sx={{ cursor: 'pointer' }}
+                                    return (
+                                        <TableRow
+                                            hover
+                                            onClick={(event) => handleClick(event, row.id)}
+                                            role="checkbox"
+                                            aria-checked={isItemSelected}
+                                            tabIndex={-1}
+                                            key={row.sno}
+                                            selected={isItemSelected}
+                                            sx={{ cursor: 'pointer' }}
 
-                                    >
-                                        <TableCell align="left">{index + 1 + page * rowsPerPage}</TableCell>
-                                        <TableCell>
-                                            <ActionUserList bill='yes' render={render} setRender={setRender} view='View' viewPath={`/${APP_PREFIX_PATH}/viewclient/`} id={row.id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} statusValue={row.active_flag} status={row.active_flag === 1 ? 'Deactive' : 'Active'} url1='user_controller/active_deactive_status' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} delete='Delete' url='api/v1/client' delete_flag='0' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} setShow={setShow} setShow1={setShow1} editUrl='editclient' editIcon={<Edit sx={{ color: Constant.color[0] }} />} edit='Edit' />
-                                        </TableCell>
-
-                                        <TableCell
-                                            component="th"
-                                            id={labelId}
-                                            scope="row"
-                                            align="left"
                                         >
-                                            {(row.firstName + ' ' + row.lastName) ? (row.firstName + ' ' + row.lastName) : "NA"}
-                                        </TableCell>
-                                        {/* <TableCell align="left">
+                                            <TableCell align="left">{index + 1 + page * rowsPerPage}</TableCell>
+                                            <TableCell>
+                                                <ActionUserList bill='yes' render={render} setRender={setRender} view='View' viewPath={`/${APP_PREFIX_PATH}/viewclient/`} id={row.id} viewIcon={<RemoveRedEyeIcon sx={{ color: Constant.color[0] }} />} statusValue={row.active_flag} status={row.active_flag === 1 ? 'Deactive' : 'Active'} url1='user_controller/active_deactive_status' statusIcon={<AirplanemodeActiveIcon sx={{ color: Constant.color[0] }} />} delete='Delete' url='api/v1/client' delete_flag='0' deleteIcon={<DeleteIcon sx={{ color: Constant.color[0] }} />} setShow={setShow} setShow1={setShow1} editUrl='editclient' editIcon={<Edit sx={{ color: Constant.color[0] }} />} edit='Edit' />
+                                            </TableCell>
+
+                                            <TableCell
+                                                component="th"
+                                                id={labelId}
+                                                scope="row"
+                                                align="left"
+                                            >
+                                                {(row.firstName + ' ' + row.lastName) ? (row.firstName + ' ' + row.lastName) : "NA"}
+                                            </TableCell>
+                                            {/* <TableCell align="left">
 
                                             <Avatar src={`${IMAGE_PATH}` + row.image} alt={row.name && row.name.charAt(0).toUpperCase()} />
 
                                         </TableCell> */}
-                                        <TableCell align="left">{row.village ? row.village : 'NA'}</TableCell>
+                                            <TableCell align="left">{row.village ? row.village : 'NA'}</TableCell>
 
 
 
-                                        <TableCell align="left">{row.mobile ? row.mobile : 'NA'}</TableCell>
-                                        {/* <TableCell align="left">
+                                            <TableCell align="left">{row.mobile ? row.mobile : 'NA'}</TableCell>
+                                            {/* <TableCell align="left">
                                             {row.active_flag === 1 ? <Typography variant='outlined' size='small' style={{ height: '25px', color: '#00c853' }} >Active</Typography> : <Typography variant='outlined' size='small' style={{
                                                 height: '25px', color: '#f44336'
                                             }} >Deactive</Typography>}
                                         </TableCell> */}
-                                        <TableCell align="left">{row.paymentStatus}</TableCell>
+                                            <TableCell align="left">{row.paymentStatus}</TableCell>
 
-                                        <TableCell align="left">{row.date}</TableCell>
+                                            <TableCell align="left">{row.date}</TableCell>
 
+                                        </TableRow>
+                                    );
+                                })}
+                                {emptyRows > 0 && (
+                                    <TableRow>
+                                        <TableCell colSpan={6} />
                                     </TableRow>
-                                );
-                            })}
-                            {emptyRows > 0 && (
-                                <TableRow>
-                                    <TableCell colSpan={6} />
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
-                    component="div"
-                    count={userList.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </Paper>
-        </Box>
+                                )}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <TablePagination
+                        rowsPerPageOptions={[5, 10, 25]}
+                        component="div"
+                        count={userList.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                </Paper>
+
+            }
+        </Box >
     );
 }

@@ -91,12 +91,14 @@ export default function AddEmployee() {
 
     // Calculate amount for each material and sum up to get totalAmount
 
+    const [loading, setLoading] = useState(false);
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
 
+        setLoading(true);
 
         // const totalMaterialAmount = formData.materials.reduce((total, material) => {
         //     // Calculate amount for current material
@@ -117,16 +119,19 @@ export default function AddEmployee() {
         // setFormData(updatedFormData);
         axios.post(`${Url}/api/v1/employee`, formData)
             .then(res => {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Expense added successfully.',
-                    icon: 'success',
-                    timer: 3000,
-                    showConfirmButton: false
-                })
-                    .then(res => {
-                        navigate(`/${APP_PREFIX_PATH}/employeelist`);
-                    });
+                if (res.status === 200) {
+                    setLoading(false);
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Expense added successfully.',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    })
+                        .then(res => {
+                            navigate(`/${APP_PREFIX_PATH}/employeelist`);
+                        });
+                }
             })
             .catch(err => {
                 console.log(err);
